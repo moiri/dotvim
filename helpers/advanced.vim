@@ -29,7 +29,6 @@ if has('gui_running')
 
     set fuoptions=maxvert,maxhorz
 
-
   elseif os == 'Linux'
 
     set guifont=Inconsolata-g\ Medium\ 10
