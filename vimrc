@@ -1,3 +1,5 @@
+" loading all my stuff
+
 source ~/.vim/helpers/basics.vim
 
 source ~/.vim/helpers/functions.vim
