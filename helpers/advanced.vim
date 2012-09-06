@@ -16,8 +16,8 @@ if has('gui_running')
   autocmd! FocusLost * :wa
   autocmd! GUIEnter * set vb t_vb=
 
-  colorscheme zazen "pour voir
-  " colorscheme sorcerer
+  " colorscheme zazen "pour voir
+  colorscheme sorcerer
 
   set guioptions-=T
 
