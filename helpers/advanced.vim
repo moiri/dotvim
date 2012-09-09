@@ -16,7 +16,6 @@ if has('gui_running')
   autocmd! FocusLost * :wa
   autocmd! GUIEnter * set vb t_vb=
 
-  " colorscheme zazen "pour voir
   colorscheme sorcerer
 
   set guioptions-=T
@@ -112,15 +111,6 @@ let delimitMate_expand_space=1
 let g:acp_behaviorSnipmateLength=-1
 let g:acp_completeoptPreview=1
 
-" let g:acp_enableAtStartup = 0
-" let g:neocomplcache_enable_at_startup = 1
-" let g:neocomplcache_enable_smart_case = 1
-" let g:neocomplcache_enable_camel_case_completion = 1
-" let g:neocomplcache_enable_underbar_completion = 1
-" let g:neocomplcache_min_syntax_length = 3
-" let g:neocomplcache_enable_auto_select = 1
-" let g:neocomplcache_lock_buffer_name_pattern = '\.html,\.aspx'
-
 let g:syntastic_check_on_open=0
 let g:syntastic_enable_balloons=0
 let g:syntastic_auto_loc_list=1
@@ -145,4 +135,3 @@ set statusline+=[\%l\/\%L " line: line number of total
 set statusline+=-         " whitespace
 set statusline+=\%c]      " col: column number
 set statusline+=\         " ends with whitespace
-
