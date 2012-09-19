@@ -85,7 +85,6 @@ snippet body
 snippet head
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=${1:utf-8}"`Close()`>
-
 		<title>${2:`substitute(Filename('', 'Page Title'), '^.', '\u&', '')`}</title>
 		${3}
 	</head>
@@ -146,7 +145,7 @@ snippet fix
 snippet a html
 	<a href="${1:}" title="${2:}" ${3}>${4}</a>
 snippet a sparkup
-	> a[href=${1:#}][title=${2}]${3:[target=_blank]}${4}
+	a[href=${1:#}][title=${2}]${3:[target=_blank]}${4}
 snippet mailto
 	<a href="mailto:${1:joe@example.com}?subject=${2:feedback}">${3:email me}</a>
 #
@@ -156,13 +155,13 @@ snippet table html
 		${5}
 	</table>
 snippet table sparkup
-	> table[border=${1:0}][cellpadding=${2:0}][cellspacing=${3:0}][width=${4:100%}] > tr${5} > td[width=${6}][align=${7:left}][valign=${8:top}]${9}
+	table[border=${1:0}][cellpadding=${2:0}][cellspacing=${3:0}][width=${4:100%}] > tr${5} > td[width=${6}][align=${7:left}][valign=${8:top}]${9}
 snippet tr
 	<tr>${1}</tr>
 snippet td html
 	<td${1}>${2}</td>
 snippet td sparkup
-	> td[width=${1}][align=${2:left}][valign=${3:top}]${4}
+	td[width=${1}][align=${2:left}][valign=${3:top}]${4}
 #
 # <FORM>
 snippet input

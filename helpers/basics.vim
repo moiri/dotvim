@@ -105,7 +105,7 @@ set foldenable
 set foldmethod=indent
 set foldlevelstart=99
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
-set shell=bash\ -ci
+set shell=bash\ -i
 set nrformats-=octal
 set scrolloff=4
 set mouse=a

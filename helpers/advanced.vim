@@ -119,6 +119,8 @@ let g:syntastic_mode_map={ 'mode': 'active',
                          \ 'active_filetypes': [],
                          \ 'passive_filetypes': ['html','php'] }
 
+let g:user_zen_leader_key='<C-e>'
+
 """"""""""""""""""
 " THE STATUSLINE "
 """"""""""""""""""
