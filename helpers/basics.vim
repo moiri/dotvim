@@ -2,9 +2,7 @@
 " THE BASICS "
 """"""""""""""
 
-filetype on
-filetype indent on
-filetype plugin on
+filetype plugin indent on
 syntax on
 
 silent! runtime macros/matchit.vim
