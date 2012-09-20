@@ -2,6 +2,10 @@
 "HELPERS
 "=======
 
+function! OmniOmni()
+
+endfunction
+
 " changes the cursor shape/color
 " in the terminal depending on the mode
 " see http://code.google.com/p/iterm2/issues/detail?id=710&q=cursor
