@@ -74,6 +74,9 @@ nnoremap <leader>-  yypv$r-
 nnoremap <leader>^  yypv$r^
 nnoremap <leader>"  yypv$r"
 
+set wildcharm=<C-z>
+nnoremap <leader>] :ts *<c-r>=expand('<cword>')<cr><C-z>
+
 autocmd FileType vim                nnoremap <leader>g I" <Esc>A "<Esc>yyp0lv$hhr"yykPjj
 autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hhr-yykPjj
 
@@ -108,9 +111,6 @@ let g:ctrlp_dotfiles=0
 let delimitMate_expand_cr=1
 let delimitMate_expand_space=1
 
-let g:acp_behaviorSnipmateLength=-1
-let g:acp_completeoptPreview=1
-
 let g:syntastic_check_on_open=0
 let g:syntastic_enable_balloons=0
 let g:syntastic_auto_loc_list=1
@@ -120,6 +120,13 @@ let g:syntastic_mode_map={ 'mode': 'active',
                          \ 'passive_filetypes': ['html','php'] }
 
 let g:user_zen_leader_key='<c-e>'
+
+let g:easytags_auto_highlight=0
+let g:easytags_dynamic_files=1
+let g:easytags_by_filetype='~/.vimtagsft'
+
+let g:notes_directory='~/Dropbox/nv'
+let g:notes_suffix='.txt'
 
 """"""""""""""""""
 " THE STATUSLINE "
