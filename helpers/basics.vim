@@ -118,7 +118,7 @@ set undolevels=1000
 set noswapfile
 set wildignore=*.swp,*.bak,*.pyc,*.class,*/.git/*,*/.hg/*,*/.svn/*
 set tags=./tags,tags;$HOME
-set cscopetag
+" set cscopetag
 set list
 set listchars=
 set listchars+=tab:»\ 
