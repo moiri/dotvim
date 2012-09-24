@@ -81,6 +81,12 @@ autocmd FileType vim                nnoremap <leader>g I" <Esc>A "<Esc>yyp0lv$hh
 autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hhr-yykPjj
 
 autocmd FileType qf                 set winheight=8
+autocmd FileType qf                 set nowrap
+autocmd FileType qf                 nnoremap k      k
+autocmd FileType qf                 nnoremap j      j
+autocmd FileType qf                 nnoremap <up>   <Up>
+autocmd FileType qf                 nnoremap <down> <Down>
+
 
 """"""""""""""""""""""""
 " PLUGIN CONFIGURATION "

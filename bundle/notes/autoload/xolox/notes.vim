@@ -395,7 +395,7 @@ function! xolox#notes#search(bang, input) " {{{1
     if &buftype == 'quickfix'
       call map(keywords, '"`" . v:val . "''"')
       " Enable line wrapping in the quick-fix window.
-      setlocal wrap
+      " setlocal wrap
       " Resize the quick-fix window to 1/3 of the screen height.
       let max_height = &lines / 3
       execute 'resize' max_height

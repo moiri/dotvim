@@ -42,11 +42,6 @@ vnoremap < <gv
 
 inoremap <C-Return> <CR><CR><C-o>k<Tab>
 
-nnoremap k      gk
-nnoremap j      gj
-nnoremap <up>   gk
-nnoremap <down> gj
-
 nnoremap <leader>sb :ls<CR>:sb<Space>
 nnoremap <leader>cc :clist<CR>:silent cc<Space>
 nnoremap <leader>ll :llist<CR>:silent ll<Space>
