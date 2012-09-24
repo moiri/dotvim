@@ -47,7 +47,9 @@ nnoremap j      gj
 nnoremap <up>   gk
 nnoremap <down> gj
 
-nnoremap <leader>ls :ls<CR>:sb<Space>
+nnoremap <leader>sb :ls<CR>:sb<Space>
+nnoremap <leader>cc :clist<CR>:silent cc<Space>
+nnoremap <leader>ll :llist<CR>:silent ll<Space>
 
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
@@ -116,7 +118,7 @@ set undolevels=1000
 set noswapfile
 set wildignore=*.swp,*.bak,*.pyc,*.class,*/.git/*,*/.hg/*,*/.svn/*
 set tags=./tags,tags;$HOME
-set cscopetag
+" set cscopetag
 set list
 set listchars=
 set listchars+=tab:»\ 
