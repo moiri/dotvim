@@ -133,6 +133,8 @@ let g:easytags_by_filetype='~/.vimtagsft'
 
 let g:notes_directory='~/Dropbox/nv'
 let g:notes_suffix='.txt'
+let g:notes_indexscript='~/.vim/bundle/notes/misc/notes/search-notes.py'
+let g:notes_indexfile='~/.notes.db'
 
 """"""""""""""""""
 " THE STATUSLINE "

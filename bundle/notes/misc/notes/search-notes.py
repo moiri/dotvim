@@ -56,8 +56,8 @@ class NotesIndex:
       self.usage()
       sys.exit(2)
     # Define the command line option defaults.
-    self.database_file = '~/.vim/misc/notes/index.pickle'
-    self.user_directory = '~/.vim/misc/notes/user/'
+    self.database_file = '~/.vim/bundle/notes/misc/notes/index.pickle'
+    self.user_directory = '~/Dropbox/nv'
     self.character_encoding = 'UTF-8'
     self.keyword_filter = None
     self.verbose = False
