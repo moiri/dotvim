@@ -87,7 +87,6 @@ autocmd FileType qf                 nnoremap j      j
 autocmd FileType qf                 nnoremap <up>   <Up>
 autocmd FileType qf                 nnoremap <down> <Down>
 
-
 """"""""""""""""""""""""
 " PLUGIN CONFIGURATION "
 """"""""""""""""""""""""
@@ -98,6 +97,7 @@ let g:netrw_winsize='999'
 let g:netrw_banner=0
 
 nnoremap <leader>f :CtrlP<CR>
+nnoremap <leader>F :CtrlPCurWD<CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>m :CtrlPMRUFiles<CR>
 nnoremap <leader>t :CtrlPBufTag<CR>

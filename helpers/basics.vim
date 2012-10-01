@@ -89,6 +89,7 @@ set switchbuf=useopen,usetab
 set wildmenu
 set wildmode=list:full
 " not that necessary
+set relativenumber
 set clipboard=unnamed
 set cursorline
 set splitright
