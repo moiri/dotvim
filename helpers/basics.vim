@@ -74,13 +74,10 @@ set expandtab
 set shiftwidth=2
 set shiftround
 set backspace=indent,eol,start
-set autoindent
-set copyindent
 set ignorecase
 set smartcase
 set incsearch
 set gdefault
-set fileformats="unix,dos,mac"
 set laststatus=2
 set termencoding=utf-8
 set encoding=utf-8
@@ -89,6 +86,7 @@ set switchbuf=useopen,usetab
 set wildmenu
 set wildmode=list:full
 " not that necessary
+set fileformats="unix,dos,mac"
 set relativenumber
 set clipboard=unnamed
 set cursorline
