@@ -2,6 +2,13 @@
 " WORK IN PROGRESS "
 """"""""""""""""""""
 
+function! UniversalTextObject()
+  let visual_start_pos = getpos("'<")
+  let visual_end_pos = getpos("'>")
+
+
+endfunction
+
 " number text object
 " à nettoyer
 " nnoremap <leader>n  /\v\d+<CR>

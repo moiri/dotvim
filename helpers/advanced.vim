@@ -61,6 +61,8 @@ nnoremap <leader>"  yypv$r"
 set wildcharm=<C-z>
 nnoremap <leader>] :ts *<c-r>=expand('<cword>')<cr><C-z>
 
+vnoremap & "*y<Esc>:<c-u>%s/<c-r>=substitute(escape(@*, '\/.*$^~[]'), "\n", '\\n', "g")<cr>/
+
 autocmd FileType vim                nnoremap <leader>g I" <Esc>A "<Esc>yyp0lv$hhr"yykPjj
 autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hhr-yykPjj
 
