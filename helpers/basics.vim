@@ -73,6 +73,8 @@ set tabstop=2
 set expandtab
 set shiftwidth=2
 set shiftround
+set autoindent
+set copyindent
 set backspace=indent,eol,start
 set ignorecase
 set smartcase

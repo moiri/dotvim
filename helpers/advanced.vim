@@ -12,7 +12,6 @@ filetype on
 let os=substitute(system('uname'), '\n', '', '')
 
 if has('gui_running')
-
   autocmd! FocusLost * :wa
   autocmd! GUIEnter * set vb t_vb=
 
@@ -24,39 +23,24 @@ if has('gui_running')
   set columns=140
 
   if os == 'Darwin' || os == 'Mac'
-
     set guifont=Inconsolata-g:h12
-
     set fuoptions=maxvert,maxhorz
-
   elseif os == 'Linux'
-
     set guifont=Inconsolata-g\ Medium\ 10
-
     set guioptions-=m
-
   endif
-
 else
-
   if &term == 'screen'
-
     set t_Co=256
-
   endif
 
   if &t_Co >= 256
-
     colorscheme sorcerer_256
-
   elseif &t_Co < 256
-
     colorscheme sorcerer_16
-
   endif
 
   call SetCursorStyle(os)
-
 endif
 
 """""""""""""""""""
@@ -76,6 +60,8 @@ nnoremap <leader>"  yypv$r"
 
 set wildcharm=<C-z>
 nnoremap <leader>] :ts *<c-r>=expand('<cword>')<cr><C-z>
+
+vnoremap & "*y<Esc>:<c-u>%s/<c-r>=substitute(escape(@*, '\/.*$^~[]'), "\n", '\\n', "g")<cr>/
 
 autocmd FileType vim                nnoremap <leader>g I" <Esc>A "<Esc>yyp0lv$hhr"yykPjj
 autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hhr-yykPjj
