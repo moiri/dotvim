@@ -8,7 +8,6 @@ syntax on
 silent! runtime macros/matchit.vim
 
 if !has("gui_running")
-
   nnoremap <Esc>A <up>
   nnoremap <Esc>B <down>
   nnoremap <Esc>C <right>
@@ -17,7 +16,6 @@ if !has("gui_running")
   inoremap <Esc>B <down>
   inoremap <Esc>C <right>
   inoremap <Esc>D <left>
-
 endif
 
 let mapleader=','
@@ -42,7 +40,7 @@ vnoremap < <gv
 
 inoremap <C-Return> <CR><CR><C-o>k<Tab>
 
-nnoremap <leader>sb :ls<CR>:sb<Space>
+nnoremap <leader>sb :buffers<CR>:sb<Space>
 nnoremap <leader>cc :clist<CR>:silent cc<Space>
 nnoremap <leader>ll :llist<CR>:silent ll<Space>
 
@@ -73,6 +71,8 @@ set tabstop=2
 set expandtab
 set shiftwidth=2
 set shiftround
+set autoindent
+set copyindent
 set backspace=indent,eol,start
 set ignorecase
 set smartcase
