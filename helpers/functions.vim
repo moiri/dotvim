@@ -2,6 +2,25 @@
 "HELPERS
 "=======
 
+" jump to css definition from html attribute id/class
+function! JumpToCSSDefinition()
+  let old_sb = &switchbuf
+  let &switchbuf = 'useopen,usetab'
+
+  let id_pos = searchpos("id", "nb", line('.'))[1]
+  let class_pos = searchpos("class", "nb", line('.'))[1]
+
+  if class_pos > 0 || id_pos > 0
+    if class_pos < id_pos
+      execute ":vim '#".expand('<cword>')."' **/*.css"
+    elseif class_pos > id_pos
+      execute ":vim '.".expand('<cword>')."' **/*.css"
+    endif
+  endif
+
+  let &switchbuf = old_sb
+endfunction
+
 " changes the cursor shape/color
 " in the terminal depending on the mode
 " see http://code.google.com/p/iterm2/issues/detail?id=710&q=cursor

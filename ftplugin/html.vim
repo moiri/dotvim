@@ -6,6 +6,8 @@ nnoremap <leader>é :call ReverseEntities()<CR>
 vnoremap <leader>& :call Entities()<CR>
 vnoremap <leader>é :call ReverseEntities()<CR>
 
+nnoremap <F9> :call JumpToCSSDefinition()<CR>
+
 nnoremap <leader>< /<\w*\(\s\\|>\)<CR>
 nnoremap <leader>> ?<\w*\(\s\\|>\)<CR>
 
