@@ -168,8 +168,8 @@ for key in pairs
   execute "nnoremap va".key." F".key."vf".key
 endfor
 
-set wildcharm=<C-z>
-nnoremap <leader>] :ts *<c-r>=expand('<cword>')<cr><C-z>
+nnoremap <leader>] :tag /<c-r>=expand('<cword>')<cr><cr>
+nnoremap <leader>} :ptag /<c-r>=expand('<cword>')<cr><cr>
 
 vnoremap & "*y<Esc>:<c-u>%s/<c-r>=substitute(escape(@*, '\/.*$^~[]'), "\n", '\\n', "g")<cr>/
 
