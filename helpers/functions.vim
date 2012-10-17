@@ -1,25 +1,6 @@
-"=======
-"HELPERS
-"=======
-
-" jump to css definition from html attribute id/class
-function! JumpToCSSDefinition()
-  let old_sb = &switchbuf
-  let &switchbuf = 'useopen,usetab'
-
-  let id_pos = searchpos("id", "nb", line('.'))[1]
-  let class_pos = searchpos("class", "nb", line('.'))[1]
-
-  if class_pos > 0 || id_pos > 0
-    if class_pos < id_pos
-      execute ":vim '#".expand('<cword>')."' **/*.css"
-    elseif class_pos > id_pos
-      execute ":vim '.".expand('<cword>')."' **/*.css"
-    endif
-  endif
-
-  let &switchbuf = old_sb
-endfunction
+"""""""""""
+" HELPERS "
+"""""""""""
 
 " changes the cursor shape/color
 " in the terminal depending on the mode
@@ -57,7 +38,7 @@ function! SetCursorStyle(os)
   endif
 endfunction
 
-" URLs pasted from Word or Powerpoint have a newline
+" URLs pasted from Word or Powerpoint often have a newline
 " this macro puts the URL in the href attribute 
 " of the next anchor
 command! An call UpdateAnchor()
