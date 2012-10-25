@@ -136,10 +136,10 @@ nnoremap <leader>; A;<Esc>
 
 nnoremap <leader>k      :m-2<CR>==
 nnoremap <leader>j      :m+<CR>==
-vnoremap <leader>k      :m-2<CR>gv=gv
-vnoremap <leader>j      :m'>+<CR>gv=gv
 nnoremap <leader><Up>   :m-2<CR>==
 nnoremap <leader><Down> :m+<CR>==
+vnoremap <leader>k      :m-2<CR>gv=gv
+vnoremap <leader>j      :m'>+<CR>gv=gv
 vnoremap <leader><Up>   :m-2<CR>gv=gv
 vnoremap <leader><Down> :m'>+<CR>gv=gv
 
