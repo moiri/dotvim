@@ -266,8 +266,6 @@ let g:syntastic_mode_map={ 'mode': 'active',
                          \ 'active_filetypes': [],
                          \ 'passive_filetypes': ['html','php'] }
 
-let g:user_zen_leader_key='<c-e>'
-
 let g:easytags_auto_highlight=0
 let g:easytags_dynamic_files=1
 let g:easytags_by_filetype='~/.vimtagsft'
