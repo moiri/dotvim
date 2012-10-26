@@ -254,6 +254,10 @@ let g:ctrlp_by_filename=1
 let g:ctrlp_open_new_file='r'
 let g:ctrlp_open_multiple_files='3hjr'
 let g:ctrlp_dotfiles=0
+let g:ctrlp_buftag_types = {
+  \ 'css'        : '--language-force=css --css-types=citm',
+  \ 'javascript' : '--language-force=javascript --javascript-types=sfaov',
+  \ }
 
 let delimitMate_expand_cr=1
 let delimitMate_expand_space=1
