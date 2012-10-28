@@ -9,9 +9,9 @@ source ~/.vim/helpers/functions.vim
 
 silent! runtime macros/matchit.vim
 
-""""""""""""
-" SETTINGS "
-""""""""""""
+""""""""""""""""""""
+" GENERIC SETTINGS "
+""""""""""""""""""""
 
 " necessary
 set autoindent
@@ -92,6 +92,54 @@ set shell=bash\ -i
 set tags=./tags,tags;$HOME
 set wildignore=*.swp,*.bak,*.pyc,*.class,*/.git/*,*/.hg/*,*/.svn/*
 set winheight=999
+
+""""""""""""""""""""""""
+" OS-SPECIFIC SETTINGS "
+""""""""""""""""""""""""
+
+let os=substitute(system('uname'), '\n', '', '')
+
+if has('gui_running')
+  autocmd! FocusLost * :wa
+  autocmd! GUIEnter * set vb t_vb=
+
+  colorscheme sorcerer
+
+  set guioptions-=T
+
+  set lines=40
+  set columns=140
+
+  if os == 'Darwin' || os == 'Mac'
+    set guifont=Inconsolata-g:h12
+    set fuoptions=maxvert,maxhorz
+  elseif os == 'Linux'
+    set guifont=Inconsolata-g\ Medium\ 10
+    set guioptions-=m
+  endif
+else
+  if &term == 'screen'
+    set t_Co=256
+  endif
+
+  if &t_Co >= 256
+    colorscheme sorcerer_256
+  elseif &t_Co < 256
+    colorscheme sorcerer_16
+  endif
+
+  nnoremap <Esc>A <up>
+  nnoremap <Esc>B <down>
+  nnoremap <Esc>C <right>
+  nnoremap <Esc>D <left>
+  inoremap <Esc>A <up>
+  inoremap <Esc>B <down>
+  inoremap <Esc>C <right>
+  inoremap <Esc>D <left>
+
+  call SetCursorStyle(os)
+endif
+
 
 """""""""""""""""""
 " CUSTOM MAPPINGS "
@@ -185,52 +233,9 @@ autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hh
 autocmd FileType qf                 set winheight=8
 autocmd FileType qf                 set nowrap
 
-let os=substitute(system('uname'), '\n', '', '')
-
-if has('gui_running')
-  autocmd! FocusLost * :wa
-  autocmd! GUIEnter * set vb t_vb=
-
-  colorscheme sorcerer
-
-  set guioptions-=T
-
-  set lines=40
-  set columns=140
-
-  if os == 'Darwin' || os == 'Mac'
-    set guifont=Inconsolata-g:h12
-    set fuoptions=maxvert,maxhorz
-  elseif os == 'Linux'
-    set guifont=Inconsolata-g\ Medium\ 10
-    set guioptions-=m
-  endif
-else
-  if &term == 'screen'
-    set t_Co=256
-  endif
-
-  if &t_Co >= 256
-    colorscheme sorcerer_256
-  elseif &t_Co < 256
-    colorscheme sorcerer_16
-  endif
-
-  nnoremap <Esc>A <up>
-  nnoremap <Esc>B <down>
-  nnoremap <Esc>C <right>
-  nnoremap <Esc>D <left>
-  inoremap <Esc>A <up>
-  inoremap <Esc>B <down>
-  inoremap <Esc>C <right>
-  inoremap <Esc>D <left>
-
-  call SetCursorStyle(os)
-endif
-
-""""""""""""""""""""""""
-" PLUGIN CONFIGURATION "
-""""""""""""""""""""""""
+"""""""""""""""""""
+" PLUGIN SETTINGS "
+"""""""""""""""""""
 
 let g:snippets_dir='~/.vim/snippets/'
 
