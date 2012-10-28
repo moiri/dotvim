@@ -23,8 +23,8 @@ set tabstop=2
 set backspace=indent,eol,start
 
 set gdefault
-set ignorecase
 set incsearch
+set ignorecase
 set smartcase
 
 set encoding=utf-8
