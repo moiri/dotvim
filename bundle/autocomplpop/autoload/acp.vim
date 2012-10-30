@@ -141,13 +141,13 @@ endfunction
 "
 function acp#meetsForPhpOmni(context)
   return g:acp_behaviorPhpOmniLength >= 0 &&
-        \ a:context =~ '\w->\k\{' . g:acp_behaviorPhpOmniLength . ',}$'
+        \ a:context =~ '\k->\k\{' . g:acp_behaviorPhpOmniLength . ',}$'
 endfunction
 
 "
 function acp#meetsForPerlOmni(context)
   return g:acp_behaviorPerlOmniLength >= 0 &&
-        \ a:context =~ '\w->\k\{' . g:acp_behaviorPerlOmniLength . ',}$'
+        \ a:context =~ '\k->\k\{' . g:acp_behaviorPerlOmniLength . ',}$'
 endfunction
 
 "
