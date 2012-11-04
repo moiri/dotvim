@@ -17,6 +17,7 @@ silent! runtime macros/matchit.vim
 set autoindent
 set copyindent
 set expandtab
+set smarttab
 set shiftround
 set shiftwidth=2
 set tabstop=2
@@ -54,10 +55,10 @@ set statusline+=\              " ends with whitespace
 set list
 set listchars=
 set listchars+=tab:»\ 
-set listchars+=extends:› 
-set listchars+=precedes:‹ 
-set listchars+=nbsp:· 
-set listchars+=trail:· 
+set listchars+=extends:›
+set listchars+=precedes:‹
+set listchars+=nbsp:·
+set listchars+=trail:·
 
 set foldenable
 set foldlevelstart=99
@@ -230,9 +231,6 @@ nnoremap & :'{,'}s/<c-r>=expand('<cword>')<cr>/
 autocmd FileType vim                nnoremap <leader>g I" <Esc>A "<Esc>yyp0lv$hhr"yykPjj
 autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hhr-yykPjj
 
-autocmd FileType qf                 set winheight=8
-autocmd FileType qf                 set nowrap
-
 """""""""""""""""""
 " PLUGIN SETTINGS "
 """""""""""""""""""
@@ -245,11 +243,10 @@ let g:netrw_banner=0
 nnoremap <leader>f :CtrlP<CR>
 nnoremap <leader>F :CtrlPCurWD<CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
-nnoremap <leader>m :CtrlPMRUFiles<CR>
-nnoremap <leader>t :CtrlPBufTag<CR>
-nnoremap <leader>T :CtrlPTag<CR>
-command! CtrlPLine call ctrlp#init(ctrlp#line#id())
-nnoremap <leader>/ :CtrlPLine<CR>
+nnoremap <leader>m :CtrlPMixed<CR>
+nnoremap <leader>M :CtrlPMRUFiles<CR>
+nnoremap <leader>t :CtrlPTag<CR>
+nnoremap <leader>T :CtrlPBufTag<CR>
 let g:ctrlp_working_path_mode=2
 let g:ctrlp_jump_to_buffer=2
 let g:ctrlp_extensions=['tag','line']
@@ -273,7 +270,7 @@ let g:syntastic_auto_loc_list=1
 let g:syntastic_enable_signs=1
 let g:syntastic_mode_map={ 'mode': 'active',
                          \ 'active_filetypes': [],
-                         \ 'passive_filetypes': ['html','php'] }
+                         \ 'passive_filetypes': ['css','python','html','php'] }
 
 let g:easytags_auto_highlight=0
 let g:easytags_dynamic_files=1

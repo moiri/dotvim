@@ -109,6 +109,9 @@ snippet targ
 # Event
 snippet ev
 	var ${1:event} = ${2:ev} || window.event;${3}
+##########
+# OBJECT #
+##########
 # Object > Literal
 snippet obj
 	var ${1:object_name} = {
@@ -122,13 +125,14 @@ snippet :f
 	${1:method_name} : function(${2}) {
 		${3}
 	}
+#########
+# CLASS #
+#########
 # Class > Constructor
 snippet cons
 	var ${1:Constructor_name} = function(${2}) {
 		var self = this;
 		${3}
-	
-		return true;
 	};
 # Class > Public Property
 snippet =
