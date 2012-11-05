@@ -1,7 +1,7 @@
 dotvim
 ======
 
-My Vim config.
+Ma configuration pour Vim.
 
 ---
 
