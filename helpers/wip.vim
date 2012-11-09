@@ -2,12 +2,33 @@
 " WORK IN PROGRESS "
 """"""""""""""""""""
 
-function! UniversalTextObject()
-  let visual_start_pos = getpos("'<")
-  let visual_end_pos = getpos("'>")
+" looks for the top and bottom lines
+" at the current indentation level
+" returns a range suitable for use in the commandline
+fun! IndentRange()
+  let s:startline   = line('.')
+  let s:startcol    = col('.')
+  let s:startindent = indent('.')
 
+  while indent('.') == s:startindent
+    normal! k
+  endw
+  normal! j
+  let s:topline = line('.')
 
-endfunction
+  while indent('.') == s:startindent
+    normal! j
+  endw
+  normal! k
+  let s:bottomline = line('.')
+
+  call cursor(s:startline, s:startcol)
+
+  return s:topline . "," . s:bottomline
+endf
+
+vnoremap & "*y<Esc>:<c-u><c-r>=IndentRange()<cr>s/<c-r>=substitute(escape(@*, '\/.*$^~[]'), "\n", '\\n', "g")<cr>/
+nnoremap & :<c-r>=IndentRange()<cr>s/<c-r>=expand('<cword>')<cr>/
 
 " number text object
 " à nettoyer

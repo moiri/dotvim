@@ -2,31 +2,6 @@
 " HELPERS "
 """""""""""
 
-" looks for the top and bottom lines
-" at the current indentation level
-" returns a range suitable for use in the commandline
-fun! IndentRange()
-  let s:startline   = line('.')
-  let s:startcol    = col('.')
-  let s:startindent = indent('.')
-
-  while indent('.') == s:startindent
-    normal! k
-  endw
-  normal! j
-  let s:topline = line('.')
-
-  while indent('.') == s:startindent
-    normal! j
-  endw
-  normal! k
-  let s:bottomline = line('.')
-
-  call cursor(s:startline, s:startcol)
-
-  return s:topline . "," . s:bottomline
-endf
-
 " changes the cursor shape/color
 " in the terminal depending on the mode
 " see http://code.google.com/p/iterm2/issues/detail?id=710&q=cursor

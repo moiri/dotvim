@@ -225,8 +225,11 @@ endfor
 nnoremap <leader>] :tag /<c-r>=expand('<cword>')<cr><cr>
 nnoremap <leader>} :ptag /<c-r>=expand('<cword>')<cr><cr>
 
-vnoremap & "*y<Esc>:<c-u><c-r>=IndentRange()<cr>s/<c-r>=substitute(escape(@*, '\/.*$^~[]'), "\n", '\\n', "g")<cr>/
-nnoremap & :<c-r>=IndentRange()<cr>s/<c-r>=expand('<cword>')<cr>/
+vnoremap & "*y<Esc>:<c-u>'{,'}s/<c-r>=substitute(escape(@*, '\/.*$^~[]'), "\n", '\\n', "g")<cr>/
+nnoremap & :'{,'}s/<c-r>=expand('<cword>')<cr>/
+
+nnoremap § n.
+nnoremap <S-§> N.
 
 autocmd FileType vim                nnoremap <leader>g I" <Esc>A "<Esc>yyp0lv$hhr"yykPjj
 autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hhr-yykPjj
