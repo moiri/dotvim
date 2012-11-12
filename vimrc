@@ -76,7 +76,7 @@ set history=1000
 set undolevels=1000
 
 set autochdir
-set clipboard=unnamed
+set clipboard+=unnamed
 set cmdheight=1
 set completeopt+=preview
 set cursorline
@@ -259,7 +259,7 @@ let g:ctrlp_by_filename=1
 let g:ctrlp_open_new_file='r'
 let g:ctrlp_open_multiple_files='3hjr'
 let g:ctrlp_dotfiles=0
-let g:ctrlp_buftag_types = {
+let g:ctrlp_buftag_types={
   \ 'css'        : '--language-force=css --css-types=citm',
   \ 'javascript' : '--language-force=javascript --javascript-types=fv',
   \ }
