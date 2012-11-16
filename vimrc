@@ -75,7 +75,7 @@ set splitright
 set history=1000
 set undolevels=1000
 
-set autochdir
+" set autochdir
 set clipboard+=unnamed
 set cmdheight=1
 set completeopt+=preview
@@ -161,8 +161,6 @@ nnoremap / /\v
 
 nnoremap Y y$
 
-inoremap <Esc> <Esc>:w<CR>
-
 vnoremap > >gv
 vnoremap < <gv
 
@@ -228,11 +226,10 @@ nnoremap <leader>} :ptag /<c-r>=expand('<cword>')<cr><cr>
 vnoremap & "*y<Esc>:<c-u>'{,'}s/<c-r>=substitute(escape(@*, '\/.*$^~[]'), "\n", '\\n', "g")<cr>/
 nnoremap & :'{,'}s/<c-r>=expand('<cword>')<cr>/
 
-nnoremap § n.
-nnoremap <S-§> N.
-
 autocmd FileType vim                nnoremap <leader>g I" <Esc>A "<Esc>yyp0lv$hhr"yykPjj
 autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hhr-yykPjj
+
+autocmd InsertLeave * if &modified && expand('%')!=''|write|endif
 
 """""""""""""""""""
 " PLUGIN SETTINGS "
