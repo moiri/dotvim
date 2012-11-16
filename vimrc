@@ -75,7 +75,7 @@ set splitright
 set history=1000
 set undolevels=1000
 
-" set autochdir
+set autochdir
 set clipboard+=unnamed
 set cmdheight=1
 set completeopt+=preview
