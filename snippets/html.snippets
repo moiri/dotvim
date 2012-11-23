@@ -1,3 +1,5 @@
+snippet ass
+	toto${1:foo}-${2:bar}-$1-$2
 # Some useful Unicode entities
 # Non-Breaking Space
 snippet nbs
@@ -155,10 +157,10 @@ snippet mailto
 	<a href="mailto:${1:joe@example.com}?subject=${2:feedback}">${3:email me}</a>
 #
 # <TABLE>
-snippet table html
-	<table border="${1:0}" cellpadding="${2:0}" cellspacing="${3:0}" width="${4:100%}">
-		${5}
-	</table>
+#snippet table html
+#	<table border="${1:0}" cellpadding="${2:0}" cellspacing="${3:0}" width="${4:100%}">
+#		${5}
+#	</table>
 snippet table sparkup
 	table[border=${1:0}][cellpadding=${2:0}][cellspacing=${3:0}][width=${4:100%}] > tr${5} > td[width=${6}][align=${7:left}][valign=${8:top}]${9}
 snippet tr
