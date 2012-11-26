@@ -6,8 +6,8 @@ nnoremap <buffer> <leader>é :call ReverseEntities()<CR>
 vnoremap <buffer> <leader>& :call Entities()<CR>
 vnoremap <buffer> <leader>é :call ReverseEntities()<CR>
 
-nnoremap <leader>< /<\w*\(\s\\|>\)<CR>
-nnoremap <leader>> ?<\w*\(\s\\|>\)<CR>
+nnoremap <buffer> <leader>< /<\w*\(\s\\|>\)<CR>
+nnoremap <buffer> <leader>> ?<\w*\(\s\\|>\)<CR>
 
 let b:match_words='<:>,<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>'
 
