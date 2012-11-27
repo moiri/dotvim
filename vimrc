@@ -263,7 +263,7 @@ let g:ctrlp_buftag_types={
 
 let delimitMate_expand_cr=1
 let delimitMate_expand_space=1
-let delimitMate_excluded_ft = "html"
+let delimitMate_excluded_ft="html"
 
 let g:syntastic_check_on_open=0
 let g:syntastic_enable_balloons=0
