@@ -14,8 +14,6 @@ silent! runtime macros/matchit.vim
 """"""""""""""""""""
 
 " necessary
-set autoindent
-set copyindent
 set expandtab
 set smarttab
 set shiftround
@@ -141,7 +139,6 @@ else
   call SetCursorStyle(os)
 endif
 
-
 """""""""""""""""""
 " CUSTOM MAPPINGS "
 """""""""""""""""""
@@ -220,6 +217,15 @@ for key in pairs
   execute "nnoremap va".key." F".key."vf".key
 endfor
 
+nnoremap cia /\v"[ >/]<cr>vF=Bc
+nnoremap dia /\v"[ >/]<cr>vF=Bd
+nnoremap yia /\v"[ >/]<cr>vF=By
+nnoremap via /\v"[ >/]<cr>vF=B
+nnoremap caa /\v"[ >/]<cr>vF=Bhc
+nnoremap daa /\v"[ >/]<cr>vF=Bhd
+nnoremap yaa /\v"[ >/]<cr>vF=Bhy
+nnoremap vaa /\v"[ >/]<cr>vF=Bh
+
 nnoremap <leader>] :tag /<c-r>=expand('<cword>')<cr><cr>
 nnoremap <leader>} :ptag /<c-r>=expand('<cword>')<cr><cr>
 
@@ -271,7 +277,7 @@ let g:syntastic_auto_loc_list=1
 let g:syntastic_enable_signs=1
 let g:syntastic_mode_map={ 'mode': 'active',
                          \ 'active_filetypes': [],
-                         \ 'passive_filetypes': ['css','python','html','php'] }
+                         \ 'passive_filetypes':['css','python','html','php'] }
 
 let g:easytags_auto_highlight=0
 let g:easytags_dynamic_files=1
