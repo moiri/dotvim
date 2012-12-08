@@ -9,6 +9,15 @@ vnoremap <buffer> <leader>é :call ReverseEntities()<CR>
 nnoremap <buffer> <leader>< /<\w*\(\s\\|>\)<CR>
 nnoremap <buffer> <leader>> ?<\w*\(\s\\|>\)<CR>
 
+nnoremap <buffer> cia /\v"[ >/]<cr>vF=Bc
+nnoremap <buffer> dia /\v"[ >/]<cr>vF=Bd
+nnoremap <buffer> yia /\v"[ >/]<cr>vF=By
+nnoremap <buffer> via /\v"[ >/]<cr>vF=B
+nnoremap <buffer> caa /\v"[ >/]<cr>vF=Bhc
+nnoremap <buffer> daa /\v"[ >/]<cr>vF=Bhd
+nnoremap <buffer> yaa /\v"[ >/]<cr>vF=Bhy
+nnoremap <buffer> vaa /\v"[ >/]<cr>vF=Bh
+
 let b:match_words='<:>,<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>'
 
 if has('gui_running')

@@ -198,13 +198,6 @@ nnoremap <leader>a :Tabularize<Space>/
 
 nnoremap <leader><Space><Space> O<C-o>j<C-o>o<C-o>k<Esc>
 
-nnoremap <leader>== yyPv$r=jyypv$r=
-nnoremap <leader>** yyPv$r*jyypv$r*
-nnoremap <leader>=  yypv$r=
-nnoremap <leader>-  yypv$r-
-nnoremap <leader>^  yypv$r^
-nnoremap <leader>"  yypv$r"
-
 let pairs = [ ".", ":", "<bar>", "/", "<bslash>", "*" ]
 for key in pairs
   execute "nnoremap ci".key." T".key."ct".key
@@ -216,15 +209,6 @@ for key in pairs
   execute "nnoremap ya".key." F".key."yf".key
   execute "nnoremap va".key." F".key."vf".key
 endfor
-
-nnoremap cia /\v"[ >/]<cr>vF=Bc
-nnoremap dia /\v"[ >/]<cr>vF=Bd
-nnoremap yia /\v"[ >/]<cr>vF=By
-nnoremap via /\v"[ >/]<cr>vF=B
-nnoremap caa /\v"[ >/]<cr>vF=Bhc
-nnoremap daa /\v"[ >/]<cr>vF=Bhd
-nnoremap yaa /\v"[ >/]<cr>vF=Bhy
-nnoremap vaa /\v"[ >/]<cr>vF=Bh
 
 nnoremap <leader>] :tag /<c-r>=expand('<cword>')<cr><cr>
 nnoremap <leader>} :ptag /<c-r>=expand('<cword>')<cr><cr>
