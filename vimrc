@@ -70,9 +70,6 @@ set visualbell
 set splitbelow
 set splitright
 
-set history=1000
-set undolevels=1000
-
 set autochdir
 set clipboard+=unnamed
 set cmdheight=1
@@ -169,8 +166,6 @@ nnoremap <up>   gk
 inoremap <C-Return> <CR><CR><C-o>k<Tab>
 
 nnoremap <leader>sb :buffers<CR>:sb<Space>
-nnoremap <leader>cc :clist<CR>:silent cc<Space>
-nnoremap <leader>ll :llist<CR>:silent ll<Space>
 
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
