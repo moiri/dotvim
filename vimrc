@@ -73,7 +73,7 @@ set splitright
 set autochdir
 set clipboard+=unnamed
 set cmdheight=1
-set completeopt+=preview
+set completeopt+=longest
 set cursorline
 set fileformats="unix,dos,mac"
 set formatoptions+=1
@@ -85,7 +85,7 @@ set previewheight=4
 set relativenumber
 set scrolloff=4
 set shell=bash\ -i
-set tags=./tags,tags;$HOME
+set tags=./tags,tags;/
 set wildignore=*.swp,*.bak,*.pyc,*.class,*/.git/*,*/.hg/*,*/.svn/*
 set winheight=999
 
@@ -165,7 +165,7 @@ nnoremap <up>   gk
 
 inoremap <C-Return> <CR><CR><C-o>k<Tab>
 
-nnoremap <leader>sb :buffers<CR>:sb<Space>
+nnoremap gb :buffers<CR>:sb<Space>
 
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
