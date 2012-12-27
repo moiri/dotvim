@@ -1,3 +1,5 @@
+set all&
+
 silent! call pathogen#infect()
 silent! call pathogen#helptags()
 
@@ -33,10 +35,10 @@ set wildmenu
 set wildmode=list:full
 
 set hidden
-set laststatus=2
 set switchbuf=useopen,usetab
 
 " not that necessary
+set laststatus=2
 set statusline=%<\             " begins with whitespace
 set statusline+=%t             " filename
 set statusline+=\              " whitespace
@@ -71,7 +73,7 @@ set splitbelow
 set splitright
 
 set autochdir
-set clipboard+=unnamed
+set clipboard^=unnamed
 set cmdheight=1
 set completeopt+=longest
 set cursorline
@@ -89,9 +91,9 @@ set tags=./tags,tags;/
 set wildignore=*.swp,*.bak,*.pyc,*.class,*/.git/*,*/.hg/*,*/.svn/*
 set winheight=999
 
-""""""""""""""""""""""""
-" OS-SPECIFIC SETTINGS "
-""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""
+" ENVIRONMENT-SPECIFIC SETTINGS "
+"""""""""""""""""""""""""""""""""
 
 let os=substitute(system('uname'), '\n', '', '')
 
@@ -193,18 +195,6 @@ nnoremap <leader>a :Tabularize<Space>/
 
 nnoremap <leader><Space><Space> O<C-o>j<C-o>o<C-o>k<Esc>
 
-let pairs = [ ".", ":", "<bar>", "/", "<bslash>", "*" ]
-for key in pairs
-  execute "nnoremap ci".key." T".key."ct".key
-  execute "nnoremap di".key." T".key."dt".key
-  execute "nnoremap yi".key." T".key."yt".key
-  execute "nnoremap vi".key." T".key."vt".key
-  execute "nnoremap ca".key." F".key."cf".key
-  execute "nnoremap da".key." F".key."df".key
-  execute "nnoremap ya".key." F".key."yf".key
-  execute "nnoremap va".key." F".key."vf".key
-endfor
-
 nnoremap <leader>] :tag /<c-r>=expand('<cword>')<cr><cr>
 nnoremap <leader>} :ptag /<c-r>=expand('<cword>')<cr><cr>
 
@@ -220,10 +210,10 @@ autocmd InsertLeave * if &modified && expand('%') != '' | write | endif
 " PLUGIN SETTINGS "
 """""""""""""""""""
 
-let g:snippets_dir='~/.vim/snippets/'
+let g:snippets_dir = '~/.vim/snippets/'
 
-let g:netrw_winsize='999'
-let g:netrw_banner=0
+let g:netrw_winsize = '999'
+let g:netrw_banner  = 0
 
 nnoremap <leader>f :CtrlP<CR>
 nnoremap <leader>F :CtrlPCurWD<CR>
@@ -232,37 +222,38 @@ nnoremap <leader>m :CtrlPMixed<CR>
 nnoremap <leader>M :CtrlPMRUFiles<CR>
 nnoremap <leader>t :CtrlPTag<CR>
 nnoremap <leader>T :CtrlPBufTag<CR>
-let g:ctrlp_working_path_mode=2
-let g:ctrlp_jump_to_buffer=2
-let g:ctrlp_extensions=['tag','line']
-let g:ctrlp_mruf_max=25
-let g:ctrlp_clear_cache_on_exit=0
-let g:ctrlp_by_filename=1
-let g:ctrlp_open_new_file='r'
-let g:ctrlp_open_multiple_files='3hjr'
-let g:ctrlp_dotfiles=0
-let g:ctrlp_buftag_types={
-  \ 'css'        : '--language-force=css --css-types=citm',
-  \ 'javascript' : '--language-force=javascript --javascript-types=fv',
+let g:ctrlp_working_path_mode        = 2
+let g:ctrlp_jump_to_buffer           = 2
+let g:ctrlp_extensions               = ['tag','line']
+let g:ctrlp_mruf_max                 = 25
+let g:ctrlp_clear_cache_on_exit      = 0
+let g:ctrlp_by_filename              = 1
+let g:ctrlp_open_new_file            = 'r'
+let g:ctrlp_open_multiple_files      = '3hjr'
+let g:ctrlp_dotfiles                 = 0
+let g:ctrlp_buftag_types             = {
+  \ 'css'        : '--language-force= css --css-types=citm',
+  \ 'javascript' : '--language-force= javascript --javascript-types=fv',
   \ }
 
-let delimitMate_expand_cr=1
-let delimitMate_expand_space=1
-let delimitMate_excluded_ft="html"
+let delimitMate_expand_cr    = 1
+let delimitMate_expand_space = 1
+let delimitMate_excluded_ft  = "html"
 
-let g:syntastic_check_on_open=0
-let g:syntastic_enable_balloons=0
-let g:syntastic_auto_loc_list=1
-let g:syntastic_enable_signs=1
-let g:syntastic_mode_map={ 'mode': 'active',
-                         \ 'active_filetypes': [],
+let g:syntastic_check_on_open   = 0
+let g:syntastic_enable_balloons = 0
+let g:syntastic_auto_jump       = 1
+let g:syntastic_auto_loc_list   = 1
+let g:syntastic_enable_signs    = 1
+let g:syntastic_mode_map        = { 'mode': 'active',
+                         \ 'active_filetypes': ['javascript'],
                          \ 'passive_filetypes':['css','python','html','php'] }
 
-let g:easytags_auto_highlight=0
-let g:easytags_dynamic_files=1
-let g:easytags_by_filetype='~/.vimtagsft'
+let g:easytags_auto_highlight = 0
+let g:easytags_dynamic_files  = 1
+let g:easytags_by_filetype    = '~/.vimtagsft'
 
-let g:notes_directory='~/Dropbox/nv'
-let g:notes_suffix='.txt'
-let g:notes_indexscript='~/.vim/bundle/notes/misc/notes/search-notes.py'
-let g:notes_indexfile='~/.notes.db'
+let g:notes_directory   = '~/Dropbox/nv'
+let g:notes_suffix      = '.txt'
+let g:notes_indexscript = '~/.vim/bundle/notes/misc/notes/search-notes.py'
+let g:notes_indexfile   = '~/.notes.db'
