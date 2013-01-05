@@ -1,4 +1,4 @@
-set all&
+" set all&
 
 silent! call pathogen#infect()
 silent! call pathogen#helptags()
@@ -38,26 +38,10 @@ set switchbuf=useopen,usetab
 
 " not that necessary
 set laststatus=2
-set statusline=%<\             " begins with whitespace
-set statusline+=%t             " filename
-set statusline+=\              " whitespace
-set statusline+=%m             " modified
-set statusline+=%r             " read-only
-set statusline+=%y             " filetype
-set statusline+=%w             " preview
-set statusline+=%=             " split
-set statusline+=Col:\ \%c      " column number
-set statusline+=\              " whitespace
-set statusline+=Lin:\ \%l\/\%L " line number/total
-set statusline+=\              " ends with whitespace
+set statusline=%<\ %t\ %m%r%y%w%=Col:\ \%c\ Lin:\ \%l\/\%L\ 
 
 set list
-set listchars=
-set listchars+=tab:»\ 
-set listchars+=extends:›
-set listchars+=precedes:‹
-set listchars+=nbsp:·
-set listchars+=trail:·
+set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 
 set foldenable
 set foldlevelstart=99
@@ -231,8 +215,8 @@ let g:ctrlp_open_new_file            = 'r'
 let g:ctrlp_open_multiple_files      = '3hjr'
 let g:ctrlp_dotfiles                 = 0
 let g:ctrlp_buftag_types             = {
-  \ 'css'        : '--language-force= css --css-types=citm',
-  \ 'javascript' : '--language-force= javascript --javascript-types=fv',
+  \ 'css'        : '--language-force=css --css-types=citm',
+  \ 'javascript' : '--language-force=javascript --javascript-types=fv',
   \ }
 
 let delimitMate_expand_cr    = 1
@@ -244,9 +228,11 @@ let g:syntastic_enable_balloons = 0
 let g:syntastic_auto_jump       = 1
 let g:syntastic_auto_loc_list   = 1
 let g:syntastic_enable_signs    = 1
-let g:syntastic_mode_map        = { 'mode': 'active',
-                         \ 'active_filetypes': ['javascript'],
-                         \ 'passive_filetypes':['css','python','html','php'] }
+let g:syntastic_mode_map        = {
+  \ 'mode': 'active',
+  \ 'active_filetypes': ['javascript'],
+  \ 'passive_filetypes':['css','python','html','php']
+  \ }
 
 let g:easytags_auto_highlight = 0
 let g:easytags_dynamic_files  = 1
