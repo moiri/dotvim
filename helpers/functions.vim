@@ -2,42 +2,6 @@
 " HELPERS "
 """""""""""
 
-" changes the cursor shape/color
-" in the terminal depending on the mode
-" see http://code.google.com/p/iterm2/issues/detail?id=710&q=cursor
-" works in Gnome terminal on Ubuntu and iTerm2 on Mac OS X
-" which is all I need
-function! SetCursorStyle(os)
-  if &term =~ "xterm\\|rxvt"
-
-    if a:os == 'Darwin' || a:os == 'Mac'
-
-      " use a | cursor in insert mode
-      let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-
-      " use a rectangle cursor otherwise
-      let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-
-      " reset cursor when vim exits
-      autocmd VimLeave * silent !echo -ne "\<Esc>]50;CursorShape=0\x7"
-
-    elseif a:os == 'Linux'
-
-      " use a green cursor in insert mode
-      let &t_SI = "\<Esc>]12;green\x7"
-
-      " use a red cursor otherwise
-      let &t_EI = "\<Esc>]12;red\x7"
-      " silent !echo -ne "\033]12;red\007"
-
-      " reset cursor when vim exits
-      autocmd VimLeave * silent !echo -ne "\033]12;gray\007"
-
-    endif
-
-  endif
-endfunction
-
 " URLs pasted from Word or Powerpoint often have a newline
 " this macro puts the URL in the href attribute 
 " of the next anchor
