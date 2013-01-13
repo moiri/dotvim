@@ -117,8 +117,6 @@ else
   inoremap <Esc>B <down>
   inoremap <Esc>C <right>
   inoremap <Esc>D <left>
-
-  call SetCursorStyle(os)
 endif
 
 """""""""""""""""""
