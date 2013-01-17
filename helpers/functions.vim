@@ -5,13 +5,13 @@
 " URLs pasted from Word or Powerpoint often have a newline
 " this macro puts the URL in the href attribute 
 " of the next anchor
-command! An call UpdateAnchor()
+command! An call UpdateAnchor()<CR>
 function! UpdateAnchor()
   norm ^v$hy"_dd/hreff"vi""_dP
 endfunction
 
 " DOS to UNIX encoding
-command! ToUnix call ToUnix()
+command! ToUnix call ToUnix()<CR>
 function! ToUnix()
   silent :update
   silent :e ++ff=dos

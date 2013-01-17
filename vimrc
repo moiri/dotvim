@@ -1,5 +1,3 @@
-" set all&
-
 silent! call pathogen#infect()
 silent! call pathogen#helptags()
 
@@ -69,7 +67,7 @@ set nrformats-=octal
 set previewheight=4
 set relativenumber
 set scrolloff=4
-set shell=bash\ -i
+set shellcmdflag=-ic
 set tags=./tags,tags;/
 set wildignore=*.swp,*.bak,*.pyc,*.class,*/.git/*,*/.hg/*,*/.svn/*
 set winheight=999
