@@ -56,7 +56,6 @@ set splitright
 set autochdir
 set clipboard^=unnamed
 set cmdheight=1
-set completeopt+=longest
 set cursorline
 set fileformats="unix,dos,mac"
 set formatoptions+=1
