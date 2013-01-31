@@ -68,7 +68,7 @@ set relativenumber
 set scrolloff=4
 set shellcmdflag=-ic
 set tags=./tags,tags;/
-set wildignore=*.swp,*.bak,*.pyc,*.class,*/.git/*,*/.hg/*,*/.svn/*
+set wildignore=*.swp,*.bak,*.pyc,*.class,*/.git/**/*,*/.hg/**/*,*/.svn/**/*
 set winheight=999
 
 """""""""""""""""""""""""""""""""
@@ -192,6 +192,7 @@ let g:snippets_dir = '~/.vim/snippets/'
 
 let g:netrw_winsize = '999'
 let g:netrw_banner  = 0
+let g:netrw_keppdir = 0
 
 nnoremap <leader>f :CtrlP<CR>
 nnoremap <leader>F :CtrlPCurWD<CR>
