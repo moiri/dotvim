@@ -27,6 +27,7 @@ endfunction
 
 if 0
 elseif has("gui_running") || (&t_Co == 256 && (&term ==# "xterm" || &term =~# "^screen") && exists("g:CSApprox_konsole") && g:CSApprox_konsole) || (&term =~? "^konsole" && s:old_kde())
+  let g:toto = 1
     CSAHi Normal term=NONE cterm=NONE ctermbg=234 ctermfg=187 gui=NONE guibg=#202020 guifg=#c2c2b0
     CSAHi htmlArg term=NONE cterm=NONE ctermbg=bg ctermfg=109 gui=NONE guibg=bg guifg=#7e8aa2
     CSAHi PreProc term=underline cterm=NONE ctermbg=bg ctermfg=109 gui=NONE guibg=bg guifg=#528b8b
@@ -107,6 +108,7 @@ elseif has("gui_running") || (&t_Co == 256 && (&term ==# "xterm" || &term =~# "^
     CSAHi SpellCap term=reverse cterm=undercurl ctermbg=bg ctermfg=21 gui=undercurl guibg=bg guifg=fg guisp=#0000ff
     CSAHi SpellRare term=reverse cterm=undercurl ctermbg=bg ctermfg=201 gui=undercurl guibg=bg guifg=fg guisp=#ff00ff
 elseif has("gui_running") || (&t_Co == 256 && (&term ==# "xterm" || &term =~# "^screen") && exists("g:CSApprox_eterm") && g:CSApprox_eterm) || &term =~? "^eterm"
+  let g:toto = 2
     CSAHi Normal term=NONE cterm=NONE ctermbg=234 ctermfg=230 gui=NONE guibg=#202020 guifg=#c2c2b0
     CSAHi htmlArg term=NONE cterm=NONE ctermbg=bg ctermfg=146 gui=NONE guibg=bg guifg=#7e8aa2
     CSAHi PreProc term=underline cterm=NONE ctermbg=bg ctermfg=109 gui=NONE guibg=bg guifg=#528b8b
@@ -187,6 +189,7 @@ elseif has("gui_running") || (&t_Co == 256 && (&term ==# "xterm" || &term =~# "^
     CSAHi SpellCap term=reverse cterm=undercurl ctermbg=bg ctermfg=21 gui=undercurl guibg=bg guifg=fg guisp=#0000ff
     CSAHi SpellRare term=reverse cterm=undercurl ctermbg=bg ctermfg=201 gui=undercurl guibg=bg guifg=fg guisp=#ff00ff
 elseif has("gui_running") || &t_Co == 256
+  let g:toto = 3
     CSAHi Normal term=NONE cterm=NONE ctermbg=234 ctermfg=145 gui=NONE guibg=#202020 guifg=#c2c2b0
     CSAHi htmlArg term=NONE cterm=NONE ctermbg=bg ctermfg=103 gui=NONE guibg=bg guifg=#7e8aa2
     CSAHi PreProc term=underline cterm=NONE ctermbg=bg ctermfg=66 gui=NONE guibg=bg guifg=#528b8b
@@ -267,6 +270,7 @@ elseif has("gui_running") || &t_Co == 256
     CSAHi SpellCap term=reverse cterm=undercurl ctermbg=bg ctermfg=21 gui=undercurl guibg=bg guifg=fg guisp=#0000ff
     CSAHi SpellRare term=reverse cterm=undercurl ctermbg=bg ctermfg=201 gui=undercurl guibg=bg guifg=fg guisp=#ff00ff
 elseif has("gui_running") || &t_Co == 88
+  let g:toto = 4
     CSAHi Normal term=NONE cterm=NONE ctermbg=80 ctermfg=85 gui=NONE guibg=#202020 guifg=#c2c2b0
     CSAHi htmlArg term=NONE cterm=NONE ctermbg=bg ctermfg=37 gui=NONE guibg=bg guifg=#7e8aa2
     CSAHi PreProc term=underline cterm=NONE ctermbg=bg ctermfg=37 gui=NONE guibg=bg guifg=#528b8b

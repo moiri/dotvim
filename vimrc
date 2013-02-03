@@ -101,7 +101,8 @@ else
   endif
 
   if &t_Co >= 256
-    colorscheme sorcerer_256
+    colorscheme sorcerer
+    " colorscheme sorcerer_256
   elseif &t_Co < 256
     colorscheme sorcerer_16
   endif

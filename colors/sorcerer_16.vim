@@ -71,10 +71,10 @@ hi PreProc      ctermfg=DarkCyan
 hi Todo         ctermfg=Magenta ctermbg=Black cterm=none
 
 " Diff
-hi diffOldFile      guifg=#da70d6   guibg=NONE      gui=italic
-hi diffNewFile      guifg=#ffff00   guibg=NONE      gui=italic
-hi diffFile         guifg=#ffa500   guibg=NONE      gui=italic
-hi diffLine         guifg=#ff00ff   guibg=NONE      gui=italic
+hi diffOldFile      ctermfg=Magenta   ctermbg=NONE      cterm=italic
+hi diffNewFile      ctermfg=Yellow   ctermbg=NONE      cterm=italic
+hi diffFile         ctermfg=DarkYellow   ctermbg=NONE      cterm=italic
+hi diffLine         ctermfg=Magenta   ctermbg=NONE      cterm=italic
 hi link             diffOnly        Constant
 hi link             diffIdentical   Constant
 hi link             diffDiffer      Constant
@@ -82,30 +82,30 @@ hi link             diffBDiffer     Constant
 hi link             diffIsA         Constant
 hi link             diffNoEOL       Constant
 hi link             diffCommon      Constant
-hi diffRemoved      guifg=#cd5555   guibg=NONE      gui=NONE
-hi diffChanged      guifg=#4f94cd   guibg=NONE      gui=NONE
-hi diffAdded        guifg=#00cd00   guibg=NONE      gui=NONE
+hi diffRemoved      ctermfg=Magenta   ctermbg=NONE      cterm=NONE
+hi diffChanged      ctermfg=Cyan   ctermbg=NONE      cterm=NONE
+hi diffAdded        ctermfg=Green   ctermbg=NONE      cterm=NONE
 hi link             diffSubname     diffLine
 hi link             diffComment     Comment
 
 " Python
-hi pythonException  guifg=#90b0d1 guibg=NONE gui=NONE
-hi pythonExClass    guifg=#996666 guibg=NONE gui=NONE
-hi pythonDecorator  guifg=#888555 guibg=NONE gui=NONE
+hi pythonException  ctermfg=Cyan ctermbg=NONE cterm=NONE
+hi pythonExClass    ctermfg=DarkMagenta ctermbg=NONE cterm=NONE
+hi pythonDecorator  ctermfg=DarkYellow ctermbg=NONE cterm=NONE
 hi link pythonDecoratorFunction pythonDecorator
 
 " JavaScript
-" hi javaScriptGlobalObjects  guifg=#729926 ctermfg=DarkGreen
-" hi javaScriptFunction       guifg=#ccbb33 ctermfg=DarkYellow
-" hi javaScriptFuncName       guifg=#993333 ctermfg=Red
-hi javaScriptOpAssign       guifg=#cc99cc ctermfg=Magenta
+" hi javaScriptGlobalObjects  ctermfg=#729926 ctermfg=DarkGreen
+" hi javaScriptFunction       ctermfg=#ccbb33 ctermfg=DarkYellow
+" hi javaScriptFuncName       ctermfg=#993333 ctermfg=Red
+hi javaScriptOpAssign       ctermfg=Magenta ctermfg=Magenta
 
 " HTML
-hi htmlTag       guifg=#90b0d1 gui=NONE ctermfg=DarkCyan
-hi htmlSpecialTagName guifg=#90b0d1 gui=NONE ctermfg=DarkCyan
-hi htmlTagName  guifg=#90b0d1 gui=NONE  ctermfg=DarkCyan
-hi htmlEndTag    guifg=#90b0d1 gui=NONE ctermfg=DarkCyan
-hi htmlArg       guifg=#7e8aa2 gui=NONE ctermfg=Blue
+hi htmlTag       ctermfg=Cyan cterm=NONE ctermfg=DarkCyan
+hi htmlSpecialTagName ctermfg=Cyan cterm=NONE ctermfg=DarkCyan
+hi htmlTagName  ctermfg=Cyan cterm=NONE  ctermfg=DarkCyan
+hi htmlEndTag    ctermfg=Cyan cterm=NONE ctermfg=DarkCyan
+hi htmlArg       ctermfg=DarkCyan cterm=NONE ctermfg=Blue
 hi htmlLink      cterm=NONE
 hi htmlTitle     ctermfg=Cyan
 

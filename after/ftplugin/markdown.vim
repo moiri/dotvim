@@ -12,10 +12,10 @@ setlocal comments=fb:*,fb:-,fb:+,n:> commentstring=>\ %s
 setlocal formatoptions+=tcqln
 setlocal formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^[-*+]\\s\\+
 
-let b:undo_ftplugin .= "|setl cms< com< fo<"
+vnoremap <buffer> +b <Esc>`>a**<Esc>`<i**<Esc>
+vnoremap <buffer> +i <Esc>`>a*<Esc>`<i*<Esc>
+vnoremap <buffer> +c <Esc>`>a`<Esc>`<i`<Esc>
 
-vnoremap +b <Esc>`>a**<Esc>`<i**<Esc>
-vnoremap +i <Esc>`>a*<Esc>`<i*<Esc>
-vnoremap +c <Esc>`>a`<Esc>`<i`<Esc>
+let b:undo_ftplugin .= "|setl cms< com< fo<"
 
 " vim:set sw=2:
