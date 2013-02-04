@@ -62,7 +62,7 @@ set fileformats="unix,dos,mac"
 set formatoptions+=1
 set lazyredraw
 set mouse=a
-" set noswapfile
+set noswapfile
 set nrformats-=octal
 set previewheight=4
 set relativenumber
@@ -238,9 +238,3 @@ let g:notes_directory   = '~/Dropbox/nv'
 let g:notes_suffix      = '.txt'
 let g:notes_indexscript = '~/.vim/bundle/notes/misc/notes/search-notes.py'
 let g:notes_indexfile   = '~/.notes.db'
-
-nnoremap <leader>sb 2:<c-u>call SkyBison("b ")<cr>
-nnoremap <leader>st 2:<c-u>call SkyBison("tag ")<cr>
-nnoremap <leader>sh 2:<c-u>call SkyBison("h ")<cr>
-nnoremap <leader>se :<c-u>call SkyBison("e ")<cr>
-let g:skybison_fuzz = 1
