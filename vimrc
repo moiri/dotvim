@@ -13,35 +13,37 @@ silent! runtime macros/matchit.vim
 " GENERIC SETTINGS "
 """"""""""""""""""""
 
-" necessary
+" minimal
+set autochdir
+set backspace=indent,eol,start
+set foldenable
+set hidden
+set incsearch
+set laststatus=2
+set switchbuf=useopen,usetab
+set tags=./tags,tags;/
+set wildmenu
+
+" better
 set expandtab
 set smarttab
 set shiftround
 set shiftwidth=2
-set backspace=indent,eol,start
 
 set gdefault
-set incsearch
 set ignorecase
 set smartcase
 
 set encoding=utf-8
 set termencoding=utf-8
 
-set wildmenu
 set wildmode=list:full
 
-set hidden
-set switchbuf=useopen,usetab
-
-" not that necessary
-set laststatus=2
 set statusline=%<\ %t\ %m%r%y%w%=Col:\ \%c\ Lin:\ \%l\/\%L\ 
 
 set list
 set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 
-set foldenable
 set foldlevelstart=99
 set foldmethod=indent
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
@@ -53,7 +55,6 @@ set visualbell
 set splitbelow
 set splitright
 
-set autochdir
 set clipboard^=unnamed
 set cmdheight=1
 set cursorline
@@ -61,13 +62,12 @@ set fileformats="unix,dos,mac"
 set formatoptions+=1
 set lazyredraw
 set mouse=a
-set noswapfile
+" set noswapfile
 set nrformats-=octal
 set previewheight=4
 set relativenumber
 set scrolloff=4
 set shellcmdflag=-ic
-set tags=./tags,tags;/
 set wildignore=*.swp,*.bak,*.pyc,*.class,*/.git/**/*,*/.hg/**/*,*/.svn/**/*
 set winheight=999
 
@@ -102,7 +102,6 @@ else
 
   if &t_Co >= 256
     colorscheme sorcerer
-    " colorscheme sorcerer_256
   elseif &t_Co < 256
     colorscheme sorcerer_16
   endif
@@ -239,3 +238,9 @@ let g:notes_directory   = '~/Dropbox/nv'
 let g:notes_suffix      = '.txt'
 let g:notes_indexscript = '~/.vim/bundle/notes/misc/notes/search-notes.py'
 let g:notes_indexfile   = '~/.notes.db'
+
+nnoremap <leader>sb 2:<c-u>call SkyBison("b ")<cr>
+nnoremap <leader>st 2:<c-u>call SkyBison("tag ")<cr>
+nnoremap <leader>sh 2:<c-u>call SkyBison("h ")<cr>
+nnoremap <leader>se :<c-u>call SkyBison("e ")<cr>
+let g:skybison_fuzz = 1
