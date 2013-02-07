@@ -212,7 +212,7 @@ let g:ctrlp_open_multiple_files      = '3hjr'
 let g:ctrlp_dotfiles                 = 0
 let g:ctrlp_buftag_types             = {
   \ 'css'        : '--language-force=css --css-types=citm',
-  \ 'javascript' : '--language-force=javascript --javascript-types=fv',
+  \ 'javascript' : '--language-force=javascript --javascript-types=fv'
   \ }
 
 let delimitMate_expand_cr    = 1
