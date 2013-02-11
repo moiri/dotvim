@@ -25,10 +25,11 @@ set tags=./tags,tags;/
 set wildmenu
 
 " better
+set autoindent
 set expandtab
-set smarttab
 set shiftround
 set shiftwidth=2
+set smarttab
 
 set gdefault
 set ignorecase
@@ -78,6 +79,7 @@ set winheight=999
 let os=substitute(system('uname'), '\n', '', '')
 
 if has('gui_running')
+  let macvim_skip_colorscheme = 1
   autocmd! FocusLost * :wa
   autocmd! GUIEnter * set vb t_vb=
 
@@ -182,7 +184,7 @@ nnoremap & :'{,'}s/<c-r>=expand('<cword>')<cr>/
 autocmd FileType vim                nnoremap <leader>g I" <Esc>A "<Esc>yyp0lv$hhr"yykPjj
 autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hhr-yykPjj
 
-autocmd InsertLeave * if &modified && expand('%') != '' | write | endif
+" autocmd InsertLeave * if &modified && expand('%') != '' | write | endif
 
 """""""""""""""""""
 " PLUGIN SETTINGS "
