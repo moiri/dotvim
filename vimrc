@@ -184,6 +184,18 @@ nnoremap & :'{,'}s/<c-r>=expand('<cword>')<cr>/
 autocmd FileType vim                nnoremap <leader>g I" <Esc>A "<Esc>yyp0lv$hhr"yykPjj
 autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hhr-yykPjj
 
+let pairs = [ ".", ":", "<bar>", "/", "<bslash>", "*" ]
+for key in pairs
+  execute "nnoremap ci".key." T".key."ct".key
+  execute "nnoremap di".key." T".key."dt".key
+  execute "nnoremap yi".key." T".key."yt".key
+  execute "nnoremap vi".key." T".key."vt".key
+  execute "nnoremap ca".key." F".key."cf".key
+  execute "nnoremap da".key." F".key."df".key
+  execute "nnoremap ya".key." F".key."yf".key
+  execute "nnoremap va".key." F".key."vf".key
+endfor
+
 " autocmd InsertLeave * if &modified && expand('%') != '' | write | endif
 
 """""""""""""""""""
