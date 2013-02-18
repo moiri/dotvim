@@ -184,7 +184,7 @@ nnoremap & :'{,'}s/<c-r>=expand('<cword>')<cr>/
 autocmd FileType vim                nnoremap <leader>g I" <Esc>A "<Esc>yyp0lv$hhr"yykPjj
 autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hhr-yykPjj
 
-let pairs = [ ".", ":", "<bar>", "/", "<bslash>", "*" ]
+let pairs = [ ".", ":", ",", ";", "<bar>", "/", "<bslash>", "*" ]
 for key in pairs
   execute "nnoremap ci".key." T".key."ct".key
   execute "nnoremap di".key." T".key."dt".key
