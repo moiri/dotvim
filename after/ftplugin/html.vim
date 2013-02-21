@@ -20,6 +20,8 @@ nnoremap <buffer> vaa /\v"[ >/]<cr>vF=Bh
 
 let b:match_words='<:>,<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>'
 
+setlocal indentkeys-=*<Return>
+
 if has('gui_running')
   if os == 'Darwin' || os == 'Mac'
     nnoremap <buffer> <F12>f :exe ':silent !open -a firefox %'<CR>
