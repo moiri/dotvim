@@ -182,6 +182,9 @@ nnoremap <leader>} :ptag /<c-r>=expand('<cword>')<cr><cr>
 vnoremap & "*y<Esc>:<c-u>'{,'}s/<c-r>=substitute(escape(@*, '\/.*$^~[]'), "\n", '\\n', "g")<cr>/
 nnoremap & :'{,'}s/<c-r>=expand('<cword>')<cr>/
 
+nnoremap vp :execute "w !vpaste ft=".&ft<CR>
+vnoremap vp <ESC>:execute "'<,'>w !vpaste ft=".&ft<CR>
+
 autocmd FileType vim                nnoremap <leader>g I" <Esc>A "<Esc>yyp0lv$hhr"yykPjj
 autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hhr-yykPjj
 
