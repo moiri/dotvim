@@ -220,6 +220,7 @@ nnoremap <leader>m :CtrlPMixed<CR>
 nnoremap <leader>M :CtrlPMRUFiles<CR>
 nnoremap <leader>t :CtrlPTag<CR>
 nnoremap <leader>T :CtrlPBufTag<CR>
+nnoremap <leader>l :CtrlPLine<CR>
 let g:ctrlp_working_path_mode   = 2
 let g:ctrlp_jump_to_buffer      = 2
 let g:ctrlp_extensions          = ['tag','line']
