@@ -200,6 +200,7 @@ for key in pairs
   execute "nnoremap va".key." F".key."vf".key
 endfor
 
+" romainl: I would skip the if &modified and used :update instead of :write
 autocmd InsertLeave * if &modified && expand('%') != '' | write | endif
 
 """""""""""""""""""
