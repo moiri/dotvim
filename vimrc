@@ -57,6 +57,7 @@ set visualbell
 set splitbelow
 set splitright
 
+set clipboard^=unnamed
 set cmdheight=1
 set cursorline
 set fileformats="unix,dos,mac"
@@ -115,13 +116,6 @@ else
   inoremap <Esc>B <down>
   inoremap <Esc>C <right>
   inoremap <Esc>D <left>
-endif
-
-" testing if I have surround problems on Linux
-if os == 'Darwin' || os == 'Mac'
-  set clipboard^=unnamed
-elseif os == 'Linux'
-  set clipboard^=unnamedplus
 endif
 
 """""""""""""""""""
