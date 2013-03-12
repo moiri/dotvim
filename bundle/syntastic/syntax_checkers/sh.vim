@@ -35,7 +35,7 @@ function! SyntaxCheckers_sh_GetLocList()
     if len(s:GetShell()) == 0 || !executable(s:GetShell())
         return []
     endif
-    let output = split(system(s:GetShell().' -n '.shellescape(expand('%'))), '\n')
+    let output = split(system(s:GetShell().' '.shellescape(expand('%'))), '\n')
     if v:shell_error != 0
         let result = []
         for err_line in output
