@@ -57,7 +57,7 @@ set visualbell
 set splitbelow
 set splitright
 
-set clipboard^=unnamed
+set clipboard^=unnamedplus
 set cmdheight=1
 set cursorline
 set fileformats="unix,dos,mac"
