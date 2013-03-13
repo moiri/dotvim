@@ -98,10 +98,6 @@ if has('gui_running')
     set guioptions-=m
   endif
 else
-  if &term == 'screen'
-    set t_Co=256
-  endif
-
   if &t_Co >= 256
     colorscheme sorcerer
   elseif &t_Co < 256
