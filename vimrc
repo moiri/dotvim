@@ -184,11 +184,41 @@ autocmd FileType vim                nnoremap <leader>g I" <Esc>A "<Esc>yyp0lv$hh
 autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hhr-yykPjj
 
 for char in [ ".", ":", ",", ";", "<bar>", "/", "<bslash>", "*" ]
-  exec "xnoremap i" . char . " :<C-U>silent!normal!T" . char . "vt" . char . "<CR>"
-  exec "onoremap i" . char . " :normal vi" . char . "<CR>"
-  exec "xnoremap a" . char . " :<C-U>silent!normal!F" . char . "vf" . char . "<CR>"
-  exec "onoremap a" . char . " :normal va" . char . "<CR>"
+  execute "xnoremap i" . char . " :<C-U>silent!normal!T" . char . "vt" . char . "<CR>"
+  execute "onoremap i" . char . " :normal vi" . char . "<CR>"
+  execute "xnoremap a" . char . " :<C-U>silent!normal!F" . char . "vf" . char . "<CR>"
+  execute "onoremap a" . char . " :normal va" . char . "<CR>"
 endfor
+
+" function! s:NextTextObject(motion, dir)
+"   let c = nr2char(getchar())
+
+"   if c ==# "b"
+"       let c = "("
+"   elseif c ==# "B"
+"       let c = "{"
+"   elseif c ==# "d"
+"       let c = "["
+"   endif
+
+"   if c ==# "("
+"     let d = ")"
+"   elseif c ==# "{"
+"     let d = "}"
+"   elseif c ==# "["
+"     let d = "]"
+"   else
+"     let d = c
+"   endif
+
+"   echo "normal! ".a:dir.d."v".a:motion.c
+"   execute "normal! ".a:dir.d."v".a:motion.c
+" endfunction
+
+" omap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
+" xmap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
+" omap in :<c-u>call <SID>NextTextObject('i', 'f')<cr>
+" xmap in :<c-u>call <SID>NextTextObject('i', 'f')<cr>
 
 autocmd InsertLeave * if expand('%') != '' | update | endif
 
