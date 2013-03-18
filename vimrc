@@ -176,6 +176,8 @@ nnoremap <leader>} :ptag /<c-r>=expand('<cword>')<cr><cr>
 
 vnoremap & "*y<Esc>:<c-u>'{,'}s/<c-r>=substitute(escape(@*, '\/.*$^~[]'), "\n", '\\n', "g")<cr>/
 nnoremap & :'{,'}s/<c-r>=expand('<cword>')<cr>/
+nnoremap ç :let needle = expand('<cword>')<cr>
+vnoremap ç :s/<c-r>=needle<cr>/
 
 nnoremap vp :execute "w !vpaste ft=".&ft<CR>
 vnoremap vp <ESC>:execute "'<,'>w !vpaste ft=".&ft<CR>
@@ -211,8 +213,8 @@ endfor
 "     let d = c
 "   endif
 
-"   echo "normal! ".a:dir.d."v".a:motion.c
-"   execute "normal! ".a:dir.d."v".a:motion.c
+"   " echo "normal! ".a:dir.d."v".a:motion.c
+"   execute "normal! ".a:dir.c."v".a:motion.c
 " endfunction
 
 " omap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
