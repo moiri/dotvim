@@ -183,20 +183,14 @@ vnoremap vp <ESC>:execute "'<,'>w !vpaste ft=".&ft<CR>
 autocmd FileType vim                nnoremap <leader>g I" <Esc>A "<Esc>yyp0lv$hhr"yykPjj
 autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hhr-yykPjj
 
-let pairs = [ ".", ":", ",", ";", "<bar>", "/", "<bslash>", "*" ]
-for key in pairs
-  execute "nnoremap ci".key." T".key."ct".key
-  execute "nnoremap di".key." T".key."dt".key
-  execute "nnoremap yi".key." T".key."yt".key
-  execute "nnoremap vi".key." T".key."vt".key
-  execute "nnoremap ca".key." F".key."cf".key
-  execute "nnoremap da".key." F".key."df".key
-  execute "nnoremap ya".key." F".key."yf".key
-  execute "nnoremap va".key." F".key."vf".key
+for char in [ ".", ":", ",", ";", "<bar>", "/", "<bslash>", "*" ]
+  exec "xnoremap i" . char . " :<C-U>silent!normal!T" . char . "vt" . char . "<CR>"
+  exec "onoremap i" . char . " :normal vi" . char . "<CR>"
+  exec "xnoremap a" . char . " :<C-U>silent!normal!F" . char . "vf" . char . "<CR>"
+  exec "onoremap a" . char . " :normal va" . char . "<CR>"
 endfor
 
-" romainl: I would skip the if &modified and used :update instead of :write
-autocmd InsertLeave * if &modified && expand('%') != '' | write | endif
+autocmd InsertLeave * if expand('%') != '' | update | endif
 
 """""""""""""""""""
 " PLUGIN SETTINGS "
