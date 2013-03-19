@@ -165,8 +165,6 @@ nnoremap <leader>l       "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+
 nnoremap <leader><Left>  "_yiw?\v\w+\_W+%#<CR>:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o><C-l>
 nnoremap <leader><Right> "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-l>
 
-nnoremap <leader>ss :w !sudo tee %<CR>
-
 nnoremap <leader>a :Tabularize<Space>/
 
 nnoremap <leader><Space><Space> O<C-o>j<C-o>o<C-o>k<Esc>
@@ -174,10 +172,13 @@ nnoremap <leader><Space><Space> O<C-o>j<C-o>o<C-o>k<Esc>
 nnoremap <leader>] :tjump /<c-r>=expand('<cword>')<cr><cr>
 nnoremap <leader>} :ptag /<c-r>=expand('<cword>')<cr><cr>
 
-vnoremap & "*y<Esc>:<c-u>'{,'}s/<c-r>=substitute(escape(@*, '\/.*$^~[]'), "\n", '\\n', "g")<cr>/
-nnoremap & :'{,'}s/<c-r>=expand('<cword>')<cr>/
-nnoremap ç :let needle = expand('<cword>')<cr>
-vnoremap ç :s/<c-r>=needle<cr>/
+" EXPERIMENTAL!
+" ,s to define the search pattern
+" ,r to replace
+nnoremap <leader>s :let g:needle = expand('<cword>') <bar> echo g:needle<CR>
+vnoremap <leader>s "*y<Esc>:let g:needle = substitute(escape(@*, '\/.*$^~[]'), "\n", '\\n', "g") <bar> echo g:needle<cr>
+nnoremap <leader>r :'{,'}s/<c-r>=g:needle<cr>/
+vnoremap <leader>r :s/<c-r>=g:needle<cr>/
 
 nnoremap vp :execute "w !vpaste ft=".&ft<CR>
 vnoremap vp <ESC>:execute "'<,'>w !vpaste ft=".&ft<CR>
@@ -191,36 +192,6 @@ for char in [ ".", ":", ",", ";", "<bar>", "/", "<bslash>", "*" ]
   execute "xnoremap a" . char . " :<C-U>silent!normal!F" . char . "vf" . char . "<CR>"
   execute "onoremap a" . char . " :normal va" . char . "<CR>"
 endfor
-
-" function! s:NextTextObject(motion, dir)
-"   let c = nr2char(getchar())
-
-"   if c ==# "b"
-"       let c = "("
-"   elseif c ==# "B"
-"       let c = "{"
-"   elseif c ==# "d"
-"       let c = "["
-"   endif
-
-"   if c ==# "("
-"     let d = ")"
-"   elseif c ==# "{"
-"     let d = "}"
-"   elseif c ==# "["
-"     let d = "]"
-"   else
-"     let d = c
-"   endif
-
-"   " echo "normal! ".a:dir.d."v".a:motion.c
-"   execute "normal! ".a:dir.c."v".a:motion.c
-" endfunction
-
-" omap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
-" xmap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
-" omap in :<c-u>call <SID>NextTextObject('i', 'f')<cr>
-" xmap in :<c-u>call <SID>NextTextObject('i', 'f')<cr>
 
 autocmd InsertLeave * if expand('%') != '' | update | endif
 
