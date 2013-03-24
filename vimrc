@@ -141,12 +141,13 @@ nnoremap k gk
 nnoremap <Down> gj
 nnoremap <up>   gk
 
-inoremap <C-Return> <CR><CR><C-o>k<Tab>
-
 nnoremap gb :buffers<CR>:sb<Space>
 
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
+
+inoremap {<CR> {<CR><CR>}<Up><C-o>S
+inoremap {; {<CR><CR>};<Up><C-o>S
 
 inoremap <leader>; <C-o>m`<C-o>A;<C-o>``
 nnoremap <leader>; A;<Esc>
@@ -228,9 +229,9 @@ let g:ctrlp_buftag_types        = {
   \ 'javascript' : '--language-force=javascript --javascript-types=fv'
   \ }
 
-let delimitMate_expand_cr    = 1
-let delimitMate_expand_space = 1
-let delimitMate_excluded_ft  = "html"
+" let delimitMate_expand_cr    = 1
+" let delimitMate_expand_space = 1
+" let delimitMate_excluded_ft  = "html"
 
 let g:syntastic_check_on_open   = 0
 let g:syntastic_enable_balloons = 0
