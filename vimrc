@@ -14,7 +14,6 @@ silent! runtime macros/matchit.vim
 """"""""""""""""""""
 
 " minimal
-set autochdir
 set backspace=indent,eol,start
 set foldenable
 set hidden
@@ -58,7 +57,6 @@ set splitbelow
 set splitright
 
 set clipboard^=unnamed
-set cmdheight=1
 set cursorline
 set fileformats="unix,dos,mac"
 set formatoptions+=1
@@ -127,7 +125,7 @@ inoremap <leader>= <C-x><C-l>
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
 
-vnoremap <leader>p "_dP
+vnoremap <leader>p "0p
 
 nnoremap / /\v
 
@@ -146,8 +144,8 @@ nnoremap gb :buffers<CR>:sb<Space>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
-inoremap {<CR> {<CR><CR>}<Up><C-o>S
-inoremap {; {<CR><CR>};<Up><C-o>S
+inoremap {<CR> {<CR>}<C-o>==<C-o>O
+inoremap {; {<CR>};<C-o>==<C-o>O
 
 inoremap <leader>; <C-o>m`<C-o>A;<C-o>``
 nnoremap <leader>; A;<Esc>
