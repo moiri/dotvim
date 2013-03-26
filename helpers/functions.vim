@@ -5,22 +5,22 @@
 " URLs pasted from Word or Powerpoint often have a newline
 " this macro puts the URL in the href attribute 
 " of the next anchor
-command! An call UpdateAnchor()<CR>
+command! An :call UpdateAnchor()
 function! UpdateAnchor()
-  norm ^v$hy"_dd/hreff"vi""_dP
+  normal! ^v$hy"_dd/hreff"vi""_dP
 endfunction
 
 " DOS to UNIX encoding
-command! ToUnix call ToUnix()<CR>
+command! ToUnix :call ToUnix()
 function! ToUnix()
-  silent :update
-  silent :e ++ff=dos
-  silent :setlocal ff=unix
-  silent :w
+  silent update
+  silent e ++ff=dos
+  silent setlocal ff=unix
+  silent w
 endfunction
 
 " shows syntaxic group of the word under the cursor
-command! SynStack call SynStack()<CR>
+command! SynStack :call SynStack()
 function! SynStack()
   if !exists("*synstack")
     return
@@ -29,7 +29,7 @@ function! SynStack()
 endfunc
 
 " normal characters --> HTML entities
-command! Entities call Entities()<CR>
+command! Entities :call Entities()
 function! Entities()
   silent s/Á/\&Aacute;/e
   silent s/á/\&aacute;/e
@@ -272,7 +272,7 @@ function! Entities()
 endfunction
 
 " HTML entities --> normal characters
-command! ReverseEntities call ReverseEntities()<CR>
+command! ReverseEntities :call ReverseEntities()
 function! ReverseEntities()
   silent s/&Aacute;/Á/e
   silent s/&aacute;/á/e
@@ -515,7 +515,7 @@ function! ReverseEntities()
 endfunction
 
 " normal characters --> URL encoded characters
-command! URLencoding call URLencoding()<CR>
+command! URLencoding :call URLencoding()
 function! URLencoding()
   silent s/e/%20/e
   silent s/!/%21/e
@@ -673,7 +673,7 @@ function! URLencoding()
 endfunction
 
 " URL encoded characters --> normal characters
-command! ReverseURLencoding call ReverseURLencoding()<CR>
+command! ReverseURLencoding :call ReverseURLencoding()
 function! ReverseURLencoding()
   silent s/%20/e/e
   silent s/%21/!/e
