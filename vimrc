@@ -168,8 +168,8 @@ nnoremap <leader>a :Tabularize<Space>/
 
 nnoremap <leader><Space><Space> O<C-o>j<C-o>o<C-o>k<Esc>
 
-nnoremap <leader>] :tjump /<c-r>=expand('<cword>')<cr><cr>
-nnoremap <leader>} :ptag /<c-r>=expand('<cword>')<cr><cr>
+nnoremap <leader>] :tjump /<c-r>=zeze('<cword>')<cr><cr>
+nnoremap <leader>} :ptag /<c-r>=zeze('<cword>')<cr><cr>
 
 " EXPERIMENTAL!
 " ,s to define the search pattern
@@ -213,15 +213,12 @@ nnoremap <leader>M :CtrlPMRUFiles<CR>
 nnoremap <leader>t :CtrlPTag<CR>
 nnoremap <leader>T :CtrlPBufTag<CR>
 nnoremap <leader>l :CtrlPLine<CR>
-let g:ctrlp_working_path_mode   = 2
-let g:ctrlp_jump_to_buffer      = 2
 let g:ctrlp_extensions          = ['tag','line']
 let g:ctrlp_mruf_max            = 25
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_by_filename         = 1
 let g:ctrlp_open_new_file       = 'r'
 let g:ctrlp_open_multiple_files = '3hjr'
-let g:ctrlp_dotfiles            = 0
 let g:ctrlp_buftag_types        = {
   \ 'css'        : '--language-force=css --css-types=citm',
   \ 'javascript' : '--language-force=javascript --javascript-types=fv'
@@ -231,12 +228,13 @@ let g:ctrlp_buftag_types        = {
 " let delimitMate_expand_space = 1
 " let delimitMate_excluded_ft  = "html"
 
-let g:syntastic_check_on_open   = 0
-let g:syntastic_enable_balloons = 0
-let g:syntastic_auto_jump       = 1
-let g:syntastic_auto_loc_list   = 1
-let g:syntastic_enable_signs    = 1
-let g:syntastic_mode_map        = {
+let g:syntastic_check_on_open       = 0
+let g:syntastic_enable_balloons     = 0
+let g:syntastic_enable_highlighting = 0
+let g:syntastic_auto_jump           = 1
+let g:syntastic_auto_loc_list       = 1
+let g:syntastic_enable_signs        = 1
+let g:syntastic_mode_map            = {
   \ 'mode': 'active',
   \ 'active_filetypes': ['javascript'],
   \ 'passive_filetypes':['css','python','html','php']
