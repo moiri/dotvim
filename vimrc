@@ -168,8 +168,8 @@ nnoremap <leader>a :Tabularize<Space>/
 
 nnoremap <leader><Space><Space> O<C-o>j<C-o>o<C-o>k<Esc>
 
-nnoremap <leader>] :tjump /<c-r>=zeze('<cword>')<cr><cr>
-nnoremap <leader>} :ptag /<c-r>=zeze('<cword>')<cr><cr>
+nnoremap <leader>] :tjump /<c-r>=expand('<cword>')<cr><cr>
+nnoremap <leader>} :ptag /<c-r>=expand('<cword>')<cr><cr>
 
 " EXPERIMENTAL!
 " ,s to define the search pattern

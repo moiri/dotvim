@@ -109,6 +109,17 @@ snippet targ
 # Event
 snippet ev
 	var ${1:event} = ${2:ev} || window.event;${3}
+#########
+# ARRAY #
+#########
+# Array > Literal
+snippet ar
+	var ${1:array_name} = [
+		${2}
+	];
+# Array > item
+snippet arit
+	${1:array_name}[${2:0}]${3}
 ##########
 # OBJECT #
 ##########
