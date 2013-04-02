@@ -67,7 +67,6 @@ set nrformats-=octal
 set previewheight=4
 set relativenumber
 set scrolloff=4
-set shellcmdflag=-ic
 set wildignore=*.swp,*.bak,*.pyc,*.class,*/.git/**/*,*/.hg/**/*,*/.svn/**/*
 set winheight=999
 
