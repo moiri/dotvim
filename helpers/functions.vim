@@ -2,6 +2,16 @@
 " HELPERS "
 """""""""""
 
+" Trying to write a function for managing tags
+" this needs a lot more work, obviously
+function! UpTags()
+  if len(tagfiles()) > 0
+    execute ":!ctags -R -f " . tagfiles()[0] . " " . fnamemodify(tagfiles()[0], ':p:h')
+  else
+    execute ":!ctags -R ."
+  endif
+endfunction
+
 " URLs pasted from Word or Powerpoint often have a newline
 " this macro puts the URL in the href attribute 
 " of the next anchor

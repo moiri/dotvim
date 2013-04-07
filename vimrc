@@ -172,24 +172,20 @@ nnoremap <leader>} :ptag /<c-r>=expand('<cword>')<cr><cr>
 
 " EXPERIMENTAL!
 " ,s to define the search pattern
+nnoremap <leader>s :let @/ = expand('<cword>') <bar> echo @/<cr>
+vnoremap <leader>s "*y<Esc>:let @/ = substitute(escape(@*, '\/.*$^~[]'), "\n", '\\n', "g") <bar> echo @/<cr>
 " ,r to replace
-nnoremap <leader>s :let g:needle = expand('<cword>') <bar> echo g:needle<CR>
-vnoremap <leader>s "*y<Esc>:let g:needle = substitute(escape(@*, '\/.*$^~[]'), "\n", '\\n', "g") <bar> echo g:needle<cr>
-nnoremap <leader>r :'{,'}s/<c-r>=g:needle<cr>/
-vnoremap <leader>r :s/<c-r>=g:needle<cr>/
+nnoremap <leader>r :'{,'}s/<c-r>=expand(@/)<cr>/
+vnoremap <leader>r :s/<c-r>=expand(@/)<cr>/
+" ,o to replace once and . to repeat
+nnoremap <leader>0 :let @/ = expand('<cword>')<cr>
+nmap <leader>o ,0cgn
 
 nnoremap vp :execute "w !vpaste ft=".&ft<CR>
 vnoremap vp <ESC>:execute "'<,'>w !vpaste ft=".&ft<CR>
 
 autocmd FileType vim                nnoremap <leader>g I" <Esc>A "<Esc>yyp0lv$hhr"yykPjj
 autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hhr-yykPjj
-
-for char in [ "_", ".", ":", ",", ";", "<bar>", "/", "<bslash>", "*" ]
-  execute "xnoremap i" . char . " :<C-U>silent!normal!T" . char . "vt" . char . "<CR>"
-  execute "onoremap i" . char . " :normal vi" . char . "<CR>"
-  execute "xnoremap a" . char . " :<C-U>silent!normal!F" . char . "vf" . char . "<CR>"
-  execute "onoremap a" . char . " :normal va" . char . "<CR>"
-endfor
 
 autocmd InsertLeave * if expand('%') != '' | update | endif
 
