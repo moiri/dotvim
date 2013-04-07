@@ -8,10 +8,10 @@
 "
 " See textobjectify.txt for documentation.
 
-if exists('g:textobjectify_loaded')
+if exists('g:loaded_textobjectify') || &cp
 	finish
 endif
-let g:textobjectify_loaded = 1
+let g:loaded_textobjectify = 1
 
 " if the user did not configure textobjectify, use the following as a default
 if !exists("g:textobjectify")
@@ -38,10 +38,10 @@ endif
 let s:defaults = ["w","W","s","p","[","]","(",")","b","<",">","t","}","{","B",'"',"'"]
 
 " mappings to call plugin rather than vim text objects
-onoremap i      :<c-u>call TextObjectify(v:operator,'i')<cr>
-onoremap a      :<c-u>call TextObjectify(v:operator,'a')<cr>
-vnoremap i <esc>:<c-u>call TextObjectify(visualmode(),'i')<cr>
-vnoremap a <esc>:<c-u>call TextObjectify(visualmode(),'a')<cr>
+onoremap <silent> i      :<c-u>call TextObjectify(v:operator,'i')<cr>
+onoremap <silent> a      :<c-u>call TextObjectify(v:operator,'a')<cr>
+xnoremap <silent> i <esc>:<c-u>call TextObjectify(visualmode(),'i')<cr>
+xnoremap <silent> a <esc>:<c-u>call TextObjectify(visualmode(),'a')<cr>
 
 
 function! TextObjectify(mode,ia)
@@ -305,3 +305,5 @@ function! s:SearchAnyLine()
 		endif
 	endwhile
 endfunction
+
+" vim: noet sw=8 sts=8
