@@ -232,8 +232,8 @@ let g:syntastic_mode_map            = {
   \ 'passive_filetypes':['css','python','html','php']
   \ }
 
-let g:easytags_auto_highlight = 0
-let g:easytags_dynamic_files  = 2
+" let g:easytags_auto_highlight = 0
+" let g:easytags_dynamic_files  = 2
 " let g:easytags_by_filetype    = '~/.vimtagsft'
 
 let g:notes_directory   = '~/Dropbox/nv'
