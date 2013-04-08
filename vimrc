@@ -122,16 +122,16 @@ inoremap <leader>: <C-x><C-f>
 inoremap <leader>= <C-x><C-l>
 
 nnoremap <leader>d "_d
-vnoremap <leader>d "_d
+xnoremap <leader>d "_d
 
-vnoremap <leader>p "0p
+xnoremap <leader>p "0p
 
 nnoremap / /\v
 
 nnoremap Y y$
 
-vnoremap > >gv
-vnoremap < <gv
+xnoremap > >gv
+xnoremap < <gv
 
 nnoremap j gj
 nnoremap k gk
@@ -153,10 +153,10 @@ nnoremap <leader>k      :m-2<CR>==
 nnoremap <leader>j      :m+<CR>==
 nnoremap <leader><Up>   :m-2<CR>==
 nnoremap <leader><Down> :m+<CR>==
-vnoremap <leader>k      :m-2<CR>gv=gv
-vnoremap <leader>j      :m'>+<CR>gv=gv
-vnoremap <leader><Up>   :m-2<CR>gv=gv
-vnoremap <leader><Down> :m'>+<CR>gv=gv
+xnoremap <leader>k      :m-2<CR>gv=gv
+xnoremap <leader>j      :m'>+<CR>gv=gv
+xnoremap <leader><Up>   :m-2<CR>gv=gv
+xnoremap <leader><Down> :m'>+<CR>gv=gv
 
 nnoremap <leader>h       "_yiw?\v\w+\_W+%#<CR>:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o><C-l>
 nnoremap <leader>l       "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-l>
@@ -173,21 +173,21 @@ nnoremap <leader>} :ptag /<c-r>=expand('<cword>')<cr><cr>
 " EXPERIMENTAL!
 " ,s to define the search pattern
 nnoremap <leader>s :let @/ = expand('<cword>') <bar> echo @/<cr>
-vnoremap <leader>s "*y<Esc>:let @/ = substitute(escape(@*, '\/.*$^~[]'), "\n", '\\n', "g") <bar> echo @/<cr>
+xnoremap <leader>s "*y<Esc>:let @/ = substitute(escape(@*, '\/.*$^~[]'), "\n", '\\n', "g") <bar> echo @/<cr>
 " ,r to replace
-nnoremap <leader>r :'{,'}s/<c-r>=expand(@/)<cr>/
-vnoremap <leader>r :s/<c-r>=expand(@/)<cr>/
+nnoremap <leader>r :'{,'}s/<c-r>=expand('<cword>')<cr>/
+xnoremap <leader>r :s/<c-r>=expand(@/)<cr>/
 " ,o to replace once and . to repeat
 nnoremap <leader>0 :let @/ = expand('<cword>')<cr>
 nmap <leader>o ,0cgn
 
 nnoremap vp :execute "w !vpaste ft=".&ft<CR>
-vnoremap vp <ESC>:execute "'<,'>w !vpaste ft=".&ft<CR>
+xnoremap vp <ESC>:execute "'<,'>w !vpaste ft=".&ft<CR>
 
 autocmd FileType vim                nnoremap <leader>g I" <Esc>A "<Esc>yyp0lv$hhr"yykPjj
 autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hhr-yykPjj
 
-autocmd InsertLeave * if expand('%') != '' | update | endif
+" autocmd InsertLeave * if expand('%') != '' | update | endif
 
 """""""""""""""""""
 " PLUGIN SETTINGS "
@@ -220,10 +220,6 @@ let g:ctrlp_buftag_types        = {
   \ 'javascript' : '--language-force=javascript --javascript-types=fv'
   \ }
 
-" let delimitMate_expand_cr    = 1
-" let delimitMate_expand_space = 1
-" let delimitMate_excluded_ft  = "html"
-
 let g:syntastic_check_on_open       = 0
 let g:syntastic_enable_balloons     = 0
 let g:syntastic_enable_highlighting = 0
@@ -237,8 +233,8 @@ let g:syntastic_mode_map            = {
   \ }
 
 let g:easytags_auto_highlight = 0
-let g:easytags_dynamic_files  = 1
-let g:easytags_by_filetype    = '~/.vimtagsft'
+let g:easytags_dynamic_files  = 2
+" let g:easytags_by_filetype    = '~/.vimtagsft'
 
 let g:notes_directory   = '~/Dropbox/nv'
 let g:notes_suffix      = '.txt'
