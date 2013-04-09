@@ -198,7 +198,7 @@ let g:snippets_dir = '~/.vim/snippets/'
 let g:netrw_winsize   = '999'
 let g:netrw_banner    = 0
 let g:netrw_keepdir   = 0
-let g:netrw_liststyle = 4
+let g:netrw_liststyle = 3
 
 nnoremap <leader>f :CtrlP<CR>
 nnoremap <leader>F :CtrlPCurWD<CR>
