@@ -88,7 +88,7 @@ if has('gui_running')
   set columns=140
 
   if os == 'Darwin' || os == 'Mac'
-    set guifont=Inconsolata-g:h12
+    set guifont=Inconsolata-g:h13
     set fuoptions=maxvert,maxhorz
   elseif os == 'Linux'
     set guifont=Inconsolata-g\ Medium\ 10
