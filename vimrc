@@ -208,7 +208,7 @@ nnoremap <leader>M :CtrlPMRUFiles<CR>
 nnoremap <leader>t :CtrlPTag<CR>
 nnoremap <leader>T :CtrlPBufTag<CR>
 nnoremap <leader>l :CtrlPLine<CR>
-let g:ctrlp_extensions          = ['tag','line']
+let g:ctrlp_extensions          = ['tag', 'line']
 let g:ctrlp_mruf_max            = 25
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_by_filename         = 1
@@ -229,7 +229,7 @@ let g:syntastic_enable_signs        = 1
 let g:syntastic_mode_map            = {
   \ 'mode': 'active',
   \ 'active_filetypes': ['javascript'],
-  \ 'passive_filetypes':['css','python','html','php']
+  \ 'passive_filetypes':['css', 'python', 'html', 'php']
   \ }
 
 " let g:easytags_auto_highlight = 0
