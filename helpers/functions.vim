@@ -6,38 +6,56 @@
 " this needs a lot more work, obviously
 " I need to look up and up for a marker, like in ctrlp: .git, .svn… or tags
 " and use that as root for my tags generation.
-" if current dir == . and there's a root marker right here:
-"   generate a tags file from here
-" if current dir == . and there's no root marker right here:
-"   look up for a root marker:
-"     if we find one:
-"       generate a tags file from there
-"     if we don't:
-"       ask if we create a tags file here:
-"         if yes:
-"           generate the tags file from here
-"         if no:
-"           do nothing (and remember the answer?)
-" if current dir != . and there's a root marker right here:
-"   generate a tags file right here
-" if current dir != . and there's no root marker right here:
-"   look up for a root marker:
-"     if we find one:
-"       generate a tags file from there
-"     if we don't:
-"       ask if we create a tags file here:
-"         if yes:
-"           generate the tags file from here
-"         if no:
-"           do nothing (and remember the answer?)
+"
+" verifier si il y a un fichier tags avec tagfiles():
+"   oui:
+"     regenerer ce fichier à partir du dossier qui le contient
+"   non:
+"     verifier si il y a un "root marker":
+"       oui:
+"         generer un fichier tags depuis le dossier contenant
+"         le root marker dans ce dossier
+"       non:
+"         verifier si le dossier courant et le dosiier du fichier courant sont
+"         le même:
+"           oui:
+"             demander si on genere un fichier tags:
+"               oui:
+"                 generer un fichier de tags ici
+"               non:
+"                 exit
+"           non:
+"             demander si on genere un fichier tags:
+"               oui:
+"                 demander où:
+"                   dossier courant:
+"                     generer un fichier tags dans le dossier courant
+"                   dossier du fichier courant:
+"                     generer un fichier tags dans le dossier du fichier courant
+"               non:
+"                 exit et enregistre la réponse dans une variable de buffer
+"
 
-function! UpTags()
-  let root_markers_dirs = [".git", ".hg", ".svn", ".bzr", "_darcs"]
-  let root_markers_files = ["tags"]
-  let this_dir = expand('%:p:h')
-  let current_dir = getcwd()
-  // let root_dir = ...
+function! Tagger()
+
+  if b:tagger_tagfile
+    execute ":!ctags -R -f " . b:tagger_tagfile . " " . fnamemodify(tagfiles()[0], ':p:h')
+  endif
+  " let root_markers = [".git"]
+  " let this_dir = expand('%:p:h')
+  " let current_dir = getcwd()
+  " if finddir(root_markers[0], ";")
+  "   execute "echo fnamemodify('" . finddir('.git', '.;') . "', ':p:h:h')"
+  " else
+  "   echo "pas trouvé"
+  " endif
+  " if this_dir == current_dir
+  "   echo "c'est le bon dossier"
+  " else
+  "   echo "c'est pas le bon dossier"
+  " endif 
   if len(tagfiles()) > 0
+    " il y a un fichier tags
     execute ":!ctags -R -f " . tagfiles()[0] . " " . fnamemodify(tagfiles()[0], ':p:h')
   else
     execute ":!ctags -R ."
