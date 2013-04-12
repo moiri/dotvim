@@ -4,7 +4,39 @@
 
 " Trying to write a function for managing tags
 " this needs a lot more work, obviously
+" I need to look up and up for a marker, like in ctrlp: .git, .svn… or tags
+" and use that as root for my tags generation.
+" if current dir == . and there's a root marker right here:
+"   generate a tags file from here
+" if current dir == . and there's no root marker right here:
+"   look up for a root marker:
+"     if we find one:
+"       generate a tags file from there
+"     if we don't:
+"       ask if we create a tags file here:
+"         if yes:
+"           generate the tags file from here
+"         if no:
+"           do nothing (and remember the answer?)
+" if current dir != . and there's a root marker right here:
+"   generate a tags file right here
+" if current dir != . and there's no root marker right here:
+"   look up for a root marker:
+"     if we find one:
+"       generate a tags file from there
+"     if we don't:
+"       ask if we create a tags file here:
+"         if yes:
+"           generate the tags file from here
+"         if no:
+"           do nothing (and remember the answer?)
+
 function! UpTags()
+  let root_markers_dirs = [".git", ".hg", ".svn", ".bzr", "_darcs"]
+  let root_markers_files = ["tags"]
+  let this_dir = expand('%:p:h')
+  let current_dir = getcwd()
+  // let root_dir = ...
   if len(tagfiles()) > 0
     execute ":!ctags -R -f " . tagfiles()[0] . " " . fnamemodify(tagfiles()[0], ':p:h')
   else

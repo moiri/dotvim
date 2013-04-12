@@ -179,7 +179,7 @@ nnoremap <leader>r :'{,'}s/<c-r>=expand('<cword>')<cr>/
 xnoremap <leader>r :s/<c-r>=expand(@/)<cr>/
 " ,o to replace once and . to repeat
 nnoremap <leader>0 :let @/ = expand('<cword>')<cr>
-nmap <leader>o ,0cgn
+nmap <leader>o <leader>0cgn
 
 nnoremap vp :execute "w !vpaste ft=".&ft<CR>
 xnoremap vp <ESC>:execute "'<,'>w !vpaste ft=".&ft<CR>
