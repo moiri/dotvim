@@ -4,61 +4,61 @@
 
 " Trying to write a function for managing tags
 " this needs a lot more work, obviously
-" I need to look up and up for a marker, like in ctrlp: .git, .svn… or tags
-" and use that as root for my tags generation.
-"
-" verifier si il y a un fichier tags avec tagfiles():
-"   oui:
-"     regenerer ce fichier à partir du dossier qui le contient
-"   non:
-"     verifier si il y a un "root marker":
-"       oui:
-"         generer un fichier tags depuis le dossier contenant
-"         le root marker dans ce dossier
-"       non:
-"         verifier si le dossier courant et le dosiier du fichier courant sont
-"         le même:
-"           oui:
-"             demander si on genere un fichier tags:
-"               oui:
-"                 generer un fichier de tags ici
-"               non:
-"                 exit
-"           non:
-"             demander si on genere un fichier tags:
-"               oui:
-"                 demander où:
-"                   dossier courant:
-"                     generer un fichier tags dans le dossier courant
-"                   dossier du fichier courant:
-"                     generer un fichier tags dans le dossier du fichier courant
-"               non:
-"                 exit et enregistre la réponse dans une variable de buffer
-"
-
+command! Tagger :call Tagger()
 function! Tagger()
 
-  if b:tagger_tagfile
-    execute ":!ctags -R -f " . b:tagger_tagfile . " " . fnamemodify(tagfiles()[0], ':p:h')
-  endif
-  " let root_markers = [".git"]
-  " let this_dir = expand('%:p:h')
-  " let current_dir = getcwd()
-  " if finddir(root_markers[0], ";")
-  "   execute "echo fnamemodify('" . finddir('.git', '.;') . "', ':p:h:h')"
-  " else
-  "   echo "pas trouvé"
-  " endif
-  " if this_dir == current_dir
-  "   echo "c'est le bon dossier"
-  " else
-  "   echo "c'est pas le bon dossier"
-  " endif 
+  " write the current file if needed
+  update
+
+  " is there already a tags file?
   if len(tagfiles()) > 0
-    " il y a un fichier tags
-    execute ":!ctags -R -f " . tagfiles()[0] . " " . fnamemodify(tagfiles()[0], ':p:h')
+
+    " oh! that tags file
+    let t_file = tagfiles()[0]
+
+    " regenerate that tags file
+    execute ":!ctags -R -f " . shellescape(t_file) . " " . shellescape(fnamemodify(t_file, ':p:h'))
+
+  " or not?
   else
-    execute ":!ctags -R ."
+
+    " let's save those two directories for later
+    let this_dir = expand('%:p:h')
+    let current_dir = getcwd()
+
+    " is the file associated with the current buffer in the current directory?
+    if this_dir == current_dir
+
+      " ask the user what he wants to do
+      let user_choice = inputlist([
+            \ 'Do you want to generate a tags file?',
+            \ '1. No, thanks.',
+            \ '2. Yes, in ' . current_dir])
+
+      " ok, let's generate a tags file in the current directory
+      if user_choice == 2
+        execute ":!ctags -R -f " . shellescape(current_dir . "/tags") . " " . shellescape(current_dir)
+      endif
+
+    " or not?
+    elseif this_dir != current_dir
+
+      " ask the user what he wants to do
+      let user_choice = inputlist([
+            \ 'Do you want to generate a tags file?',
+            \ '1. No, thanks.',
+            \ '2. Yes, in ' . current_dir,
+            \ '3. Yes, in ' . this_dir])
+
+      " ok, let's generate a tags file in the current directory
+      if user_choice == 2
+        execute ":!ctags -R -f " . shellescape(current_dir . "/tags") . " " . shellescape(current_dir)
+
+      " ok, let's generate a tags file in the directory of the current file
+      elseif user_choice == 3
+        execute ":!ctags -R -f " . shellescape(this_dir . "/tags") . " " . shellescape(this_dir)
+      endif
+    endif
   endif
 endfunction
 
