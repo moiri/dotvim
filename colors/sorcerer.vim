@@ -42,7 +42,7 @@ hi Title              term=bold cterm=bold ctermbg=bg ctermfg=66 gui=bold guibg=
 hi Todo               term=NONE cterm=bold,underline ctermbg=234 ctermfg=96 gui=bold,italic,underline guibg=#202020 guifg=#8f6f8f
 hi Type               term=underline cterm=NONE ctermbg=bg ctermfg=103 gui=NONE guibg=bg guifg=#7e8aa2
 hi Underlined         term=underline cterm=underline ctermbg=bg ctermfg=111 gui=underline guibg=bg guifg=#80a0ff
-hi VertSplit          term=reverse cterm=NONE ctermbg=59 ctermfg=59 gui=NONE guibg=#404c4c guifg=#404c4c
+hi VertSplit          term=reverse cterm=NONE ctermbg=59 ctermfg=59 gui=NONE guibg=#5f5f5f guifg=#5f5f5f
 hi WildMenu           term=NONE cterm=NONE ctermbg=116 ctermfg=16 gui=NONE guibg=#87ceeb guifg=#000000
 
 hi Pmenu              term=NONE cterm=NONE ctermbg=238 ctermfg=231 gui=NONE guibg=#444444 guifg=#ffffff
@@ -67,8 +67,8 @@ hi CursorLine         term=underline cterm=NONE ctermbg=236 ctermfg=fg gui=NONE 
 hi helpLeadBlank      term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
 hi helpNormal         term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
 
-hi StatusLine         term=bold,reverse cterm=bold ctermbg=101 ctermfg=16 gui=bold guibg=#808070 guifg=#000000
-hi StatusLineNC       term=reverse cterm=NONE ctermbg=59 ctermfg=16 gui=italic guibg=#404c4c guifg=#000000
+hi StatusLine         term=bold,reverse cterm=bold ctermbg=101 ctermfg=16 gui=bold guibg=#87875f  guifg=#000000
+hi StatusLineNC       term=reverse cterm=NONE ctermbg=59 ctermfg=16 gui=italic guibg=#5f5f5f guifg=#000000
 
 hi Visual             term=reverse cterm=NONE ctermbg=67 ctermfg=16 gui=NONE guibg=#6688aa guifg=#000000
 hi VisualNOS          term=bold,underline cterm=bold,underline ctermbg=bg ctermfg=fg gui=bold,underline guibg=bg guifg=fg

@@ -23,7 +23,7 @@ function! Tagger()
   else
 
     " let's save those two directories for later
-    let this_dir = expand('%:p:h')
+    let this_dir    = expand('%:p:h')
     let current_dir = getcwd()
 
     " is the file associated with the current buffer in the current directory?
@@ -33,7 +33,7 @@ function! Tagger()
       let user_choice = inputlist([
             \ 'Do you want to generate a tags file?',
             \ '1. No, thanks.',
-            \ '2. Yes, in ' . current_dir])
+            \ '2. Yes, in the working directory: ' . current_dir . '/tags'])
 
       " ok, let's generate a tags file in the current directory
       if user_choice == 2
@@ -47,8 +47,8 @@ function! Tagger()
       let user_choice = inputlist([
             \ 'Do you want to generate a tags file?',
             \ '1. No, thanks.',
-            \ '2. Yes, in ' . current_dir,
-            \ '3. Yes, in ' . this_dir])
+            \ '2. Yes, in the working directory:             ' . current_dir . '/tags',
+            \ '3. Yes, in the directory of the current file: ' . this_dir . '/tags'])
 
       " ok, let's generate a tags file in the current directory
       if user_choice == 2

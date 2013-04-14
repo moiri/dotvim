@@ -15,7 +15,6 @@ silent! runtime macros/matchit.vim
 
 " minimal
 set backspace=indent,eol,start
-set foldenable
 set hidden
 set incsearch
 set laststatus=2
@@ -57,6 +56,7 @@ set splitbelow
 set splitright
 
 set clipboard^=unnamed
+set completeopt+=longest
 set cursorline
 set fileformats="unix,dos,mac"
 set formatoptions+=1
@@ -124,7 +124,7 @@ inoremap <leader>= <C-x><C-l>
 nnoremap <leader>d "_d
 xnoremap <leader>d "_d
 
-xnoremap <leader>p "0p
+xnoremap <leader>p "_dP
 
 nnoremap / /\v
 
