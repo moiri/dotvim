@@ -171,13 +171,9 @@ nnoremap <leader>] :tjump /<c-r>=expand('<cword>')<cr><cr>
 nnoremap <leader>} :ptag /<c-r>=expand('<cword>')<cr><cr>
 
 " EXPERIMENTAL!
-" ,s to define the search pattern
 nnoremap <leader>s *N
-xnoremap <leader>s "*y<Esc>:let @/ = substitute(escape(@*, '\/.*$^~[]'), "\n", '\\n', "g") <bar> echo @/<cr>
-" ,r to replace
 nnoremap <leader>r :'{,'}s/<c-r>=expand('<cword>')<cr>/
 xnoremap <leader>r :s/<c-r>=expand(@/)<cr>/
-" ,o to replace once and . to repeat
 nnoremap <leader>o *Ncgn
 
 nnoremap vp :execute "w !vpaste ft=".&ft<CR>
