@@ -179,20 +179,20 @@ snippet qtmovie
 	</object>${6}
 # http://camendesign.com/code/video_for_everybody
 snippet video
-	<video width="${2}" height="${3}" controls>
-		<source src="${1}.mp4"  type="video/mp4" />
+	<video width="${2:640}" height="${3:360}" controls>
+		<source src="${1:filename}.mp4"  type="video/mp4" />
 		<source src="$1.ogv"  type="video/ogg" />
 		<object width="$2" height="$3" type="application/x-shockwave-flash" data="${4:player.swf}">
 			<param name="movie" value="$4" />
 			<param name="flashvars" value="controlbar=over&amp;image=$1.jpg&amp;file=$1.mp4" />
-			<img src="$1.jpg" width="$2" height="$3" alt="${5}"
+			<img src="$1.jpg" width="$2" height="$3" alt="$1"
 				title="No video playback capabilities, please download the video below" />
 		</object>
 	</video>
 	<p>
 		<strong>Download Video:</strong>
-		Closed Format:	<a href="$1.mp4">"MP4"</a>
-		Open Format:	<a href="$1.ogv">"Ogg"</a>
+		Closed Format: <a href="$1.mp4">"MP4"</a>
+		Open Format: <a href="$1.ogv">"Ogg"</a>
 	</p>
 #
 # TEMPLATES

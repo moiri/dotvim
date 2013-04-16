@@ -172,8 +172,9 @@ nnoremap <leader>} :ptag /<c-r>=expand('<cword>')<cr><cr>
 
 " EXPERIMENTAL!
 nnoremap <leader>s *N
+xnoremap <leader>s "*y<Esc>:let @/ = substitute(escape(@*, '\/.*$^~[]'), "\n", '\\n', "g") <bar>echo ' '<cr>
 nnoremap <leader>r :'{,'}s/<c-r>=expand('<cword>')<cr>/
-xnoremap <leader>r :s/<c-r>=expand(@/)<cr>/
+xnoremap <leader>r :s/<c-r>=@/<cr>/
 nnoremap <leader>o *Ncgn
 
 nnoremap vp :execute "w !vpaste ft=".&ft<CR>
