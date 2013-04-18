@@ -145,6 +145,7 @@ cnoremap <C-e> <End>
 
 inoremap {<CR> {<CR>}<C-o>==<C-o>O
 inoremap {; {<CR>};<C-o>==<C-o>O
+inoremap <C-CR> <CR><C-o>==<C-o>O
 
 inoremap <leader>; <C-o>m`<C-o>A;<C-o>``
 nnoremap <leader>; A;<Esc>
@@ -177,8 +178,15 @@ nnoremap <leader>r :'{,'}s/<c-r>=expand('<cword>')<cr>/
 xnoremap <leader>r :s/<c-r>=@/<cr>/
 nnoremap <leader>o *Ncgn
 
-nnoremap vp :execute "w !vpaste ft=".&ft<CR>
-xnoremap vp <ESC>:execute "'<,'>w !vpaste ft=".&ft<CR>
+nnoremap <leader>vp :execute "w !vpaste ft=".&ft<CR>
+xnoremap <leader>vp <ESC>:execute "'<,'>w !vpaste ft=".&ft<CR>
+
+for char in [ "_", ".", ":", ",", ";", "<bar>", "/", "<bslash>", "*" ]
+  execute "xnoremap i" . char . " :<C-U>silent!normal!T" . char . "vt" . char . "<CR>"
+  execute "onoremap i" . char . " :normal vi" . char . "<CR>"
+  execute "xnoremap a" . char . " :<C-U>silent!normal!F" . char . "vf" . char . "<CR>"
+  execute "onoremap a" . char . " :normal va" . char . "<CR>"
+endfor
 
 autocmd FileType vim                nnoremap <leader>g I" <Esc>A "<Esc>yyp0lv$hhr"yykPjj
 autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hhr-yykPjj
