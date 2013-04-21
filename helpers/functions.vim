@@ -3,63 +3,94 @@
 """""""""""
 
 " Trying to write a function for managing tags
-" this needs a lot more work, obviously
-command! Tagger :call Tagger()
-function! Tagger()
+" ============================================
+" when a tags file already exists, it is re-generated
+" when there's no tags file, the user is asked what to do:
+" * generate a tags file in the current directory
+" * generate a tags file in the directory of the current file
+" * somewhere else
+" if no answer is given, nothing is done and the answer is stored to
+" avoid asking the user again
+command! Tagit :call Tagit()
+function! Tagit()
 
-  " write the current file if needed
-  update
+  if !exists("b:tagit_notags")
 
-  " is there already a tags file?
-  if len(tagfiles()) > 0
+    if expand('%') != ''
+      update
 
-    " oh! that tags file
-    let t_file = tagfiles()[0]
-
-    " regenerate that tags file
-    execute ":!ctags -R -f " . shellescape(t_file) . " " . shellescape(fnamemodify(t_file, ':p:h'))
-
-  " or not?
-  else
-
-    " let's save those two directories for later
-    let this_dir    = expand('%:p:h')
-    let current_dir = getcwd()
-
-    " is the file associated with the current buffer in the current directory?
-    if this_dir == current_dir
-
-      " ask the user what he wants to do
-      let user_choice = inputlist([
-            \ 'Do you want to generate a tags file?',
-            \ '1. No, thanks.',
-            \ '2. Yes, in the working directory: ' . current_dir . '/tags'])
-
-      " ok, let's generate a tags file in the current directory
-      if user_choice == 2
-        execute ":!ctags -R -f " . shellescape(current_dir . "/tags") . " " . shellescape(current_dir)
-      endif
-
-    " or not?
-    elseif this_dir != current_dir
-
-      " ask the user what he wants to do
-      let user_choice = inputlist([
-            \ 'Do you want to generate a tags file?',
-            \ '1. No, thanks.',
-            \ '2. Yes, in the working directory:             ' . current_dir . '/tags',
-            \ '3. Yes, in the directory of the current file: ' . this_dir . '/tags'])
-
-      " ok, let's generate a tags file in the current directory
-      if user_choice == 2
-        execute ":!ctags -R -f " . shellescape(current_dir . "/tags") . " " . shellescape(current_dir)
-
-      " ok, let's generate a tags file in the directory of the current file
-      elseif user_choice == 3
-        execute ":!ctags -R -f " . shellescape(this_dir . "/tags") . " " . shellescape(this_dir)
-      endif
     endif
+
+    if len(tagfiles()) > 0
+      let t_file = tagfiles()[0]
+
+      execute ":silent !ctags -R -f " . shellescape(t_file) . " " . shellescape(fnamemodify(t_file, ':p:h')) | execute ":redraw!"
+
+    else
+      let this_dir    = expand('%:p:h')
+      let current_dir = getcwd()
+
+      if this_dir == current_dir
+        let user_choice = inputlist([
+          \ 'Where do you want to generate a tags file?',
+          \ '1. In the working directory: ' . current_dir . '/tags',
+          \ '2. Somewhere else…'])
+
+        if user_choice == 0
+          let b:tagit_notags = 1
+
+        elseif user_choice == 1
+          execute ":silent !ctags -R -f " . shellescape(current_dir . "/tags") . " " . shellescape(current_dir) | execute ":redraw!"
+
+        elseif user_choice == 2
+          let tags_location = input("\nPlease choose a directory:\n", current_dir, "dir")
+
+          execute ":silent !ctags -R -f " . shellescape(tags_location . "/tags") . " " . shellescape(tags_location) | execute ":redraw!"
+
+        endif
+
+      elseif this_dir != current_dir
+        let user_choice = inputlist([
+            \ 'Where do you want to generate a tags file?',
+            \ '1. In the working directory:             ' . current_dir . '/tags',
+            \ '2. In the directory of the current file: ' . this_dir . '/tags',
+            \ '3. Somewhere else…'])
+
+        if user_choice == 0
+          let b:tagit_notags = 1
+
+        elseif user_choice == 1
+          execute ":silent !ctags -R -f " . shellescape(current_dir . "/tags") . " " . shellescape(current_dir) | execute ":redraw!"
+
+        elseif user_choice == 2
+          execute ":silent !ctags -R -f " . shellescape(this_dir . "/tags") . " " . shellescape(this_dir) | execute ":redraw!"
+
+        elseif user_choice == 3
+          let tags_location = input("\nPlease choose a directory:\n", this_dir, "dir")
+
+          execute ":silent !ctags -R -f " . shellescape(tags_location . "/tags") . " " . shellescape(tags_location) | execute ":redraw!"
+
+        endif
+
+      endif
+
+    endif
+
   endif
+
+endfunction
+
+" Ignore user's choice to not write a tags file.
+command! Bombit :call Bombit()
+function! Bombit()
+
+  if exists("b:tagit_notags")
+    unlet b:tagit_notags
+
+    Tagit
+
+  endif
+
 endfunction
 
 " URLs pasted from Word or Powerpoint often have a newline
@@ -67,25 +98,34 @@ endfunction
 " of the next anchor
 command! An :call UpdateAnchor()
 function! UpdateAnchor()
+
   normal! ^v$hy"_dd/hreff"vi""_dP
+
 endfunction
 
 " DOS to UNIX encoding
 command! ToUnix :call ToUnix()
 function! ToUnix()
+
   silent update
   silent e ++ff=dos
   silent setlocal ff=unix
   silent w
+
 endfunction
 
 " shows syntaxic group of the word under the cursor
 command! SynStack :call SynStack()
 function! SynStack()
+
   if !exists("*synstack")
+
     return
+
   endif
+
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+
 endfunc
 
 " normal characters --> HTML entities

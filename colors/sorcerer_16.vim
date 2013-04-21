@@ -15,7 +15,7 @@ let colors_name = "sorcerer_16"
 hi Normal       ctermfg=LightGrey
 hi ColorColumn  ctermbg=Black
 hi Cursor       ctermfg=Black
-hi CursorLine   ctermbg=none cterm=underline
+hi CursorLine   ctermbg=none cterm=underline ctermfg=NONE
 hi DiffAdd      ctermfg=Black ctermbg=Green
 hi DiffChange   ctermfg=Black ctermbg=Blue
 hi DiffDelete   ctermfg=Black ctermbg=DarkRed

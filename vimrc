@@ -37,6 +37,8 @@ set smartcase
 set encoding=utf-8
 set termencoding=utf-8
 
+set wildignore=*.swp,*.bak,*.pyc,*.class,*/.git/**/*,*/.hg/**/*,*/.svn/**/*
+set wildignorecase
 set wildmode=list:full
 
 set statusline=%<\ %t\ %m%r%y%w%=Col:\ \%c\ Lin:\ \%l\/\%L\ 
@@ -55,7 +57,7 @@ set visualbell
 set splitbelow
 set splitright
 
-set clipboard^=unnamed
+set clipboard^=unnamedplus
 set completeopt+=longest
 set cursorline
 set fileformats="unix,dos,mac"
@@ -67,7 +69,6 @@ set nrformats-=octal
 set previewheight=4
 set relativenumber
 set scrolloff=4
-set wildignore=*.swp,*.bak,*.pyc,*.class,*/.git/**/*,*/.hg/**/*,*/.svn/**/*
 set winheight=999
 
 """""""""""""""""""""""""""""""""
@@ -90,15 +91,20 @@ if has('gui_running')
   if os == 'Darwin' || os == 'Mac'
     set guifont=Inconsolata-g:h13
     set fuoptions=maxvert,maxhorz
+
   elseif os == 'Linux'
     set guifont=Inconsolata-g\ Medium\ 10
     set guioptions-=m
+
   endif
+
 else
   if &t_Co >= 256
     colorscheme sorcerer
+
   elseif &t_Co < 256
     colorscheme sorcerer_16
+
   endif
 
   nnoremap <Esc>A <up>
@@ -109,6 +115,7 @@ else
   inoremap <Esc>B <down>
   inoremap <Esc>C <right>
   inoremap <Esc>D <left>
+
 endif
 
 """""""""""""""""""
@@ -235,10 +242,6 @@ let g:syntastic_mode_map            = {
   \ 'active_filetypes': ['javascript'],
   \ 'passive_filetypes':['css', 'python', 'html', 'php']
   \ }
-
-" let g:easytags_auto_highlight = 0
-" let g:easytags_dynamic_files  = 2
-" let g:easytags_by_filetype    = '~/.vimtagsft'
 
 let g:notes_directory   = '~/Dropbox/nv'
 let g:notes_suffix      = '.txt'
