@@ -57,7 +57,6 @@ set visualbell
 set splitbelow
 set splitright
 
-set clipboard^=unnamedplus
 set completeopt+=longest
 set cursorline
 set fileformats="unix,dos,mac"
@@ -91,10 +90,12 @@ if has('gui_running')
   if os == 'Darwin' || os == 'Mac'
     set guifont=Inconsolata-g:h13
     set fuoptions=maxvert,maxhorz
+    set clipboard^=unnamed
 
   elseif os == 'Linux'
     set guifont=Inconsolata-g\ Medium\ 10
     set guioptions-=m
+    set clipboard^=unnamedplus
 
   endif
 
@@ -104,6 +105,14 @@ else
 
   elseif &t_Co < 256
     colorscheme sorcerer_16
+
+  endif
+
+  if os == 'Darwin' || os == 'Mac'
+    set clipboard^=unnamed
+
+  elseif os == 'Linux'
+    set clipboard^=unnamedplus
 
   endif
 
@@ -198,7 +207,7 @@ endfor
 autocmd FileType vim                nnoremap <leader>g I" <Esc>A "<Esc>yyp0lv$hhr"yykPjj
 autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hhr-yykPjj
 
-" autocmd InsertLeave * if expand('%') != '' | update | endif
+autocmd InsertLeave * if expand('%') != '' | update | endif
 
 """""""""""""""""""
 " PLUGIN SETTINGS "
