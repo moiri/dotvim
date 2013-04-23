@@ -237,7 +237,8 @@ let g:ctrlp_open_multiple_files = '3hjr'
 let g:ctrlp_root_markers        = ['tags']
 let g:ctrlp_buftag_types        = {
   \ 'css'        : '--language-force=css --css-types=citm',
-  \ 'javascript' : '--language-force=javascript --javascript-types=fv'
+  \ 'javascript' : '--language-force=javascript --javascript-types=fv',
+  \ 'haxe'       : '--language-force=haxe --haxe-types=fvpcit'
   \ }
 
 let g:syntastic_check_on_open       = 0
