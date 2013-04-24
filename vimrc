@@ -164,7 +164,7 @@ inoremap {; {<CR>};<C-o>==<C-o>O
 inoremap <C-CR> <CR><C-o>==<C-o>O
 
 inoremap <leader>; <C-o>m`<C-o>A;<C-o>``
-nnoremap <leader>; A;<Esc>
+nnoremap <silent> <leader>; :s/$/;<CR>
 
 nnoremap <leader>k      :m-2<CR>==
 nnoremap <leader>j      :m+<CR>==
