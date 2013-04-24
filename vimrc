@@ -221,7 +221,7 @@ let g:netrw_keepdir   = 0
 let g:netrw_liststyle = 3
 
 nnoremap <leader>f :CtrlP<CR>
-nnoremap <leader>F :CtrlPCurWD<CR>
+nnoremap <leader>F :CtrlPCurFile<CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>m :CtrlPMixed<CR>
 nnoremap <leader>M :CtrlPMRUFiles<CR>
