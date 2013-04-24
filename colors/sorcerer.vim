@@ -62,7 +62,7 @@ hi TabLineFill        term=reverse cterm=reverse ctermbg=145 ctermfg=234 gui=rev
 hi Cursor             term=NONE cterm=NONE ctermbg=241 ctermfg=fg gui=NONE guibg=#626262 guifg=fg
 hi lCursor            term=NONE cterm=NONE ctermbg=145 ctermfg=234 gui=NONE guibg=#c2c2b0 guifg=#202020
 hi CursorColumn       term=reverse cterm=NONE ctermbg=236 ctermfg=NONE gui=NONE guibg=#2d2d2d guifg=NONE
-hi CursorLine         term=underline cterm=underline ctermbg=236 ctermfg=NONE gui=NONE guibg=#333333 guifg=NONE
+hi CursorLine         term=underline cterm=NONE ctermbg=236 ctermfg=NONE gui=NONE guibg=#333333 guifg=NONE
 
 hi helpLeadBlank      term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
 hi helpNormal         term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
