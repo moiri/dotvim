@@ -1,4 +1,4 @@
-vnoremap <buffer> ?? <Esc>'<O<!--<Esc>'>o--><Esc>
+vnoremap <buffer> ?? <Esc>'<yyP"_C<!--<Esc>'>yyp"_C--><Esc>
 vnoremap <buffer> !! <Esc>'<"_dd'>"_dd'<
 
 nnoremap <buffer> <leader>& :call Entities()<CR>
