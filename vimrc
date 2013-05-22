@@ -77,7 +77,7 @@ set winheight=999
 let os=substitute(system('uname'), '\n', '', '')
 
 if has('gui_running')
-  autocmd! FocusLost * :wa
+  autocmd! FocusLost * if expand('%') != '' | wa | endif
   autocmd! GUIEnter * set vb t_vb=
 
   colorscheme sorcerer
@@ -161,7 +161,7 @@ cnoremap <C-e> <End>
 
 inoremap {<CR> {<CR>}<C-o>==<C-o>O
 inoremap {; {<CR>};<C-o>==<C-o>O
-inoremap <C-CR> <CR><C-o>==<C-o>O
+inoremap <leader><CR> <CR><C-o>==<C-o>O
 
 inoremap <leader>; <C-o>m`<C-o>A;<C-o>``
 nnoremap <silent> <leader>; :s/$/;<CR>
