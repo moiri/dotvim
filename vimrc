@@ -77,7 +77,7 @@ set winheight=999
 let os=substitute(system('uname'), '\n', '', '')
 
 if has('gui_running')
-  autocmd! FocusLost * if expand('%') != '' | wa | endif
+  autocmd! FocusLost * :wa
   autocmd! GUIEnter * set vb t_vb=
 
   colorscheme sorcerer
@@ -159,8 +159,8 @@ nnoremap gb :buffers<CR>:sb<Space>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
-inoremap {<CR> {<CR>}<C-o>==<C-o>O
-inoremap {; {<CR>};<C-o>==<C-o>O
+inoremap {<CR>        {<CR>}<C-o>==<C-o>O
+inoremap {;           {<CR>};<C-o>==<C-o>O
 inoremap <leader><CR> <CR><C-o>==<C-o>O
 
 inoremap <leader>; <C-o>m`<C-o>A;<C-o>``
@@ -197,11 +197,11 @@ nnoremap <leader>o *Ncgn
 nnoremap <leader>vp :execute "w !vpaste ft=".&ft<CR>
 xnoremap <leader>vp <ESC>:execute "'<,'>w !vpaste ft=".&ft<CR>
 
-for char in [ "_", ".", ":", ",", ";", "<bar>", "/", "<bslash>", "*" ]
-  execute "xnoremap i" . char . " :<C-U>silent!normal!T" . char . "vt" . char . "<CR>"
-  execute "onoremap i" . char . " :normal vi" . char . "<CR>"
-  execute "xnoremap a" . char . " :<C-U>silent!normal!F" . char . "vf" . char . "<CR>"
-  execute "onoremap a" . char . " :normal va" . char . "<CR>"
+for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+' ]
+  execute 'xnoremap i' . char . ' :<C-U>silent!normal!T' . char . 'vt' . char . '<CR>'
+  execute 'onoremap i' . char . ' :normal vi' . char . '<CR>'
+  execute 'xnoremap a' . char . ' :<C-U>silent!normal!F' . char . 'vf' . char . '<CR>'
+  execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
 endfor
 
 autocmd FileType vim                nnoremap <leader>g I" <Esc>A "<Esc>yyp0lv$hhr"yykPjj
