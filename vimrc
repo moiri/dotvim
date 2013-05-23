@@ -191,8 +191,8 @@ nnoremap <leader>r :'{,'}s/<c-r>=expand('<cword>')<cr>/
 xnoremap <leader>r :s/<c-r>=@/<cr>/
 nnoremap <leader>o *Ncgn
 
-nnoremap <leader>n :cnext<CR>
-nnoremap <leader>p :cprevious<CR>
+nnoremap <leader>n :cnext<CR>zv
+nnoremap <leader>p :cprevious<CR>zv
 
 nnoremap <leader>vp :execute "w !vpaste ft=".&ft<CR>
 xnoremap <leader>vp <ESC>:execute "'<,'>w !vpaste ft=".&ft<CR>
