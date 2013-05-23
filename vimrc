@@ -77,7 +77,7 @@ set winheight=999
 let os=substitute(system('uname'), '\n', '', '')
 
 if has('gui_running')
-  autocmd! FocusLost * :wa
+  autocmd! FocusLost * if expand('%') != '' | wa | endif
   autocmd! GUIEnter * set vb t_vb=
 
   colorscheme sorcerer
@@ -184,15 +184,15 @@ nnoremap <leader>a :Tabularize<Space>/
 
 nnoremap <leader><Space><Space> O<C-o>j<C-o>o<C-o>k<Esc>
 
-nnoremap <leader>] :tjump /<c-r>=expand('<cword>')<cr><cr>
-nnoremap <leader>} :ptag /<c-r>=expand('<cword>')<cr><cr>
-
 " EXPERIMENTAL!
 nnoremap <leader>s *N
 xnoremap <leader>s "*y<Esc>:let @/ = substitute(escape(@*, '\/.*$^~[]'), "\n", '\\n', "g") <bar>echo ' '<cr>
 nnoremap <leader>r :'{,'}s/<c-r>=expand('<cword>')<cr>/
 xnoremap <leader>r :s/<c-r>=@/<cr>/
 nnoremap <leader>o *Ncgn
+
+nnoremap <leader>n :cnext<CR>zv
+nnoremap <leader>p :cprevious<CR>zv
 
 nnoremap <leader>vp :execute "w !vpaste ft=".&ft<CR>
 xnoremap <leader>vp <ESC>:execute "'<,'>w !vpaste ft=".&ft<CR>
