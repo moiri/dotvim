@@ -2,13 +2,33 @@
 " HELPERS "
 """""""""""
 
+" inspired by https://github.com/jtmkrueger/vim-c-cr
+function! Closer()
+
+  let  prevchar = getline(".")[col(".")-2]
+
+  if prevchar ==# "{"
+    return "\<CR>}\<C-o>==\<C-o>O"
+
+  elseif prevchar ==# "["
+    return "\<CR>]\<C-o>==\<C-o>O"
+
+  elseif prevchar ==# "("
+    return "\<CR>)\<C-o>==\<C-o>O"
+
+  else
+    return "\<CR>"
+
+  endif
+endfunction
+
 " Trying to write a function for managing tags
 " ============================================
 " when a tags file already exists, it is re-generated
 " when there's no tags file, the user is asked what to do:
 " * generate a tags file in the current directory
 " * generate a tags file in the directory of the current file
-" * somewhere else
+" * generate a tags file somewhere else
 " if no answer is given, nothing is done and we try to not bother the user
 " again
 command! Tagit :call Tagit()

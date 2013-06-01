@@ -77,7 +77,7 @@ set winheight=999
 let os=substitute(system('uname'), '\n', '', '')
 
 if has('gui_running')
-  autocmd! FocusLost * if expand('%') != '' | wa | endif
+  " autocmd! FocusLost * if expand('%') != '' | wa | endif
   autocmd! GUIEnter * set vb t_vb=
 
   colorscheme sorcerer
@@ -159,9 +159,7 @@ nnoremap gb :buffers<CR>:sb<Space>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
-inoremap {<CR>        {<CR>}<C-o>==<C-o>O
-inoremap {;           {<CR>};<C-o>==<C-o>O
-inoremap <leader><CR> <CR><C-o>==<C-o>O
+inoremap <expr> <CR> Closer()
 
 inoremap <leader>; <C-o>m`<C-o>A;<C-o>``
 nnoremap <silent> <leader>; m`A;<Esc>``
@@ -227,8 +225,7 @@ nnoremap <leader>m :CtrlPMixed<CR>
 nnoremap <leader>M :CtrlPMRUFiles<CR>
 nnoremap <leader>t :CtrlPTag<CR>
 nnoremap <leader>T :CtrlPBufTag<CR>
-nnoremap <leader>l :CtrlPLine<CR>
-let g:ctrlp_extensions          = ['tag', 'line']
+let g:ctrlp_extensions          = ['tag']
 let g:ctrlp_mruf_max            = 25
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_by_filename         = 1
