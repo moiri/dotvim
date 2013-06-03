@@ -59,7 +59,7 @@ set splitright
 
 set completeopt+=longest
 set cursorline
-set fileformats="unix,dos,mac"
+set fileformats=unix,dos,mac
 set formatoptions+=1
 set lazyredraw
 set mouse=a
