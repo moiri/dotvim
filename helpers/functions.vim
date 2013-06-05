@@ -5,21 +5,41 @@
 " inspired by https://github.com/jtmkrueger/vim-c-cr
 function! Closer()
 
-  let  prevchar = getline(".")[col(".")-2]
+  let prevchar = getline(".")[col(".")-2]
+  let nextchar = getline(".")[col(".")-1]
 
   if prevchar ==# "{"
-    return "\<CR>}\<C-o>==\<C-o>O"
+    if nextchar !=# "}"
+      return "\<CR>}\<C-o>==\<C-o>O"
+
+    elseif nextchar ==# "}"
+      return "\<CR>\<C-o>==\<C-o>O"
+
+    endif
 
   elseif prevchar ==# "["
-    return "\<CR>]\<C-o>==\<C-o>O"
+    if nextchar !=# "]"
+      return "\<CR>]\<C-o>==\<C-o>O"
+
+    elseif nextchar ==# "]"
+      return "\<CR>\<C-o>==\<C-o>O"
+
+    endif
 
   elseif prevchar ==# "("
-    return "\<CR>)\<C-o>==\<C-o>O"
+    if nextchar !=# ")"
+      return "\<CR>)\<C-o>==\<C-o>O"
+
+    elseif nextchar ==# ")"
+      return "\<CR>\<C-o>==\<C-o>O"
+
+    endif
 
   else
     return "\<CR>"
 
   endif
+
 endfunction
 
 " Trying to write a function for managing tags
