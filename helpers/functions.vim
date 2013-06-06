@@ -2,35 +2,53 @@
 " HELPERS "
 """""""""""
 
+" saves all the visible windows if needed/possible
+function! AutoSave()
+  let this_window = winnr()
+
+  windo if expand('%') != '' | update | endif
+
+  execute this_window . 'wincmd w'
+
+endfunction
+
+" expands (), {} and [] correctly
+" {<CR> gives
+" {
+"
+" }
+" {<CR>} gives
+" {
+"
+" }
 " inspired by https://github.com/jtmkrueger/vim-c-cr
 function! Closer()
+  let previous_character = getline(".")[col(".")-2]
+  let next_character     = getline(".")[col(".")-1]
 
-  let prevchar = getline(".")[col(".")-2]
-  let nextchar = getline(".")[col(".")-1]
-
-  if prevchar ==# "{"
-    if nextchar !=# "}"
+  if previous_character ==# "{"
+    if next_character !=# "}"
       return "\<CR>}\<C-o>==\<C-o>O"
 
-    elseif nextchar ==# "}"
+    elseif next_character ==# "}"
       return "\<CR>\<C-o>==\<C-o>O"
 
     endif
 
-  elseif prevchar ==# "["
-    if nextchar !=# "]"
+  elseif previous_character ==# "["
+    if next_character !=# "]"
       return "\<CR>]\<C-o>==\<C-o>O"
 
-    elseif nextchar ==# "]"
+    elseif next_character ==# "]"
       return "\<CR>\<C-o>==\<C-o>O"
 
     endif
 
-  elseif prevchar ==# "("
-    if nextchar !=# ")"
+  elseif previous_character ==# "("
+    if next_character !=# ")"
       return "\<CR>)\<C-o>==\<C-o>O"
 
-    elseif nextchar ==# ")"
+    elseif next_character ==# ")"
       return "\<CR>\<C-o>==\<C-o>O"
 
     endif
@@ -53,9 +71,7 @@ endfunction
 " again
 command! Tagit :call Tagit()
 function! Tagit()
-
   if !exists("b:tagit_notags")
-
     if expand('%') != ''
       update
 
@@ -123,7 +139,6 @@ endfunction
 " Ignore user's choice to not write a tags file.
 command! Bombit :call Bombit()
 function! Bombit()
-
   if exists("b:tagit_notags")
     unlet b:tagit_notags
 
@@ -138,7 +153,6 @@ endfunction
 " of the next anchor
 command! An :call UpdateAnchor()
 function! UpdateAnchor()
-
   normal! ^v$hy"_dd/hreff"vi""_dP
 
 endfunction
@@ -146,7 +160,6 @@ endfunction
 " DOS to UNIX encoding
 command! ToUnix :call ToUnix()
 function! ToUnix()
-
   silent update
   silent e ++ff=dos
   silent setlocal ff=unix
@@ -157,9 +170,7 @@ endfunction
 " shows syntaxic group of the word under the cursor
 command! SynStack :call SynStack()
 function! SynStack()
-
   if !exists("*synstack")
-
     return
 
   endif

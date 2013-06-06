@@ -77,7 +77,7 @@ set winheight=999
 let os=substitute(system('uname'), '\n', '', '')
 
 if has('gui_running')
-  " autocmd! FocusLost * if expand('%') != '' | wa | endif
+  autocmd! FocusLost * call AutoSave()
   autocmd! GUIEnter * set vb t_vb=
 
   colorscheme sorcerer
@@ -205,7 +205,7 @@ endfor
 autocmd FileType vim                nnoremap <leader>g I" <Esc>A "<Esc>yyp0lv$hhr"yykPjj
 autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hhr-yykPjj
 
-autocmd InsertLeave * if expand('%') != '' | update | endif
+autocmd InsertLeave * call AutoSave()
 
 """""""""""""""""""
 " PLUGIN SETTINGS "
