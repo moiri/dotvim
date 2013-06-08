@@ -93,7 +93,7 @@ if has('gui_running')
     set clipboard^=unnamed
 
   elseif os == 'Linux'
-    set guifont=Inconsolata-g\ Medium\ 10
+    set guifont=Inconsolata-g\ Medium\ 11
     set guioptions-=m
     set clipboard^=unnamedplus
 
@@ -225,6 +225,7 @@ nnoremap <leader>m :CtrlPMixed<CR>
 nnoremap <leader>M :CtrlPMRUFiles<CR>
 nnoremap <leader>t :CtrlPTag<CR>
 nnoremap <leader>T :CtrlPBufTag<CR>
+nnoremap <leader>n :CtrlP ~/Dropbox/nv/<CR>
 let g:ctrlp_extensions          = ['tag']
 let g:ctrlp_mruf_max            = 25
 let g:ctrlp_clear_cache_on_exit = 0
@@ -249,8 +250,3 @@ let g:syntastic_mode_map            = {
   \ 'active_filetypes': ['javascript'],
   \ 'passive_filetypes':['css', 'python', 'html', 'php']
   \ }
-
-let g:notes_directory   = '~/Dropbox/nv'
-let g:notes_suffix      = '.txt'
-let g:notes_indexscript = '~/.vim/bundle/notes/misc/notes/search-notes.py'
-let g:notes_indexfile   = '~/.notes.db'

@@ -67,8 +67,8 @@ endfunction
 " * generate a tags file in the current directory
 " * generate a tags file in the directory of the current file
 " * generate a tags file somewhere else
-" if no answer is given, nothing is done and we try to not bother the user
-" again
+" if no answer is given, nothing is done and we try to not 
+" bother the user again
 command! Tagit :call Tagit()
 function! Tagit()
   if !exists("b:tagit_notags")
