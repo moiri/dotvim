@@ -225,7 +225,7 @@ nnoremap <leader>m :CtrlPMixed<CR>
 nnoremap <leader>M :CtrlPMRUFiles<CR>
 nnoremap <leader>t :CtrlPTag<CR>
 nnoremap <leader>T :CtrlPBufTag<CR>
-nnoremap <leader>n :CtrlP ~/Dropbox/nv/<CR>
+nnoremap <leader>N :CtrlP ~/Dropbox/nv/<CR>
 let g:ctrlp_extensions          = ['tag']
 let g:ctrlp_mruf_max            = 25
 let g:ctrlp_clear_cache_on_exit = 0
