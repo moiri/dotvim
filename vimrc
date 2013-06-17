@@ -192,8 +192,6 @@ nnoremap <leader>o *Ncgn
 nnoremap <leader>n :cnext<CR>zv
 nnoremap <leader>p :cprevious<CR>zv
 
-nnoremap <expr> <leader>n :if !getloclist() ? :lnext<CR>zv : :cnext<CR>zv
-
 nnoremap <leader>vp :execute "w !vpaste ft=".&ft<CR>
 xnoremap <leader>vp <ESC>:execute "'<,'>w !vpaste ft=".&ft<CR>
 
