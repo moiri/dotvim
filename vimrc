@@ -188,6 +188,7 @@ xnoremap <leader>s "*y<Esc>:let @/ = substitute(escape(@*, '\/.*$^~[]'), "\n", '
 nnoremap <leader>r :'{,'}s/<c-r>=expand('<cword>')<cr>/
 xnoremap <leader>r :s/<c-r>=@/<cr>/
 nnoremap <leader>o *Ncgn
+nnoremap <leader>O #NcgN
 
 nnoremap <leader>n :cnext<CR>zv
 nnoremap <leader>p :cprevious<CR>zv
