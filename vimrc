@@ -10,7 +10,7 @@ source ~/.vim/helpers/functions.vim
 silent! runtime macros/matchit.vim
 
 """"""""""""""""""""
-" GENERIC SETTINGS "
+" GENERIC SETTINGS " {{{
 """"""""""""""""""""
 
 " minimal
@@ -71,8 +71,10 @@ set relativenumber
 set scrolloff=4
 set winheight=999
 
+" }}}
+
 """""""""""""""""""""""""""""""""
-" ENVIRONMENT-SPECIFIC SETTINGS "
+" ENVIRONMENT-SPECIFIC SETTINGS " {{{
 """""""""""""""""""""""""""""""""
 
 let os=substitute(system('uname'), '\n', '', '')
@@ -128,8 +130,10 @@ else
 
 endif
 
+" }}}
+
 """""""""""""""""""
-" CUSTOM MAPPINGS "
+" CUSTOM MAPPINGS " {{{
 """""""""""""""""""
 
 let mapleader=','
@@ -211,8 +215,10 @@ autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hh
 
 autocmd InsertLeave * call AutoSave()
 
+" }}}
+
 """""""""""""""""""
-" PLUGIN SETTINGS "
+" PLUGIN SETTINGS " {{{
 """""""""""""""""""
 
 let g:snippets_dir = '~/.vim/snippets/'
@@ -263,3 +269,5 @@ function! Pipe2eval(lang)
 endfunction
 
 autocmd FileType * call Pipe2eval(&filetype)
+
+" }}}
