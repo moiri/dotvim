@@ -61,6 +61,7 @@ set completeopt+=longest
 set cursorline
 set fileformats=unix,dos,mac
 set formatoptions+=1
+set hlsearch
 set lazyredraw
 set mouse=a
 set noswapfile
@@ -182,6 +183,8 @@ nnoremap <leader>a :Tabularize<Space>/
 
 nnoremap <leader><Space><Space> O<C-o>j<C-o>o<C-o>k<Esc>
 
+nnoremap <CR> :nohlsearch<CR>
+
 " EXPERIMENTAL!
 nnoremap <leader>s *N
 xnoremap <leader>s "*y<Esc>:let @/ = substitute(escape(@*, '\/.*$^~[]'), "\n", '\\n', "g") <bar>echo ' '<cr>
@@ -251,3 +254,12 @@ let g:syntastic_mode_map            = {
   \ 'active_filetypes': ['javascript'],
   \ 'passive_filetypes':['css', 'python', 'html', 'php']
   \ }
+
+" https://github.com/zweifisch/pipe2eval
+command! -nargs=+ Pipe2eval call Pipe2eval(<f-args>)
+
+function! Pipe2eval(lang)
+  execute "xnoremap <buffer> <space> :!pipe2eval ". a:lang . "<CR>"
+endfunction
+
+autocmd FileType * call Pipe2eval(&filetype)
