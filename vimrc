@@ -10,7 +10,7 @@ source ~/.vim/helpers/functions.vim
 silent! runtime macros/matchit.vim
 
 """"""""""""""""""""
-" GENERIC SETTINGS " {{{
+" GENERIC SETTINGS "
 """"""""""""""""""""
 
 " minimal
@@ -41,7 +41,7 @@ set wildignore=*.swp,*.bak,*.pyc,*.class,*/.git/**/*,*/.hg/**/*,*/.svn/**/*
 set wildignorecase
 set wildmode=list:full
 
-set statusline=%<\ %t\ %m%r%y%w%=Col:\ \%c\ Lin:\ \%l\/\%L\ 
+set statusline=%<\ %t\ %m%r%y%w%=Lin:\ \%l\/\%L\ Col:\ \%c\ 
 
 set list
 set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
@@ -71,10 +71,8 @@ set relativenumber
 set scrolloff=4
 set winheight=999
 
-" }}}
-
 """""""""""""""""""""""""""""""""
-" ENVIRONMENT-SPECIFIC SETTINGS " {{{
+" ENVIRONMENT-SPECIFIC SETTINGS "
 """""""""""""""""""""""""""""""""
 
 let os=substitute(system('uname'), '\n', '', '')
@@ -130,10 +128,8 @@ else
 
 endif
 
-" }}}
-
 """""""""""""""""""
-" CUSTOM MAPPINGS " {{{
+" CUSTOM MAPPINGS "
 """""""""""""""""""
 
 let mapleader=','
@@ -200,8 +196,8 @@ nnoremap <leader>O #NcgN
 nnoremap <leader>n :cnext<CR>zv
 nnoremap <leader>p :cprevious<CR>zv
 
-nnoremap <leader>vp :execute "w !vpaste ft=".&ft<CR>
-xnoremap <leader>vp <ESC>:execute "'<,'>w !vpaste ft=".&ft<CR>
+nnoremap <leader>vp :execute "w !vpaste ft=" . &ft<CR>
+xnoremap <leader>vp <ESC>:execute "'<,'>w !vpaste ft=" . &ft<CR>
 
 for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+' ]
   execute 'xnoremap i' . char . ' :<C-U>silent!normal!T' . char . 'vt' . char . '<CR>'
@@ -215,10 +211,8 @@ autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hh
 
 autocmd InsertLeave * call AutoSave()
 
-" }}}
-
 """""""""""""""""""
-" PLUGIN SETTINGS " {{{
+" PLUGIN SETTINGS "
 """""""""""""""""""
 
 let g:snippets_dir = '~/.vim/snippets/'
@@ -260,14 +254,3 @@ let g:syntastic_mode_map            = {
   \ 'active_filetypes': ['javascript'],
   \ 'passive_filetypes':['css', 'python', 'html', 'php']
   \ }
-
-" https://github.com/zweifisch/pipe2eval
-command! -nargs=+ Pipe2eval call Pipe2eval(<f-args>)
-
-function! Pipe2eval(lang)
-  execute "xnoremap <buffer> <space> :!pipe2eval ". a:lang . "<CR>"
-endfunction
-
-autocmd FileType * call Pipe2eval(&filetype)
-
-" }}}
