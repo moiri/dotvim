@@ -10,7 +10,7 @@ source ~/.vim/helpers/functions.vim
 silent! runtime macros/matchit.vim
 
 """"""""""""""""""""
-" GENERIC SETTINGS " {{{
+" GENERIC SETTINGS "
 """"""""""""""""""""
 
 " minimal
@@ -46,7 +46,6 @@ set statusline=%<\ %t\ %m%r%y%w%=Col:\ \%c\ Lin:\ \%l\/\%L\
 set list
 set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 
-set foldlevelstart=99
 set foldmethod=indent
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 
@@ -61,7 +60,6 @@ set completeopt+=longest
 set cursorline
 set fileformats=unix,dos,mac
 set formatoptions+=1
-set hlsearch
 set lazyredraw
 set mouse=a
 set noswapfile
@@ -71,10 +69,8 @@ set relativenumber
 set scrolloff=4
 set winheight=999
 
-" }}}
-
 """""""""""""""""""""""""""""""""
-" ENVIRONMENT-SPECIFIC SETTINGS " {{{
+" ENVIRONMENT-SPECIFIC SETTINGS "
 """""""""""""""""""""""""""""""""
 
 let os=substitute(system('uname'), '\n', '', '')
@@ -130,10 +126,8 @@ else
 
 endif
 
-" }}}
-
 """""""""""""""""""
-" CUSTOM MAPPINGS " {{{
+" CUSTOM MAPPINGS "
 """""""""""""""""""
 
 let mapleader=','
@@ -187,8 +181,6 @@ nnoremap <leader>a :Tabularize<Space>/
 
 nnoremap <leader><Space><Space> O<C-o>j<C-o>o<C-o>k<Esc>
 
-nnoremap <CR> :nohlsearch<CR>
-
 " EXPERIMENTAL!
 nnoremap <leader>s *N
 xnoremap <leader>s "*y<Esc>:let @/ = substitute(escape(@*, '\/.*$^~[]'), "\n", '\\n', "g") <bar>echo ' '<cr>
@@ -215,10 +207,8 @@ autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hh
 
 autocmd InsertLeave * call AutoSave()
 
-" }}}
-
 """""""""""""""""""
-" PLUGIN SETTINGS " {{{
+" PLUGIN SETTINGS "
 """""""""""""""""""
 
 let g:snippets_dir = '~/.vim/snippets/'
@@ -260,14 +250,3 @@ let g:syntastic_mode_map            = {
   \ 'active_filetypes': ['javascript'],
   \ 'passive_filetypes':['css', 'python', 'html', 'php']
   \ }
-
-" https://github.com/zweifisch/pipe2eval
-command! -nargs=+ Pipe2eval call Pipe2eval(<f-args>)
-
-function! Pipe2eval(lang)
-  execute "xnoremap <buffer> <space> :!pipe2eval ". a:lang . "<CR>"
-endfunction
-
-autocmd FileType * call Pipe2eval(&filetype)
-
-" }}}
