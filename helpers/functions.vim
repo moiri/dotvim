@@ -15,41 +15,50 @@ endfunction
 " expands (), {} and [] correctly
 " {<CR> gives
 " {
-"
+"   |
 " }
 " {<CR>} gives
 " {
-"
+"   |
 " }
 " inspired by https://github.com/jtmkrueger/vim-c-cr
-function! Closer()
+function! Expander()
   let previous_character = getline(".")[col(".")-2]
   let next_character     = getline(".")[col(".")-1]
 
   if previous_character ==# "{"
-    if next_character !=# "}"
+    if next_character !=# "}" && searchpairpos("{", "", "}", "Wn")[0] == 0
       return "\<CR>}\<C-o>==\<C-o>O"
 
     elseif next_character ==# "}"
       return "\<CR>\<C-o>==\<C-o>O"
 
+    else
+      return "\<CR>"
+
     endif
 
   elseif previous_character ==# "["
-    if next_character !=# "]"
+    if next_character !=# "]" && searchpairpos("[", "", "]", "Wn")[0] == 0
       return "\<CR>]\<C-o>==\<C-o>O"
 
     elseif next_character ==# "]"
       return "\<CR>\<C-o>==\<C-o>O"
 
+    else
+      return "\<CR>"
+
     endif
 
   elseif previous_character ==# "("
-    if next_character !=# ")"
+    if next_character !=# ")" && searchpairpos("(", "", ")", "Wn")[0] == 0
       return "\<CR>)\<C-o>==\<C-o>O"
 
     elseif next_character ==# ")"
       return "\<CR>\<C-o>==\<C-o>O"
+
+    else
+      return "\<CR>"
 
     endif
 
@@ -59,6 +68,18 @@ function! Closer()
   endif
 
 endfunction
+
+function! Closer(left, right)
+  if getline(".")[col(".")-2] ==# a:left
+    return a:right . "\<Left>"
+
+  else
+    return a:right
+
+  endif
+
+endfunction
+
 
 " Trying to write a function for managing tags
 " ============================================

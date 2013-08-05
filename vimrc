@@ -19,7 +19,7 @@ set hidden
 set incsearch
 set laststatus=2
 set switchbuf=useopen,usetab
-set tags=./tags;/,tags;/
+set tags=./tags,tags
 set wildmenu
 
 " better
@@ -158,7 +158,8 @@ nnoremap gb :buffers<CR>:sb<Space>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
-inoremap <expr> <CR> Closer()
+inoremap <expr> <CR> Expander()
+inoremap <leader><CR> <CR><C-o>==<C-o>O
 
 inoremap <leader>; <C-o>m`<C-o>A;<C-o>``
 nnoremap <silent> <leader>; :s/$/;<CR>
@@ -193,7 +194,8 @@ nnoremap <leader>n :cnext<CR>zv
 nnoremap <leader>p :cprevious<CR>zv
 
 nnoremap <leader>vp :execute "w !vpaste ft=".&ft<CR>
-xnoremap <leader>vp <ESC>:execute "'<,'>w !vpaste ft=".&ft<CR>
+xnoremap <leader>vp <ESC>:execute "'<,'>w !vpaste ft=" . &ft<CR>
+nnoremap <leader>v: :let @+ = @:<CR>
 
 for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+' ]
   execute 'xnoremap i' . char . ' :<C-U>silent!normal!T' . char . 'vt' . char . '<CR>'
@@ -201,6 +203,15 @@ for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+' ]
   execute 'xnoremap a' . char . ' :<C-U>silent!normal!F' . char . 'vf' . char . '<CR>'
   execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
 endfor
+
+inoremap <expr> " Closer("\"", "\"")
+inoremap <expr> ' Closer("'", "'")
+inoremap <expr> ) Closer("(", ")")
+inoremap <expr> } Closer("{", "}")
+inoremap <expr> ] Closer("[", "]")
+inoremap <expr> ` Closer("`", "`")
+
+nnoremap <leader>x a <Left><Left> <Right><C-c>
 
 autocmd FileType vim                nnoremap <leader>g I" <Esc>A "<Esc>yyp0lv$hhr"yykPjj
 autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hhr-yykPjj
