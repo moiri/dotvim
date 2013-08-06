@@ -62,6 +62,15 @@ function! Expander()
 
     endif
 
+  elseif previous_character ==# ">"
+    if next_character ==# "<" && getline(".")[col(".")] ==# "/"
+      return "\<CR>\<C-o>==\<C-o>O"
+
+    else
+      return "\<CR>"
+
+    endif
+
   else
     return "\<CR>"
 
