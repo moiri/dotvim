@@ -7,7 +7,7 @@ syntax on
 
 source ~/.vim/helpers/functions.vim
 
-silent! runtime macros/matchit.vim
+runtime macros/matchit.vim
 
 """"""""""""""""""""
 " GENERIC SETTINGS "
@@ -150,8 +150,8 @@ nnoremap Y y$
 xnoremap > >gv
 xnoremap < <gv
 
-nnoremap j gj
-nnoremap k gk
+nnoremap j      gj
+nnoremap k      gk
 nnoremap <Down> gj
 nnoremap <up>   gk
 
@@ -162,7 +162,7 @@ cnoremap <C-e> <End>
 
 inoremap <expr> <CR> Closer()
 
-inoremap <leader>; <C-o>m`<C-o>A;<C-o>``
+inoremap <leader>;          <C-o>m`<C-o>A;<C-o>``
 nnoremap <silent> <leader>; :s/$/;<CR>
 
 nnoremap <leader>k      :m-2<CR>==
@@ -250,7 +250,7 @@ let g:syntastic_auto_jump           = 1
 let g:syntastic_auto_loc_list       = 1
 let g:syntastic_enable_signs        = 1
 let g:syntastic_mode_map            = {
-  \ 'mode': 'active',
-  \ 'active_filetypes': ['javascript'],
-  \ 'passive_filetypes':['css', 'python', 'html', 'php']
+  \ 'mode'              : 'active',
+  \ 'active_filetypes'  : ['javascript'],
+  \ 'passive_filetypes' : ['css', 'python', 'html', 'php']
   \ }
