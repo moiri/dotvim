@@ -160,6 +160,11 @@ cnoremap <C-e> <End>
 
 inoremap <expr> <CR> Expander()
 
+for pair in [ [ "{", "}" ], [ "(", ")" ], [ "[", "]" ], [ "'", "'" ], [ "<", ">" ] ]
+  execute "inoremap <expr> " . pair[1] . " Closer(\"" . pair[0] . "\", \"" . pair[1] . "\")"
+endfor
+inoremap <expr> " Closer("\"", "\"")
+
 inoremap <leader>;          <C-o>m`<C-o>A;<C-o>``
 nnoremap <silent> <leader>; :s/$/;<CR>
 

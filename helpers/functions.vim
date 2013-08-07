@@ -78,6 +78,8 @@ function! Expander()
 
 endfunction
 
+" upon closing a pair, the cursor is moved
+" automatically between the two characters
 function! Closer(left, right)
   if getline(".")[col(".")-2] ==# a:left
     return a:right . "\<Left>"
