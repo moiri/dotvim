@@ -7,7 +7,7 @@ syntax on
 
 source ~/.vim/helpers/functions.vim
 
-silent! runtime macros/matchit.vim
+runtime macros/matchit.vim
 
 """"""""""""""""""""
 " GENERIC SETTINGS "
@@ -41,7 +41,7 @@ set wildignore=*.swp,*.bak,*.pyc,*.class,*/.git/**/*,*/.hg/**/*,*/.svn/**/*
 set wildignorecase
 set wildmode=list:full
 
-set statusline=%<\ %t\ %m%r%y%w%=Col:\ \%c\ Lin:\ \%l\/\%L\ 
+set statusline=%<\ %t\ %m%r%y%w%=Lin:\ \%l\/\%L\ Col:\ \%c\ 
 
 set list
 set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
@@ -148,8 +148,8 @@ nnoremap Y y$
 xnoremap > >gv
 xnoremap < <gv
 
-nnoremap j gj
-nnoremap k gk
+nnoremap j      gj
+nnoremap k      gk
 nnoremap <Down> gj
 nnoremap <up>   gk
 
@@ -159,9 +159,8 @@ cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
 inoremap <expr> <CR> Expander()
-inoremap <leader><CR> <CR><C-o>==<C-o>O
 
-inoremap <leader>; <C-o>m`<C-o>A;<C-o>``
+inoremap <leader>;          <C-o>m`<C-o>A;<C-o>``
 nnoremap <silent> <leader>; :s/$/;<CR>
 
 nnoremap <leader>k      :m-2<CR>==
@@ -193,7 +192,7 @@ nnoremap <leader>O #NcgN
 nnoremap <leader>n :cnext<CR>zv
 nnoremap <leader>p :cprevious<CR>zv
 
-nnoremap <leader>vp :execute "w !vpaste ft=".&ft<CR>
+nnoremap <leader>vp :execute "w !vpaste ft=" . &ft<CR>
 xnoremap <leader>vp <ESC>:execute "'<,'>w !vpaste ft=" . &ft<CR>
 nnoremap <leader>v: :let @+ = @:<CR>
 
@@ -203,15 +202,6 @@ for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+' ]
   execute 'xnoremap a' . char . ' :<C-U>silent!normal!F' . char . 'vf' . char . '<CR>'
   execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
 endfor
-
-inoremap <expr> " Closer("\"", "\"")
-inoremap <expr> ' Closer("'", "'")
-inoremap <expr> ) Closer("(", ")")
-inoremap <expr> } Closer("{", "}")
-inoremap <expr> ] Closer("[", "]")
-inoremap <expr> ` Closer("`", "`")
-
-nnoremap <leader>x a <Left><Left> <Right><C-c>
 
 autocmd FileType vim                nnoremap <leader>g I" <Esc>A "<Esc>yyp0lv$hhr"yykPjj
 autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hhr-yykPjj
@@ -257,7 +247,7 @@ let g:syntastic_auto_jump           = 1
 let g:syntastic_auto_loc_list       = 1
 let g:syntastic_enable_signs        = 1
 let g:syntastic_mode_map            = {
-  \ 'mode': 'active',
-  \ 'active_filetypes': ['javascript'],
-  \ 'passive_filetypes':['css', 'python', 'html', 'php']
+  \ 'mode'              : 'active',
+  \ 'active_filetypes'  : ['javascript'],
+  \ 'passive_filetypes' : ['css', 'python', 'html', 'php']
   \ }
