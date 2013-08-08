@@ -158,13 +158,6 @@ nnoremap gb :buffers<CR>:sb<Space>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
-inoremap <expr> <CR> Expander()
-
-for pair in [ [ "{", "}" ], [ "(", ")" ], [ "[", "]" ], [ "'", "'" ], [ "<", ">" ] ]
-  execute "inoremap <expr> " . pair[1] . " Closer(\"" . pair[0] . "\", \"" . pair[1] . "\")"
-endfor
-inoremap <expr> " Closer("\"", "\"")
-
 inoremap <leader>;          <C-o>m`<C-o>A;<C-o>``
 nnoremap <silent> <leader>; :s/$/;<CR>
 
@@ -207,6 +200,13 @@ for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+' ]
   execute 'xnoremap a' . char . ' :<C-U>silent!normal!F' . char . 'vf' . char . '<CR>'
   execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
 endfor
+
+inoremap <expr> <CR> Expander()
+
+for pair in [ [ "{", "}" ], [ "(", ")" ], [ "[", "]" ], [ "'", "'" ], [ "<", ">" ] ]
+  execute "inoremap <expr> " . pair[1] . " Closer(\"" . pair[0] . "\", \"" . pair[1] . "\")"
+endfor
+inoremap <expr> " Closer("\"", "\"")
 
 autocmd FileType vim                nnoremap <leader>g I" <Esc>A "<Esc>yyp0lv$hhr"yykPjj
 autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hhr-yykPjj
