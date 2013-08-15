@@ -1,11 +1,9 @@
-silent! call pathogen#infect()
-silent! call pathogen#helptags()
+call pathogen#infect()
+call pathogen#helptags()
 
 filetype plugin indent on
 
 syntax on
-
-source ~/.vim/helpers/functions.vim
 
 runtime macros/matchit.vim
 
@@ -76,7 +74,7 @@ set winheight=999
 let os=substitute(system('uname'), '\n', '', '')
 
 if has('gui_running')
-  autocmd! FocusLost * call AutoSave()
+  autocmd! FocusLost * call functions#AutoSave()
   autocmd! GUIEnter * set vb t_vb=
 
   colorscheme sorcerer
@@ -153,7 +151,7 @@ nnoremap k      gk
 nnoremap <Down> gj
 nnoremap <up>   gk
 
-nnoremap gb :buffers<CR>:sb<Space>
+nnoremap gb :buffers<CR>:sbuffer<Space>
 
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
@@ -161,14 +159,14 @@ cnoremap <C-e> <End>
 inoremap <leader>;          <C-o>m`<C-o>A;<C-o>``
 nnoremap <silent> <leader>; :s/$/;<CR>
 
-nnoremap <leader>k      :m-2<CR>==
-nnoremap <leader>j      :m+<CR>==
-nnoremap <leader><Up>   :m-2<CR>==
-nnoremap <leader><Down> :m+<CR>==
-xnoremap <leader>k      :m-2<CR>gv=gv
-xnoremap <leader>j      :m'>+<CR>gv=gv
-xnoremap <leader><Up>   :m-2<CR>gv=gv
-xnoremap <leader><Down> :m'>+<CR>gv=gv
+nnoremap <leader>k      :move-2<CR>==
+nnoremap <leader>j      :move+<CR>==
+nnoremap <leader><Up>   :move-2<CR>==
+nnoremap <leader><Down> :move+<CR>==
+xnoremap <leader>k      :move-2<CR>gv=gv
+xnoremap <leader>j      :move'>+<CR>gv=gv
+xnoremap <leader><Up>   :move-2<CR>gv=gv
+xnoremap <leader><Down> :move'>+<CR>gv=gv
 
 nnoremap <leader>h       "_yiw?\v\w+\_W+%#<CR>:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o><C-l>
 nnoremap <leader>l       "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-l>
@@ -194,7 +192,7 @@ xnoremap <leader>s "*y<Esc>:let @/ = substitute(escape(@*, '\/.*$^~[]'), "\n", '
 " search and replace the last search pattern in the current visual selection
 xnoremap <leader>r :s/<C-r>=@/<CR>/
 
-" change word under the cursor and repeat, forward and backward
+" change word under the cursor, forward and backward, repeat with .
 " normal mode mapping for the most usual case
 " ,xfoo<Esc>...
 " visual mode mapping for special cases
@@ -211,19 +209,34 @@ nnoremap <leader>vp :execute "w !vpaste ft=" . &ft<CR>
 xnoremap <leader>vp <Esc>:execute "'<,'>w !vpaste ft=" . &ft<CR>
 nnoremap <leader>v: :let @+ = @:<CR>
 
-for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+' ]
+for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%' ]
   execute 'xnoremap i' . char . ' :<C-u>silent!normal!T' . char . 'vt' . char . '<CR>'
   execute 'onoremap i' . char . ' :normal vi' . char . '<CR>'
   execute 'xnoremap a' . char . ' :<C-u>silent!normal!F' . char . 'vf' . char . '<CR>'
   execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
 endfor
 
-inoremap <expr> <CR> Expander()
+inoremap <expr> <CR> functions#Expander()
 
 autocmd FileType vim                nnoremap <leader>g I" <Esc>A "<Esc>yyp0lv$hhr"yykPjj
 autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hhr-yykPjj
 
-autocmd InsertLeave * call AutoSave()
+autocmd InsertLeave * call functions#AutoSave()
+
+command! Tagit              :call functions#Tagit()
+command! Bombit             :call functions#Bombit()
+
+command! An                 :call functions#UpdateAnchor()
+
+command! ToUnix             :call functions#ToUnix()
+
+command! SynStack           :call functions#SynStack()
+
+command! Entities           :call functions#Entities()
+command! ReverseEntities    :call functions#ReverseEntities()
+
+command! URLencoding        :call functions#URLencoding()
+command! ReverseURLencoding :call functions#ReverseURLencoding()
 
 """""""""""""""""""
 " PLUGIN SETTINGS "

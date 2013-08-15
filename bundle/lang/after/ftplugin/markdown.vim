@@ -12,12 +12,12 @@ setlocal comments=fb:*,fb:-,fb:+,n:> commentstring=>\ %s
 setlocal formatoptions+=tcqln
 setlocal formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\|^[-*+]\\s\\+
 
-vnoremap <buffer> +b c**<C-r>"**<Esc>
-vnoremap <buffer> +i c**<C-r>"**<Esc>
-vnoremap <buffer> +c c`<C-r>"`<Esc>
-vnoremap <buffer> <kPlus>b c**<C-r>"**<Esc>
-vnoremap <buffer> <kPlus>i c**<C-r>"**<Esc>
-vnoremap <buffer> <kPlus>c c`<C-r>"`<Esc>
+xnoremap <buffer> +b c**<C-r>"**<Esc>
+xnoremap <buffer> +i c**<C-r>"**<Esc>
+xnoremap <buffer> +c c`<C-r>"`<Esc>
+xnoremap <buffer> <kPlus>b c**<C-r>"**<Esc>
+xnoremap <buffer> <kPlus>i c**<C-r>"**<Esc>
+xnoremap <buffer> <kPlus>c c`<C-r>"`<Esc>
 
 let b:undo_ftplugin .= "|setl cms< com< fo<"
 

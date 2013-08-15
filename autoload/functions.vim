@@ -2,28 +2,40 @@
 " HELPERS "
 """""""""""
 
-" saves all the visible windows if needed/possible
-function! AutoSave()
-  let this_window = winnr()
+" tries to expand (), {} and [] "correctly"
+" also <tag></tag>
+function functions#Expander()
+  let previous = getline(".")[col(".")-2]
+  let next     = getline(".")[col(".")-1]
 
-  windo if expand('%') != '' | update | endif
+  if previous ==# "{"
+    return functions#PairExpander(previous, "}", next)
 
-  execute this_window . 'wincmd w'
+  elseif previous ==# "["
+    return functions#PairExpander(previous, "]", next)
+
+  elseif previous ==# "("
+    return functions#PairExpander(previous, ")", next)
+
+  elseif previous ==# ">"
+    return functions#TagExpander(next)
+
+  else
+    return "\<CR>"
+
+  endif
 
 endfunction
 
-" tries to expand (), {} and [] "correctly"
-" also <tag></tag>
-" inspired by https://github.com/jtmkrueger/vim-c-cr
-function! SubExpander(left, right, next)
-  let indent_level = indent(".")
+function functions#PairExpander(left, right, next)
   let pair_position = searchpairpos(a:left, "", a:right, "Wn")
+  let return_string = "\<CR>" . a:right . "\<C-o>==\<C-o>O"
 
   if a:next !=# a:right && pair_position[0] == 0
-    return "\<CR>" . a:right . "\<C-o>==\<C-o>O"
+    return return_string
 
-  elseif a:next !=# a:right && pair_position[0] != 0 && indent(pair_position[0]) != indent_level
-    return "\<CR>" . a:right . "\<C-o>==\<C-o>O"
+  elseif a:next !=# a:right && pair_position[0] != 0 && indent(pair_position[0]) != indent(".")
+    return return_string
 
   elseif a:next ==# a:right
     return "\<CR>\<C-o>==\<C-o>O"
@@ -35,32 +47,24 @@ function! SubExpander(left, right, next)
 
 endfunction
 
-function! Expander()
-  let previous = getline(".")[col(".")-2]
-  let next     = getline(".")[col(".")-1]
-
-  if previous ==# "{"
-    return SubExpander(previous, "}", next)
-
-  elseif previous ==# "["
-    return SubExpander(previous, "]", next)
-
-  elseif previous ==# "("
-    return SubExpander(previous, ")", next)
-
-  elseif previous ==# ">"
-    if next ==# "<" && getline(".")[col(".")] ==# "/"
-      return "\<CR>\<C-o>==\<C-o>O"
-
-    else
-      return "\<CR>"
-
-    endif
+function functions#TagExpander(next)
+  if a:next ==# "<" && getline(".")[col(".")] ==# "/"
+    return "\<CR>\<C-o>==\<C-o>O"
 
   else
     return "\<CR>"
 
   endif
+
+endfunction
+
+" saves all the visible windows if needed/possible
+function functions#AutoSave()
+  let this_window = winnr()
+
+  windo if expand('%') != '' | update | endif
+
+  execute this_window . 'wincmd w'
 
 endfunction
 
@@ -73,8 +77,7 @@ endfunction
 " * generate a tags file somewhere else
 " if no answer is given, nothing is done and we try to not 
 " bother the user again
-command! Tagit :call Tagit()
-function! Tagit()
+function functions#Tagit()
   if !exists("b:tagit_notags")
     if expand('%') != ''
       update
@@ -82,9 +85,9 @@ function! Tagit()
     endif
 
     if len(tagfiles()) > 0
-      let t_file = tagfiles()[0]
+      let tags_location = fnamemodify(tagfiles()[0], ":p:h")
 
-      execute ":silent !ctags -R -f " . shellescape(t_file) . " " . shellescape(fnamemodify(t_file, ':p:h')) | execute ":redraw!"
+      call functions#GenerateTags(tags_location)
 
     else
       let this_dir    = expand('%:p:h')
@@ -100,12 +103,12 @@ function! Tagit()
           let b:tagit_notags = 1
 
         elseif user_choice == 1
-          execute ":silent !ctags -R -f " . shellescape(current_dir . "/tags") . " " . shellescape(current_dir) | execute ":redraw!"
+          call functions#GenerateTags(current_dir)
 
         elseif user_choice == 2
           let tags_location = input("\nPlease choose a directory:\n", current_dir, "dir")
 
-          execute ":silent !ctags -R -f " . shellescape(tags_location . "/tags") . " " . shellescape(tags_location) | execute ":redraw!"
+          call functions#GenerateTags(tags_location)
 
         endif
 
@@ -120,15 +123,15 @@ function! Tagit()
           let b:tagit_notags = 1
 
         elseif user_choice == 1
-          execute ":silent !ctags -R -f " . shellescape(current_dir . "/tags") . " " . shellescape(current_dir) | execute ":redraw!"
+          call functions#GenerateTags(current_dir)
 
         elseif user_choice == 2
-          execute ":silent !ctags -R -f " . shellescape(this_dir . "/tags") . " " . shellescape(this_dir) | execute ":redraw!"
+          call functions#GenerateTags(this_dir)
 
         elseif user_choice == 3
           let tags_location = input("\nPlease choose a directory:\n", this_dir, "dir")
 
-          execute ":silent !ctags -R -f " . shellescape(tags_location . "/tags") . " " . shellescape(tags_location) | execute ":redraw!"
+          call functions#GenerateTags(tags_location)
 
         endif
 
@@ -140,9 +143,13 @@ function! Tagit()
 
 endfunction
 
+function functions#GenerateTags(location)
+  execute ":silent !ctags -R -f " . shellescape(a:location . "/tags") . " " . shellescape(a:location) | execute ":redraw!"
+
+endfunction
+
 " Ignore user's choice to not write a tags file.
-command! Bombit :call Bombit()
-function! Bombit()
+function functions#Bombit()
   if exists("b:tagit_notags")
     unlet b:tagit_notags
 
@@ -155,15 +162,13 @@ endfunction
 " URLs pasted from Word or Powerpoint often have a newline
 " this macro puts the URL in the href attribute 
 " of the next anchor
-command! An :call UpdateAnchor()
-function! UpdateAnchor()
+function functions#UpdateAnchor()
   normal! ^v$hy"_dd/hreff"vi""_dP
 
 endfunction
 
 " DOS to UNIX encoding
-command! ToUnix :call ToUnix()
-function! ToUnix()
+function functions#ToUnix()
   silent update
   silent e ++ff=dos
   silent setlocal ff=unix
@@ -172,8 +177,7 @@ function! ToUnix()
 endfunction
 
 " shows syntaxic group of the word under the cursor
-command! SynStack :call SynStack()
-function! SynStack()
+function functions#SynStack()
   if !exists("*synstack")
     return
 
@@ -184,8 +188,7 @@ function! SynStack()
 endfunc
 
 " normal characters --> HTML entities
-command! Entities :call Entities()
-function! Entities()
+function functions#Entities()
   silent s/Á/\&Aacute;/e
   silent s/á/\&aacute;/e
   silent s/Â/\&Acirc;/e
@@ -427,8 +430,7 @@ function! Entities()
 endfunction
 
 " HTML entities --> normal characters
-command! ReverseEntities :call ReverseEntities()
-function! ReverseEntities()
+function functions#ReverseEntities()
   silent s/&Aacute;/Á/e
   silent s/&aacute;/á/e
   silent s/&Acirc;/Â/e
@@ -670,8 +672,7 @@ function! ReverseEntities()
 endfunction
 
 " normal characters --> URL encoded characters
-command! URLencoding :call URLencoding()
-function! URLencoding()
+function functions#URLencoding()
   silent s/e/%20/e
   silent s/!/%21/e
   silent s/ /%22/e
@@ -828,8 +829,7 @@ function! URLencoding()
 endfunction
 
 " URL encoded characters --> normal characters
-command! ReverseURLencoding :call ReverseURLencoding()
-function! ReverseURLencoding()
+function functions#ReverseURLencoding()
   silent s/%20/e/e
   silent s/%21/!/e
   silent s/%22/ /e
@@ -985,3 +985,4 @@ function! ReverseURLencoding()
   silent s/%FE/þ/e
   silent s/%FF/ÿ/e
 endfunction
+

@@ -1,22 +1,22 @@
-vnoremap <buffer> ?? <Esc>'<yyP"_C<!--<Esc>'>yyp"_C--><Esc>
-vnoremap <buffer> !! <Esc>'<"_dd'>"_dd'<
+xnoremap <buffer> ?? <Esc>'<yyP"_C<!--<Esc>'>yyp"_C--><Esc>
+xnoremap <buffer> !! <Esc>'<"_dd'>"_dd'<
 
-nnoremap <buffer> <leader>& :call Entities()<CR>
-nnoremap <buffer> <leader>é :call ReverseEntities()<CR>
-vnoremap <buffer> <leader>& :call Entities()<CR>
-vnoremap <buffer> <leader>é :call ReverseEntities()<CR>
+nnoremap <buffer> <leader>& :call functions#Entities()<CR>
+nnoremap <buffer> <leader>é :call functions#ReverseEntities()<CR>
+xnoremap <buffer> <leader>& :call functions#Entities()<CR>
+xnoremap <buffer> <leader>é :call functions#ReverseEntities()<CR>
 
 nnoremap <buffer> <leader>< /<\w*\(\s\\|>\)<CR>
 nnoremap <buffer> <leader>> ?<\w*\(\s\\|>\)<CR>
 
-nnoremap <buffer> cia /\v"[ >/]<cr>vF=Bc
-nnoremap <buffer> dia /\v"[ >/]<cr>vF=Bd
-nnoremap <buffer> yia /\v"[ >/]<cr>vF=By
-nnoremap <buffer> via /\v"[ >/]<cr>vF=B
-nnoremap <buffer> caa /\v"[ >/]<cr>vF=Bhc
-nnoremap <buffer> daa /\v"[ >/]<cr>vF=Bhd
-nnoremap <buffer> yaa /\v"[ >/]<cr>vF=Bhy
-nnoremap <buffer> vaa /\v"[ >/]<cr>vF=Bh
+nnoremap <buffer> cia /\v"[ >/]<CR>vF=Bc
+nnoremap <buffer> dia /\v"[ >/]<CR>vF=Bd
+nnoremap <buffer> yia /\v"[ >/]<CR>vF=By
+nnoremap <buffer> via /\v"[ >/]<CR>vF=B
+nnoremap <buffer> caa /\v"[ >/]<CR>vF=Bhc
+nnoremap <buffer> daa /\v"[ >/]<CR>vF=Bhd
+nnoremap <buffer> yaa /\v"[ >/]<CR>vF=Bhy
+nnoremap <buffer> vaa /\v"[ >/]<CR>vF=Bh
 
 let b:match_words='<:>,<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>'
 
