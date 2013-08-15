@@ -180,26 +180,41 @@ nnoremap <leader>a :Tabularize<Space>/
 nnoremap <leader><Space><Space> O<C-o>j<C-o>o<C-o>k<Esc>
 
 " EXPERIMENTAL!
-nmap <leader>s *N
-xnoremap <leader>s "*y<Esc>:let @/ = substitute(escape(@*, '\/.*$^~[]'), "\n", '\\n', "g") <bar>echo ' '<cr>
-nnoremap <leader>r :'{,'}s/<c-r>=expand('<cword>')<cr>/
-xnoremap <leader>r :s/<c-r>=@/<cr>/
-" nmap <leader>o *Ncgn
-" nmap <leader>O #NcgN
-nnoremap <leader>o /\<<C-r>=expand('<cWORD>')<CR>\><CR>Ncgn
-nnoremap <leader>O ?\<<C-r>=expand('<cWORD>')<CR>\><CR>NcgN
+" search and replace the current word in the current paragraph
+" super freaking quick:
+" ,rfoo<CR>
+nnoremap <leader>r :'{,'}s/<C-r>=expand('<cword>')<CR>/
+" same idea, but acts on the whole buffer
+nnoremap <leader>R :%s/<C-r>=expand('<cword>')<CR>/
+
+" use the current word or the current visual selection as search pattern
+nnoremap <leader>s *N
+xnoremap <leader>s "*y<Esc>:let @/ = substitute(escape(@*, '\/.*$^~[]'), "\n", '\\n', "g") <bar>echo ''<CR>
+
+" search and replace the last search pattern in the current visual selection
+xnoremap <leader>r :s/<C-r>=@/<CR>/
+
+" change word under the cursor and repeat, forward and backward
+" normal mode mapping for the most usual case
+" ,xfoo<Esc>...
+" visual mode mapping for special cases
+" viW,Xfoo<Esc>...
+nmap <leader>x *Ncgn
+nmap <leader>X #NcgN
+xmap <leader>x <leader>scgn
+xmap <leader>X <leader>scgN
 
 nnoremap <leader>n :cnext<CR>zv
 nnoremap <leader>p :cprevious<CR>zv
 
 nnoremap <leader>vp :execute "w !vpaste ft=" . &ft<CR>
-xnoremap <leader>vp <ESC>:execute "'<,'>w !vpaste ft=" . &ft<CR>
+xnoremap <leader>vp <Esc>:execute "'<,'>w !vpaste ft=" . &ft<CR>
 nnoremap <leader>v: :let @+ = @:<CR>
 
 for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+' ]
-  execute 'xnoremap i' . char . ' :<C-U>silent!normal!T' . char . 'vt' . char . '<CR>'
+  execute 'xnoremap i' . char . ' :<C-u>silent!normal!T' . char . 'vt' . char . '<CR>'
   execute 'onoremap i' . char . ' :normal vi' . char . '<CR>'
-  execute 'xnoremap a' . char . ' :<C-U>silent!normal!F' . char . 'vf' . char . '<CR>'
+  execute 'xnoremap a' . char . ' :<C-u>silent!normal!F' . char . 'vf' . char . '<CR>'
   execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
 endfor
 
