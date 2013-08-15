@@ -180,12 +180,14 @@ nnoremap <leader>a :Tabularize<Space>/
 nnoremap <leader><Space><Space> O<C-o>j<C-o>o<C-o>k<Esc>
 
 " EXPERIMENTAL!
-nnoremap <leader>s *N
+nmap <leader>s *N
 xnoremap <leader>s "*y<Esc>:let @/ = substitute(escape(@*, '\/.*$^~[]'), "\n", '\\n', "g") <bar>echo ' '<cr>
 nnoremap <leader>r :'{,'}s/<c-r>=expand('<cword>')<cr>/
 xnoremap <leader>r :s/<c-r>=@/<cr>/
-nnoremap <leader>o *Ncgn
-nnoremap <leader>O #NcgN
+" nmap <leader>o *Ncgn
+" nmap <leader>O #NcgN
+nnoremap <leader>o /\<<C-r>=expand('<cWORD>')<CR>\><CR>Ncgn
+nnoremap <leader>O ?\<<C-r>=expand('<cWORD>')<CR>\><CR>NcgN
 
 nnoremap <leader>n :cnext<CR>zv
 nnoremap <leader>p :cprevious<CR>zv
@@ -202,11 +204,6 @@ for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+' ]
 endfor
 
 inoremap <expr> <CR> Expander()
-
-for pair in [ [ "{", "}" ], [ "(", ")" ], [ "[", "]" ], [ "'", "'" ], [ "<", ">" ] ]
-  execute "inoremap <expr> " . pair[1] . " Closer(\"" . pair[0] . "\", \"" . pair[1] . "\")"
-endfor
-inoremap <expr> " Closer("\"", "\"")
 
 autocmd FileType vim                nnoremap <leader>g I" <Esc>A "<Esc>yyp0lv$hhr"yykPjj
 autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hhr-yykPjj

@@ -12,58 +12,44 @@ function! AutoSave()
 
 endfunction
 
-" expands (), {} and [] correctly
-" {<CR> gives
-" {
-"   |
-" }
-" {<CR>} gives
-" {
-"   |
-" }
+" tries to expand (), {} and [] "correctly"
+" also <tag></tag>
 " inspired by https://github.com/jtmkrueger/vim-c-cr
+function! SubExpander(left, right, next)
+  let indent_level = indent(".")
+  let pair_position = searchpairpos(a:left, "", a:right, "Wn")
+
+  if a:next !=# a:right && pair_position[0] == 0
+    return "\<CR>" . a:right . "\<C-o>==\<C-o>O"
+
+  elseif a:next !=# a:right && pair_position[0] != 0 && indent(pair_position[0]) != indent_level
+    return "\<CR>" . a:right . "\<C-o>==\<C-o>O"
+
+  elseif a:next ==# a:right
+    return "\<CR>\<C-o>==\<C-o>O"
+
+  else
+    return "\<CR>"
+
+  endif
+
+endfunction
+
 function! Expander()
-  let previous_character = getline(".")[col(".")-2]
-  let next_character     = getline(".")[col(".")-1]
+  let previous = getline(".")[col(".")-2]
+  let next     = getline(".")[col(".")-1]
 
-  if previous_character ==# "{"
-    if next_character !=# "}" && searchpairpos("{", "", "}", "Wn")[0] == 0
-      return "\<CR>}\<C-o>==\<C-o>O"
+  if previous ==# "{"
+    return SubExpander(previous, "}", next)
 
-    elseif next_character ==# "}"
-      return "\<CR>\<C-o>==\<C-o>O"
+  elseif previous ==# "["
+    return SubExpander(previous, "]", next)
 
-    else
-      return "\<CR>"
+  elseif previous ==# "("
+    return SubExpander(previous, ")", next)
 
-    endif
-
-  elseif previous_character ==# "["
-    if next_character !=# "]" && searchpairpos("[", "", "]", "Wn")[0] == 0
-      return "\<CR>]\<C-o>==\<C-o>O"
-
-    elseif next_character ==# "]"
-      return "\<CR>\<C-o>==\<C-o>O"
-
-    else
-      return "\<CR>"
-
-    endif
-
-  elseif previous_character ==# "("
-    if next_character !=# ")" && searchpairpos("(", "", ")", "Wn")[0] == 0
-      return "\<CR>)\<C-o>==\<C-o>O"
-
-    elseif next_character ==# ")"
-      return "\<CR>\<C-o>==\<C-o>O"
-
-    else
-      return "\<CR>"
-
-    endif
-
-  elseif previous_character ==# ">"
-    if next_character ==# "<" && getline(".")[col(".")] ==# "/"
+  elseif previous ==# ">"
+    if next ==# "<" && getline(".")[col(".")] ==# "/"
       return "\<CR>\<C-o>==\<C-o>O"
 
     else
@@ -77,20 +63,6 @@ function! Expander()
   endif
 
 endfunction
-
-" upon closing a pair, the cursor is moved
-" automatically between the two characters
-function! Closer(left, right)
-  if getline(".")[col(".")-2] ==# a:left
-    return a:right . "\<Left>"
-
-  else
-    return a:right
-
-  endif
-
-endfunction
-
 
 " Trying to write a function for managing tags
 " ============================================

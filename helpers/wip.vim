@@ -2,6 +2,25 @@
 " WORK IN PROGRESS "
 """"""""""""""""""""
 
+" upon closing a pair, the cursor is moved
+" automatically between the two characters
+function! Closer(left, right)
+  if getline(".")[col(".")-2] ==# a:left
+    return a:right . "\<Left>"
+
+  else
+    return a:right
+
+  endif
+
+endfunction
+
+for pair in [ [ "{", "}" ], [ "(", ")" ], [ "[", "]" ], [ "'", "'" ], [ "<", ">" ] ]
+  execute "inoremap <expr> " . pair[1] . " Closer(\"" . pair[0] . "\", \"" . pair[1] . "\")"
+endfor
+inoremap <expr> " Closer("\"", "\"")
+
+
 " looks for the top and bottom lines
 " at the current indentation level
 " returns a range suitable for use in the commandline
