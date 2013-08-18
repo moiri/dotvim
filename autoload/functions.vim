@@ -58,6 +58,8 @@ function functions#TagExpander(next)
 
 endfunction
 
+" ===========================================================================
+
 " saves all the visible windows if needed/possible
 function functions#AutoSave()
   let this_window = winnr()
@@ -67,6 +69,8 @@ function functions#AutoSave()
   execute this_window . 'wincmd w'
 
 endfunction
+
+" ===========================================================================
 
 " Trying to write a function for managing tags
 " ============================================
@@ -159,13 +163,36 @@ function functions#Bombit()
 
 endfunction
 
-" URLs pasted from Word or Powerpoint often have a newline
-" this macro puts the URL in the href attribute 
+" ===========================================================================
+
+" use the width attribute of the current IMG
+" to update the width attribute of the parent TD
+function functions#UpdateWidth()
+  silent normal! 0/\vwidth\="/eyi"?\vwidth\=""?eP
+
+endfunction
+
+" ===========================================================================
+
+" return a representation of the selected text
+" suitable for use as a search pattern
+function functions#GetVisualSelection()
+  normal! "*y<Esc>
+  return substitute(escape(@*, '\/.*$^~[]'), "\n", '\\n', "g")
+
+endfunction
+
+" ===========================================================================
+
+" URLs pasted from Word or Powerpoint often end with a pesky newline
+" this macro puts the URL in the href attribute
 " of the next anchor
 function functions#UpdateAnchor()
   normal! ^v$hy"_dd/hreff"vi""_dP
 
 endfunction
+
+" ===========================================================================
 
 " DOS to UNIX encoding
 function functions#ToUnix()
@@ -175,6 +202,8 @@ function functions#ToUnix()
   silent w
 
 endfunction
+
+" ===========================================================================
 
 " shows syntaxic group of the word under the cursor
 function functions#SynStack()
@@ -186,6 +215,8 @@ function functions#SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 
 endfunc
+
+" ===========================================================================
 
 " normal characters --> HTML entities
 function functions#Entities()
@@ -427,6 +458,7 @@ function functions#Entities()
   silent s/Ÿ/\&Yuml;/e
   silent s/Ζ/\&Zeta;/e
   silent s/ζ/\&zeta;/e
+
 endfunction
 
 " HTML entities --> normal characters

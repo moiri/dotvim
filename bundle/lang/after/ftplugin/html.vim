@@ -6,17 +6,23 @@ nnoremap <buffer> <leader>é :call functions#ReverseEntities()<CR>
 xnoremap <buffer> <leader>& :call functions#Entities()<CR>
 xnoremap <buffer> <leader>é :call functions#ReverseEntities()<CR>
 
+command! -buffer EE :call functions#Entities()
+command! -buffer RE :call functions#ReverseEntities()
+
+command! -buffer UU :call functions#URLencoding()
+command! -buffer RU :call functions#ReverseURLencoding()
+
+command! -buffer AA :call functions#UpdateAnchor()
+
+command! -buffer WW :call functions#UpdateWidth()
+
 nnoremap <buffer> <leader>< /<\w*\(\s\\|>\)<CR>
 nnoremap <buffer> <leader>> ?<\w*\(\s\\|>\)<CR>
 
-nnoremap <buffer> cia /\v"[ >/]<CR>vF=Bc
-nnoremap <buffer> dia /\v"[ >/]<CR>vF=Bd
-nnoremap <buffer> yia /\v"[ >/]<CR>vF=By
-nnoremap <buffer> via /\v"[ >/]<CR>vF=B
-nnoremap <buffer> caa /\v"[ >/]<CR>vF=Bhc
-nnoremap <buffer> daa /\v"[ >/]<CR>vF=Bhd
-nnoremap <buffer> yaa /\v"[ >/]<CR>vF=Bhy
-nnoremap <buffer> vaa /\v"[ >/]<CR>vF=Bh
+nnoremap <buffer> cia /\v"\ze[ >/]<CR>ci"
+nnoremap <buffer> dia /\v"\ze[ >/]<CR>di"
+nnoremap <buffer> yia /\v"\ze[ >/]<CR>yi"
+nnoremap <buffer> via /\v"\ze[ >/]<CR>vi"
 
 let b:match_words='<:>,<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>'
 

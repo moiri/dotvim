@@ -156,9 +156,6 @@ nnoremap gb :buffers<CR>:sbuffer<Space>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
-inoremap <leader>;          <C-o>m`<C-o>A;<C-o>``
-nnoremap <silent> <leader>; :s/$/;<CR>
-
 nnoremap <leader>k      :move-2<CR>==
 nnoremap <leader>j      :move+<CR>==
 nnoremap <leader><Up>   :move-2<CR>==
@@ -178,25 +175,18 @@ nnoremap <leader>a :Tabularize<Space>/
 nnoremap <leader><Space><Space> O<C-o>j<C-o>o<C-o>k<Esc>
 
 " EXPERIMENTAL!
-" search and replace the current word in the current paragraph
-" super freaking quick:
-" ,rfoo<CR>
+
 nnoremap <leader>r :'{,'}s/<C-r>=expand('<cword>')<CR>/
-" same idea, but acts on the whole buffer
 nnoremap <leader>R :%s/<C-r>=expand('<cword>')<CR>/
 
-" use the current word or the current visual selection as search pattern
+xnoremap <leader>r :<C-u>'{,'}s/<C-r>=functions#GetVisualSelection()<CR>/
+xnoremap <leader>R :<C-u>%s/<C-r>=functions#GetVisualSelection()<CR>/
+
 nnoremap <leader>s *N
-xnoremap <leader>s "*y<Esc>:let @/ = substitute(escape(@*, '\/.*$^~[]'), "\n", '\\n', "g") <bar>echo ''<CR>
+xnoremap <leader>s <Esc>:let @/ = functions#GetVisualSelection()<CR>
 
-" search and replace the last search pattern in the current visual selection
-xnoremap <leader>r :s/<C-r>=@/<CR>/
+xmap <leader>q :s/<C-r>=@/<CR>/
 
-" change word under the cursor, forward and backward, repeat with .
-" normal mode mapping for the most usual case
-" ,xfoo<Esc>...
-" visual mode mapping for special cases
-" viW,Xfoo<Esc>...
 nmap <leader>x *Ncgn
 nmap <leader>X #NcgN
 xmap <leader>x <leader>scgn
@@ -223,20 +213,12 @@ autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hh
 
 autocmd InsertLeave * call functions#AutoSave()
 
-command! Tagit              :call functions#Tagit()
-command! Bombit             :call functions#Bombit()
+command! Tagit    :call functions#Tagit()
+command! Bombit   :call functions#Bombit()
 
-command! An                 :call functions#UpdateAnchor()
+command! ToUnix   :call functions#ToUnix()
 
-command! ToUnix             :call functions#ToUnix()
-
-command! SynStack           :call functions#SynStack()
-
-command! Entities           :call functions#Entities()
-command! ReverseEntities    :call functions#ReverseEntities()
-
-command! URLencoding        :call functions#URLencoding()
-command! ReverseURLencoding :call functions#ReverseURLencoding()
+command! SynStack :call functions#SynStack()
 
 """""""""""""""""""
 " PLUGIN SETTINGS "
