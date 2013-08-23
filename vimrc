@@ -17,7 +17,7 @@ set hidden
 set incsearch
 set laststatus=2
 set switchbuf=useopen,usetab
-set tags=./tags,tags
+set tags=./tags;,tags;
 set wildmenu
 
 " better
@@ -65,6 +65,7 @@ set nrformats-=octal
 set previewheight=4
 set relativenumber
 set scrolloff=4
+set virtualedit=block
 set winheight=999
 
 """""""""""""""""""""""""""""""""
@@ -74,8 +75,11 @@ set winheight=999
 let os=substitute(system('uname'), '\n', '', '')
 
 if has('gui_running')
-  autocmd! FocusLost * call functions#AutoSave()
-  autocmd! GUIEnter * set vb t_vb=
+  augroup GUI
+    autocmd!
+    autocmd! FocusLost * call functions#AutoSave()
+    autocmd! GUIEnter * set vb t_vb=
+  augroup END
 
   colorscheme sorcerer
 
@@ -145,6 +149,8 @@ nnoremap Y y$
 
 xnoremap > >gv
 xnoremap < <gv
+nnoremap > >>
+nnoremap < <<
 
 nnoremap j      gj
 nnoremap k      gk
@@ -208,10 +214,19 @@ endfor
 
 inoremap <expr> <CR> functions#Expander()
 
-autocmd FileType vim                nnoremap <leader>g I" <Esc>A "<Esc>yyp0lv$hhr"yykPjj
-autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hhr-yykPjj
+augroup Default
+  autocmd!
 
-autocmd InsertLeave * call functions#AutoSave()
+  autocmd FileType vim                nnoremap <leader>g I" <Esc>A "<Esc>yyp0lv$hhr"yykPjj
+  autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hhr-yykPjj
+
+  autocmd InsertLeave * call functions#AutoSave()
+
+augroup END
+
+"""""""""""""""""""
+" CUSTOM COMMANDS "
+"""""""""""""""""""
 
 command! Tagit    :call functions#Tagit()
 command! Bombit   :call functions#Bombit()
