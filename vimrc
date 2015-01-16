@@ -1,9 +1,9 @@
-call pathogen#infect()
-call pathogen#helptags()
+call pathogen#infect()        "install plugins compfortably in ~/.vim/bundle/
+call pathogen#helptags()      "generate helptags for everything in 'runtimepath'
 
-filetype plugin indent on
+filetype plugin indent on     "detect file extension, use plugin settings
 
-syntax on
+syntax on                     "use vim default syntax highlighting
 
 runtime macros/matchit.vim
 
@@ -15,8 +15,9 @@ runtime macros/matchit.vim
 set backspace=indent,eol,start  "config backspace key
 
 "autocompletion
-set completeopt+=longest        "configure autocompletion mode
-set tags=./tags;,tags;          "path to autocomplete tags
+set completeopt=longest,menuone "insert longset commen text, also show one match
+"set tags=./tags;,tags;          "path to autocomplete tags
+inoremap <expr> <CR> functions#Expander()
 
 "view
 set hidden                      "hide buffers
@@ -28,9 +29,11 @@ set fileformats=unix,dos,mac
 set formatoptions+=1            "wrapping, newline and ident options
 set lazyredraw                  "don't redraw window while macros are executed
 set previewheight=4             "height of the preview window
-"set relativenumber              "show the linenumber relative to the cursor position
+"set relativenumber              "show the linenumber relative to the cursor
+"                                "position
 set number                      "use static line numbering
-set scrolloff=4                 "minimal number of lines to keep above/below when scrolling
+set scrolloff=4                 "minimal number of lines to keep above/below
+                                "when scrolling
 set virtualedit=block,onemore   "config of cursor behaviour
 set winheight=999               "set winheight
 
@@ -44,9 +47,14 @@ set tabstop=4
 
 "search
 set incsearch                   "highligt search matches while typing
-set gdefault                    "by default g flag is on (all matches of a line are substituted instead of one)
+set gdefault                    "by default g flag is on (all matches of a line
+                                "are substituted instead of one)
 set ignorecase                  "ignore case in search patterns
-set smartcase                   "overwrite ignorecase if search pattern contains uppercase letters
+set smartcase                   "overwrite ignorecase if search pattern contains
+                                "uppercase letters
+set hlsearch                    "highlight all search matches
+"Press Esc to turn off highlighting and clear any message already displayed.
+nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
 
 "encoding
 set encoding=utf-8
@@ -56,8 +64,10 @@ set termencoding=utf-8
 set laststatus=2                "always show a status line"
 set wildmenu                    "command line completion
 set wildignore=*.swp,*.bak,*.pyc,*.class,*/.git/**/*,*/.hg/**/*,*/.svn/**/*
-set wildignorecase              "ignore case when completing file and directory names
-set wildmode=list:longest       "list all matches and complete till longest common string
+set wildignorecase              "ignore case when completing file and directory
+                                "names
+set wildmode=list:longest       "list all matches and complete till longest
+                                "common string
 set statusline=%<\ %t\ %m%r%y%w%=Lin:\ \%l\/\%L\ Col:\ \%c\ 
 
 "show special chars for tabs, spaces etc. see listchars
@@ -67,6 +77,9 @@ set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 "folding
 set foldmethod=indent
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
+"folding toggle with space
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
 
 "error bells
 set noerrorbells
@@ -74,73 +87,38 @@ set t_vb=
 set visualbell
 
 "set mouse=a                     "usage of mouse in different modes
-"set noswapfile                  "do not use swapfile as buffer (everything inmemory)
-set nrformats-=octal            "config inc/dec function (C-a, C-x)
+"set noswapfile                  "do not use swapfile as buffer (everything in
+"                                "memory)
+set nrformats-=octal            "config inc/dec function (C-a, C-x):
+                                "dont inc/dec octal numbers
 
 """""""""""""""""""""""""""""""""
 " ENVIRONMENT-SPECIFIC SETTINGS "
 """""""""""""""""""""""""""""""""
-
-let os=substitute(system('uname'), '\n', '', '')
-
-if has('gui_running')
-  augroup GUI
-    autocmd!
-    autocmd! FocusLost * call functions#AutoSave()
-    autocmd! GUIEnter * set vb t_vb=
-  augroup END
-
+" set color scheme
+if &t_Co >= 256
   colorscheme sorcerer
 
-  set guioptions-=T
-
-  set lines=40
-  set columns=140
-
-  if os == 'Darwin' || os == 'Mac'
-    set guifont=Inconsolata-g:h13
-    set fuoptions=maxvert,maxhorz
-    set clipboard^=unnamed
-
-  elseif os == 'Linux'
-    set guifont=Inconsolata-g\ Medium\ 11
-    set guioptions-=m
-    set clipboard^=unnamedplus
-
-  endif
-
-else
-  if &t_Co >= 256
-    colorscheme sorcerer
-
-  elseif &t_Co < 256
-    colorscheme sorcerer_16
-
-  endif
-
-  if os == 'Darwin' || os == 'Mac'
-    set clipboard^=unnamed
-
-  elseif os == 'Linux'
-    set clipboard^=unnamedplus
-
-  endif
-
-  nnoremap <Esc>A <up>
-  nnoremap <Esc>B <down>
-  nnoremap <Esc>C <right>
-  nnoremap <Esc>D <left>
-  inoremap <Esc>A <up>
-  inoremap <Esc>B <down>
-  inoremap <Esc>C <right>
-  inoremap <Esc>D <left>
+elseif &t_Co < 256
+  colorscheme sorcerer_16
 
 endif
+
+set clipboard^=unnamedplus "use the X Window clipboard
+
+"map arrow key to use for navigation
+nnoremap <Esc>A <up>
+nnoremap <Esc>B <down>
+nnoremap <Esc>C <right>
+nnoremap <Esc>D <left>
+inoremap <Esc>A <up>
+inoremap <Esc>B <down>
+inoremap <Esc>C <right>
+inoremap <Esc>D <left>
 
 """""""""""""""""""
 " CUSTOM MAPPINGS "
 """""""""""""""""""
-
 let mapleader=','
 
 inoremap <leader>, <C-x><C-o>
@@ -180,20 +158,21 @@ xnoremap <leader>j      :move'>+<CR>gv=gv
 xnoremap <leader><Up>   :move-2<CR>gv=gv
 xnoremap <leader><Down> :move'>+<CR>gv=gv
 
-nnoremap <leader>h       "_yiw?\v\w+\_W+%#<CR>:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o><C-l>
-nnoremap <leader>l       "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-l>
-nnoremap <leader><Left>  "_yiw?\v\w+\_W+%#<CR>:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o><C-l>
-nnoremap <leader><Right> "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-l>
+nnoremap <leader>h        "_yiw?\v\w+\_W+%#<CR>:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o><C-l>
+nnoremap <leader>l        "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-l>
+nnoremap <leader><Left>   "_yiw?\v\w+\_W+%#<CR>:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o><C-l>
+nnoremap <leader><Right>  "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-l>
 
 nnoremap <leader>a :Tabularize<Space>/
 
 nnoremap <leader><Space><Space> O<C-o>j<C-o>o<C-o>k<Esc>
 
 " EXPERIMENTAL!
-let &colorcolumn=join(range(81,999),",") "indicate 80 char area
-" folding toggle with space
-nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-vnoremap <Space> zf
+"indicate 80 char area
+"let &colorcolumn=join(range(81,999),",") "by changing the background
+  "by marking the oevrlapping text
+highlight OverLength ctermbg=DarkMagenta ctermfg=Magenta guibg=#592929
+match OverLength /\%81v.\+/
 
 nnoremap <leader>r :'{,'}s/<C-r>=expand('<cword>')<CR>/
 nnoremap <leader>R :%s/<C-r>=expand('<cword>')<CR>/
@@ -214,9 +193,9 @@ xmap <leader>X <leader>scgN
 nnoremap <leader>n :cnext<CR>zv
 nnoremap <leader>p :cprevious<CR>zv
 
-nnoremap <leader>vp :execute "w !vpaste ft=" . &ft<CR>
-xnoremap <leader>vp <Esc>:execute "'<,'>w !vpaste ft=" . &ft<CR>
-nnoremap <leader>v: :let @+ = @:<CR>
+nnoremap <leader>vp       :execute "w !vpaste ft=" . &ft<CR>
+xnoremap <leader>vp <Esc> :execute "'<,'>w !vpaste ft=" . &ft<CR>
+nnoremap <leader>v:       :let @+ = @:<CR>
 
 for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%' ]
   execute 'xnoremap i' . char . ' :<C-u>silent!normal!T' . char . 'vt' . char . '<CR>'
@@ -240,18 +219,14 @@ augroup END
 """""""""""""""""""
 " CUSTOM COMMANDS "
 """""""""""""""""""
-
 command! Tagit    :call functions#Tagit()
 command! Bombit   :call functions#Bombit()
-
 command! ToUnix   :call functions#ToUnix()
-
 command! SynStack :call functions#SynStack()
 
 """""""""""""""""""
 " PLUGIN SETTINGS "
 """""""""""""""""""
-
 let g:snippets_dir = '~/.vim/snippets/'
 
 let g:netrw_winsize   = '999'
@@ -275,9 +250,9 @@ let g:ctrlp_open_new_file       = 'r'
 let g:ctrlp_open_multiple_files = '3hjr'
 let g:ctrlp_root_markers        = ['tags']
 let g:ctrlp_buftag_types        = {
-  \ 'css'        : '--language-force=css --css-types=citm',
+  \ 'css' : '--language-force=css --css-types=citm',
   \ 'javascript' : '--language-force=javascript --javascript-types=fv',
-  \ 'haxe'       : '--language-force=haxe --haxe-types=fvpcit'
+  \ 'haxe' : '--language-force=haxe --haxe-types=fvpcit'
   \ }
 
 let g:syntastic_check_on_open       = 0
@@ -287,7 +262,7 @@ let g:syntastic_auto_jump           = 1
 let g:syntastic_auto_loc_list       = 1
 let g:syntastic_enable_signs        = 1
 let g:syntastic_mode_map            = {
-  \ 'mode'              : 'active',
-  \ 'active_filetypes'  : ['javascript'],
+  \ 'mode' : 'active',
+  \ 'active_filetypes' : ['javascript'],
   \ 'passive_filetypes' : ['css', 'python', 'html', 'php']
   \ }
