@@ -11,64 +11,71 @@ runtime macros/matchit.vim
 " GENERIC SETTINGS "
 """"""""""""""""""""
 
+"keys
+set backspace=indent,eol,start  "config backspace key
 
-set backspace=indent,eol,start
-set hidden                    " ignore unsaved buffer if buffer change
-set incsearch                 " enable incremental search
-set laststatus=2              " always show statusline
-set switchbuf=useopen,usetab
-set tags=.git/tags,tags;$HOME " set tags path
-set wildmenu                  " show command matches in a line above
+"autocompletion
+set completeopt+=longest        "configure autocompletion mode
+set tags=./tags;,tags;          "path to autocomplete tags
 
-" better
-set autoindent                " always set autoindenting on
-set expandtab                 " tabs are converted to spaces
-set shiftround
-set shiftwidth=4              " numbers of spaces of tab character
-set smarttab                  " on bs remove spaces worth of shiftwith
-set tabstop=4                 " numbers of spaces of tab character
+"view
+set hidden                      "hide buffers
+set switchbuf=useopen,usetab    "buffer switching behaviour
+set splitbelow                  "when split put new window below
+set splitright                  "when split put new window right
+set cursorline                  "show a horizontal line at the cursor position
+set fileformats=unix,dos,mac
+set formatoptions+=1            "wrapping, newline and ident options
+set lazyredraw                  "don't redraw window while macros are executed
+set previewheight=4             "height of the preview window
+"set relativenumber              "show the linenumber relative to the cursor position
+set number                      "use static line numbering
+set scrolloff=4                 "minimal number of lines to keep above/below when scrolling
+set virtualedit=block,onemore   "config of cursor behaviour
+set winheight=999               "set winheight
 
-set gdefault
-"set ignorecase
-"set smartcase
+"identation
+set autoindent                  "copy the ident from previous line
+set expandtab                   "use spaces insetad of tabs
+set shiftround                  "round ident to a multiple of shiftwith
+set shiftwidth=4
+set smarttab                    "BS deletes a shiftwith worth of space
+set tabstop=4
 
+"search
+set incsearch                   "highligt search matches while typing
+set gdefault                    "by default g flag is on (all matches of a line are substituted instead of one)
+set ignorecase                  "ignore case in search patterns
+set smartcase                   "overwrite ignorecase if search pattern contains uppercase letters
+
+"encoding
 set encoding=utf-8
 set termencoding=utf-8
 
+"status/command line
+set laststatus=2                "always show a status line"
+set wildmenu                    "command line completion
 set wildignore=*.swp,*.bak,*.pyc,*.class,*/.git/**/*,*/.hg/**/*,*/.svn/**/*
-set wildignorecase
-set wildmode=list:full
-
+set wildignorecase              "ignore case when completing file and directory names
+set wildmode=list:longest       "list all matches and complete till longest common string
 set statusline=%<\ %t\ %m%r%y%w%=Lin:\ \%l\/\%L\ Col:\ \%c\ 
 
+"show special chars for tabs, spaces etc. see listchars
 set list
 set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 
+"folding
 set foldmethod=indent
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
-set foldlevelstart=99
 
+"error bells
 set noerrorbells
 set t_vb=
 set visualbell
 
-set splitbelow
-set splitright
-
-set completeopt+=longest
-set cursorline
-set fileformats=unix,dos,mac
-set formatoptions+=1
-set lazyredraw
-"set mouse=a              " use mouse at a maximum
-set noswapfile
-set nrformats-=octal
-set previewheight=4
-"set relativenumber       " show line numbers relaive to cursorline
-set number                " show line numbers
-set scrolloff=4
-set virtualedit=block
-set winheight=999
+"set mouse=a                     "usage of mouse in different modes
+"set noswapfile                  "do not use swapfile as buffer (everything inmemory)
+set nrformats-=octal            "config inc/dec function (C-a, C-x)
 
 """""""""""""""""""""""""""""""""
 " ENVIRONMENT-SPECIFIC SETTINGS "
@@ -140,7 +147,6 @@ inoremap <leader>, <C-x><C-o>
 inoremap <leader>: <C-x><C-f>
 inoremap <leader>= <C-x><C-l>
 
-inoremap <leader>, <C-x><C-o>
 nnoremap <leader>d "_d
 xnoremap <leader>d "_d
 
@@ -168,9 +174,7 @@ cnoremap <C-e> <End>
 nnoremap <leader>k      :move-2<CR>==
 nnoremap <leader>j      :move+<CR>==
 nnoremap <leader><Up>   :move-2<CR>==
-
 nnoremap <leader><Down> :move+<CR>==
-
 xnoremap <leader>k      :move-2<CR>gv=gv
 xnoremap <leader>j      :move'>+<CR>gv=gv
 xnoremap <leader><Up>   :move-2<CR>gv=gv
@@ -186,6 +190,10 @@ nnoremap <leader>a :Tabularize<Space>/
 nnoremap <leader><Space><Space> O<C-o>j<C-o>o<C-o>k<Esc>
 
 " EXPERIMENTAL!
+let &colorcolumn=join(range(81,999),",") "indicate 80 char area
+" folding toggle with space
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
 
 nnoremap <leader>r :'{,'}s/<C-r>=expand('<cword>')<CR>/
 nnoremap <leader>R :%s/<C-r>=expand('<cword>')<CR>/
