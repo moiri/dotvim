@@ -11,26 +11,26 @@ runtime macros/matchit.vim
 " GENERIC SETTINGS "
 """"""""""""""""""""
 
-" minimal
+
 set backspace=indent,eol,start
-set hidden
-set incsearch
-set laststatus=2
+set hidden                    " ignore unsaved buffer if buffer change
+set incsearch                 " enable incremental search
+set laststatus=2              " always show statusline
 set switchbuf=useopen,usetab
-set tags=./tags;,tags;
-set wildmenu
+set tags=.git/tags,tags;$HOME " set tags path
+set wildmenu                  " show command matches in a line above
 
 " better
-set autoindent
-set expandtab
+set autoindent                " always set autoindenting on
+set expandtab                 " tabs are converted to spaces
 set shiftround
-set shiftwidth=2
-set smarttab
-set tabstop=2
+set shiftwidth=4              " numbers of spaces of tab character
+set smarttab                  " on bs remove spaces worth of shiftwith
+set tabstop=4                 " numbers of spaces of tab character
 
 set gdefault
-set ignorecase
-set smartcase
+"set ignorecase
+"set smartcase
 
 set encoding=utf-8
 set termencoding=utf-8
@@ -46,6 +46,7 @@ set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 
 set foldmethod=indent
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
+set foldlevelstart=99
 
 set noerrorbells
 set t_vb=
@@ -59,11 +60,12 @@ set cursorline
 set fileformats=unix,dos,mac
 set formatoptions+=1
 set lazyredraw
-set mouse=a
+"set mouse=a              " use mouse at a maximum
 set noswapfile
 set nrformats-=octal
 set previewheight=4
-set relativenumber
+"set relativenumber       " show line numbers relaive to cursorline
+set number                " show line numbers
 set scrolloff=4
 set virtualedit=block
 set winheight=999
@@ -138,6 +140,7 @@ inoremap <leader>, <C-x><C-o>
 inoremap <leader>: <C-x><C-f>
 inoremap <leader>= <C-x><C-l>
 
+inoremap <leader>, <C-x><C-o>
 nnoremap <leader>d "_d
 xnoremap <leader>d "_d
 
@@ -165,7 +168,9 @@ cnoremap <C-e> <End>
 nnoremap <leader>k      :move-2<CR>==
 nnoremap <leader>j      :move+<CR>==
 nnoremap <leader><Up>   :move-2<CR>==
+
 nnoremap <leader><Down> :move+<CR>==
+
 xnoremap <leader>k      :move-2<CR>gv=gv
 xnoremap <leader>j      :move'>+<CR>gv=gv
 xnoremap <leader><Up>   :move-2<CR>gv=gv
