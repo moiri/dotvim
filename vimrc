@@ -301,6 +301,8 @@ let g:netrw_liststyle = 3
 
 "-------------------------------------------------------------------------------
 "syntastic is a syntax checker for a ton of different languages
+"the corresponding syntax checker must be installed in order to make syntastic
+"work (https://github.com/scrooloose/syntastic/wiki/Syntax-Checkers)
 "https://github.com/scrooloose/syntastic
 let g:syntastic_check_on_open       = 0
 let g:syntastic_enable_balloons     = 0
