@@ -281,6 +281,7 @@ let g:ctrlp_buftag_types        = {
 "the network. It is however buggy and hard to update:
 "http://www.reddit.com/r/vim/comments/22ztqp/why_does_nerdtree_exist_whats_wrong_with_netrw/
 "-> check this and install a better option
+"https://github.com/vim-scripts/netrw.vim
 let g:netrw_winsize   = '999'
 let g:netrw_banner    = 0
 let g:netrw_keepdir   = 0
