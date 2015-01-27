@@ -158,6 +158,7 @@ nnoremap <leader>l        "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W
 nnoremap <leader><Left>   "_yiw?\v\w+\_W+%#<CR>:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o><C-l>
 nnoremap <leader><Right>  "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-l>
 "align elements by entered character (is applied on a block of text wo using v)
+"requires tabular plugin!
 nnoremap <leader>a :Tabularize<Space>/
 "add an empty line above and below the lign on which the cursor is
 nnoremap <leader><Space><Space> O<C-o>j<C-o>o<C-o>k<Esc>
@@ -315,3 +316,6 @@ let g:syntastic_mode_map            = {
   \ 'active_filetypes' : ['javascript'],
   \ 'passive_filetypes' : ['css', 'python', 'html', 'php']
   \ }
+
+"tabular helps to arrange items in tabular form (very useful for latex)
+"https://github.com/godlygeek/tabular
