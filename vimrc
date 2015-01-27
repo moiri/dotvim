@@ -276,18 +276,18 @@ let g:ctrlp_buftag_types        = {
 "the network. It is however buggy and hard to update:
 "http://www.reddit.com/r/vim/comments/22ztqp/why_does_nerdtree_exist_whats_wrong_with_netrw/
 "-> check this and install a better option
-
-"pipe2eval allwos to use script to generate content. Looks very nice but needs
-"some shortcuts defined in here...
-"https://github.com/zweifisch/pipe2eval
-
-let g:snippets_dir = '~/.vim/snippets/'
-
 let g:netrw_winsize   = '999'
 let g:netrw_banner    = 0
 let g:netrw_keepdir   = 0
 let g:netrw_liststyle = 3
 
+"pipe2eval allwos to use script to generate content. Looks very nice but needs
+"some shortcuts defined in here...
+"https://github.com/zweifisch/pipe2eval
+
+"snipmate provides a ton of snippets ready to use for a ton of different
+"languages
+"https://github.com/msanders/snipmate.vim
 
 let g:syntastic_check_on_open       = 0
 let g:syntastic_enable_balloons     = 0
