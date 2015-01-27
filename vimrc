@@ -37,17 +37,8 @@ set winheight=999               "set winheight
 set list
 set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 "set color scheme
-if &t_Co >= 256
-  colorscheme sorcerer
-elseif &t_Co < 256
-  colorscheme sorcerer_16
-endif
-"indicate 80 char area
-  "by changing the background color beyond 80 chars
-"let &colorcolumn=join(range(81,999),",")
-  "by marking the oevrlapping text
-highlight OverLength ctermbg=DarkMagenta ctermfg=Magenta guibg=#592929
-match OverLength /\%81v.\+/
+colorscheme sorcerer
+"colorscheme apprentice
 "error bells
 set noerrorbells
 set t_vb=
@@ -215,19 +206,19 @@ xnoremap <leader>vp <Esc> :execute "'<,'>w !vpaste ft=" . &ft<CR>
 nnoremap <leader>v:       :let @+ = @:<CR>
 
 for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%' ]
-  execute 'xnoremap i' . char . ' :<C-u>silent!normal!T' . char . 'vt' . char . '<CR>'
-  execute 'onoremap i' . char . ' :normal vi' . char . '<CR>'
-  execute 'xnoremap a' . char . ' :<C-u>silent!normal!F' . char . 'vf' . char . '<CR>'
-  execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
+    execute 'xnoremap i' . char . ' :<C-u>silent!normal!T' . char . 'vt' . char . '<CR>'
+    execute 'onoremap i' . char . ' :normal vi' . char . '<CR>'
+    execute 'xnoremap a' . char . ' :<C-u>silent!normal!F' . char . 'vf' . char . '<CR>'
+    execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
 endfor
 
 augroup Default
-  autocmd!
+    autocmd!
 
-  autocmd FileType vim                nnoremap <leader>g I" <Esc>A "<Esc>yyp0lv$hhr"yykPjj
-  autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hhr-yykPjj
+    autocmd FileType vim                nnoremap <leader>g I" <Esc>A "<Esc>yyp0lv$hhr"yykPjj
+    autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hhr-yykPjj
 
-  autocmd InsertLeave * call functions#AutoSave()
+    autocmd InsertLeave * call functions#AutoSave()
 
 augroup END
 
@@ -266,10 +257,10 @@ let g:ctrlp_open_new_file       = 'r'
 let g:ctrlp_open_multiple_files = '3hjr'
 let g:ctrlp_root_markers        = ['tags']
 let g:ctrlp_buftag_types        = {
-  \ 'css' : '--language-force=css --css-types=citm',
-  \ 'javascript' : '--language-force=javascript --javascript-types=fv',
-  \ 'haxe' : '--language-force=haxe --haxe-types=fvpcit'
-  \ }
+            \ 'css' : '--language-force=css --css-types=citm',
+            \ 'javascript' : '--language-force=javascript --javascript-types=fv',
+            \ 'haxe' : '--language-force=haxe --haxe-types=fvpcit'
+            \ }
 
 "-------------------------------------------------------------------------------
 "indent-object is used to select text blocks based on identation (useful with
@@ -313,10 +304,10 @@ let g:syntastic_auto_jump           = 1
 let g:syntastic_auto_loc_list       = 1
 let g:syntastic_enable_signs        = 1
 let g:syntastic_mode_map            = {
-  \ 'mode' : 'active',
-  \ 'active_filetypes' : ['javascript'],
-  \ 'passive_filetypes' : ['css', 'python', 'html', 'php']
-  \ }
+            \ 'mode' : 'active',
+            \ 'active_filetypes' : ['javascript'],
+            \ 'passive_filetypes' : ['css', 'python', 'html', 'php']
+            \ }
 
 "tabular helps to arrange items in tabular form (very useful for latex)
 "https://github.com/godlygeek/tabular
