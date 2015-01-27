@@ -289,6 +289,9 @@ let g:netrw_liststyle = 3
 "languages
 "https://github.com/msanders/snipmate.vim
 
+"surround helps to modify surrounding elemnts (tags, parentheses, etc)
+"https://github.com/tpope/vim-surround
+
 let g:syntastic_check_on_open       = 0
 let g:syntastic_enable_balloons     = 0
 let g:syntastic_enable_highlighting = 0
