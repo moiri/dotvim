@@ -77,15 +77,18 @@ nnoremap < <<
 
 "Autocompletion
 "===============================================================================
-"set completeopt=longest,menuone "insert longset commen text, also show one match
-"set tags=./tags;,tags;          "path to autocomplete tags
-"inoremap <expr> <CR> functions#Expander()
+set omnifunc=syntaxcomplete#Complete "enable omnifunc autocomplete
+set completeopt=longest,menuone "insert longset commen text, also show one match
 "autocomplete function names
 inoremap <leader>, <C-x><C-o>
 "autocomplete file names
 inoremap <leader>: <C-x><C-f>
 "autocomplete complete lines of text
 inoremap <leader>= <C-x><C-l>
+"when autocomplete menu is open and enter is pressed the following happens:
+"if an element is selected it is inserted
+"if no element is selected the menu closes and nothing happens
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 "Search
 "===============================================================================
@@ -100,6 +103,10 @@ set hlsearch                    "highlight all search matches
 "                                "search
 "Press Esc to turn off highlighting and clear any message already displayed:
 nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
+"Select all words identic to the one below the cursor
+nnoremap <leader>s *N
+"Select all strings identic to the selection
+xnoremap <leader>s <Esc>:let @/ = functions#GetVisualSelection()<CR>
 
 
 "Navigation
@@ -154,10 +161,22 @@ nnoremap <leader><Right>  "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W
 nnoremap <leader>a :Tabularize<Space>/
 "add an empty line above and below the lign on which the cursor is
 nnoremap <leader><Space><Space> O<C-o>j<C-o>o<C-o>k<Esc>
-"replace all identic words in one text block (experimental)
+"replace word below cursor and all identic words in one text block
 nnoremap <leader>r :'{,'}s/<C-r>=expand('<cword>')<CR>/
-"replace all identic words in the whole file (experimental)
+"replace selection and all identic strings in one text block
+xnoremap <leader>r :<C-u>'{,'}s/<C-r>=functions#GetVisualSelection()<CR>/
+"replace word below cursor and all identic words in the whole file
 nnoremap <leader>R :%s/<C-r>=expand('<cword>')<CR>/
+"replace selection and all identic strings in the whole file
+xnoremap <leader>R :<C-u>%s/<C-r>=functions#GetVisualSelection()<CR>/
+"replace prior selected string in newly selected block
+xmap <leader>q :s/<C-r>=@/<CR>/
+"delete word under corsor and enter insert mode
+nmap <leader>x *Ncgn
+nmap <leader>X #NcgN
+"delete selection and enter insert mode
+xmap <leader>x <leader>scgn
+xmap <leader>X <leader>scgN
 
 "File Manipulation
 "===============================================================================
@@ -187,19 +206,6 @@ set statusline=%<\ %t\ %m%r%y%w%=Lin:\ \%l\/\%L\ Col:\ \%c\
 " EXPERIMENTAL! "
 """""""""""""""""
 
-xnoremap <leader>r :<C-u>'{,'}s/<C-r>=functions#GetVisualSelection()<CR>/
-xnoremap <leader>R :<C-u>%s/<C-r>=functions#GetVisualSelection()<CR>/
-
-nnoremap <leader>s *N
-xnoremap <leader>s <Esc>:let @/ = functions#GetVisualSelection()<CR>
-
-xmap <leader>q :s/<C-r>=@/<CR>/
-
-nmap <leader>x *Ncgn
-nmap <leader>X #NcgN
-xmap <leader>x <leader>scgn
-xmap <leader>X <leader>scgN
-
 nnoremap <leader>n :cnext<CR>zv
 nnoremap <leader>p :cprevious<CR>zv
 
@@ -213,8 +219,6 @@ for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%' ]
   execute 'xnoremap a' . char . ' :<C-u>silent!normal!F' . char . 'vf' . char . '<CR>'
   execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
 endfor
-
-inoremap <expr> <CR> functions#Expander()
 
 augroup Default
   autocmd!
