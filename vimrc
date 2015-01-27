@@ -241,13 +241,12 @@ command! SynStack :call functions#SynStack()
 """""""""""""""""""
 " PLUGIN SETTINGS "
 """""""""""""""""""
-let g:snippets_dir = '~/.vim/snippets/'
+"commentary is used to comment and uncomment lines (use gcc on lines gc on
+"visual selection)
+"https://github.com/tpope/vim-commentary
 
-let g:netrw_winsize   = '999'
-let g:netrw_banner    = 0
-let g:netrw_keepdir   = 0
-let g:netrw_liststyle = 3
-
+"ctrlp Fuzzy file, buffer, mru, tag, etc finder
+"https://github.com/kien/ctrlp.vim
 nnoremap <leader>f :CtrlP<CR>
 nnoremap <leader>F :CtrlPCurFile<CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
@@ -268,6 +267,27 @@ let g:ctrlp_buftag_types        = {
   \ 'javascript' : '--language-force=javascript --javascript-types=fv',
   \ 'haxe' : '--language-force=haxe --haxe-types=fvpcit'
   \ }
+
+"indent-object is used to select text blocks based on identation (useful with
+"python)
+"https://github.com/michaeljsmith/vim-indent-object
+
+"netrw provides a tree structure when opening and allows to access files over
+"the network. It is however buggy and hard to update:
+"http://www.reddit.com/r/vim/comments/22ztqp/why_does_nerdtree_exist_whats_wrong_with_netrw/
+"-> check this and install a better option
+
+"pipe2eval allwos to use script to generate content. Looks very nice but needs
+"some shortcuts defined in here...
+"https://github.com/zweifisch/pipe2eval
+
+let g:snippets_dir = '~/.vim/snippets/'
+
+let g:netrw_winsize   = '999'
+let g:netrw_banner    = 0
+let g:netrw_keepdir   = 0
+let g:netrw_liststyle = 3
+
 
 let g:syntastic_check_on_open       = 0
 let g:syntastic_enable_balloons     = 0
