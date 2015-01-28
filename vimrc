@@ -68,18 +68,12 @@ nnoremap < <<
 
 "Autocompletion
 "===============================================================================
-set omnifunc=syntaxcomplete#Complete "enable omnifunc autocomplete
-set completeopt=longest,menuone "insert longset commen text, also show one match
 "autocomplete function names
 inoremap <leader>, <C-x><C-o>
 "autocomplete file names
 inoremap <leader>: <C-x><C-f>
 "autocomplete complete lines of text
 inoremap <leader>= <C-x><C-l>
-"when autocomplete menu is open and enter is pressed the following happens:
-"if an element is selected it is inserted
-"if no element is selected the menu closes and nothing happens
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 "Search
 "===============================================================================
