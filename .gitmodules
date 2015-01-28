@@ -25,3 +25,6 @@
 [submodule "bundle/netrw"]
 	path = bundle/netrw
 	url = git@github.com:vim-scripts/netrw.vim.git
+[submodule "bundle/youCompleteMe"]
+	path = bundle/youCompleteMe
+	url = git@github.com:Valloric/YouCompleteMe.git

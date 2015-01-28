@@ -1,9 +1,8 @@
 dotvim
 ======
 
-Ma configuration pour Vim.
+My vim configuration. It was originally forked from
+https://github.com/romainl/dotvim
 
----
-
-* [Notes](https://github.com/romainl/dotvim/wiki/Notes)
-* [Mon .vimrc en détails](https://github.com/romainl/dotvim/wiki/Mon-.vimrc-en-d%C3%A9tails)
+Now it is composed mostly of submodules and a commented vimrc file. The fancy
+keymappings in vimrc are all the work of https://github.com/romainl/dotvim
