@@ -303,5 +303,12 @@ let g:syntastic_mode_map            = {
             \ 'passive_filetypes' : ['css', 'python', 'html', 'php']
             \ }
 
+"tern is an atocompletor for javascript. It works together with YCM
+"https://github.com/marijnh/tern_for_vim
+
 "tabular helps to arrange items in tabular form (very useful for latex)
 "https://github.com/godlygeek/tabular
+
+"YCM an autocompletion engine mostly for C languages. It also provides
+"autocompletion for any other kind of text but is not intelligent
+"https://github.com/Valloric/YouCompleteMe
