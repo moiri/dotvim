@@ -1,4 +1,4 @@
-" 'sorcerer_16.vim' -- Vim color scheme.
+" 'sorcerer.vim' -- Vim color scheme.
 " Maintainer:   Jeet Sukumaran
 " Based on 'Mustang' by Henrique C. Alves (hcarvalhoalves@gmail.com),
 
@@ -10,7 +10,7 @@ if exists("syntax_on")
   syntax reset
 endif
 
-let colors_name = "sorcerer_16"
+let colors_name = "sorcerer"
 
 hi Normal       ctermfg=LightGrey
 hi ColorColumn  ctermbg=Black
