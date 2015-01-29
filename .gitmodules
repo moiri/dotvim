@@ -34,3 +34,6 @@
 [submodule "bundle/lang-js"]
 	path = bundle/lang-js
 	url = git@github.com:pangloss/vim-javascript.git
+[submodule "bundle/lang-tex"]
+	path = bundle/lang-tex
+	url = git@github.com:lervag/vim-latex.git
