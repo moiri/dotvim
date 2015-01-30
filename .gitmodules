@@ -10,9 +10,6 @@
 [submodule "bundle/pipe2eval"]
 	path = bundle/pipe2eval
 	url = git@github.com:zweifisch/pipe2eval.git
-[submodule "bundle/snipmate"]
-	path = bundle/snipmate
-	url = git@github.com:msanders/snipmate.vim.git
 [submodule "bundle/surround"]
 	path = bundle/surround
 	url = git@github.com:tpope/vim-surround.git
@@ -25,9 +22,6 @@
 [submodule "bundle/netrw"]
 	path = bundle/netrw
 	url = git@github.com:vim-scripts/netrw.vim.git
-[submodule "bundle/youCompleteMe"]
-	path = bundle/youCompleteMe
-	url = git@github.com:Valloric/YouCompleteMe.git
 [submodule "bundle/tern"]
 	path = bundle/tern
 	url = git@github.com:marijnh/tern_for_vim.git
@@ -37,3 +31,9 @@
 [submodule "bundle/lang-tex"]
 	path = bundle/lang-tex
 	url = git@github.com:lervag/vim-latex.git
+[submodule "bundle/youCompleteMe"]
+	path = bundle/youCompleteMe
+	url = git@github.com:Valloric/YouCompleteMe.git
+[submodule "bundle/snipmate"]
+	path = bundle/snipmate
+	url = git@github.com:msanders/snipmate.vim.git
