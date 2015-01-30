@@ -11,7 +11,6 @@ Installation
 ------------
 In a shell type the following commands
 
-    ``` bash
     git clone git@github.com:moiri/dotvim.git ~/.vim
     cd ~/.vim
     git submodule update --init --recursive
@@ -19,7 +18,7 @@ In a shell type the following commands
     ./install.sh --clang-completer
     cd ~/.vim/bundle/tern
     npm install
-    ```
+
 Some submodules will have untracked content due to missing .gitignore files. The
 missing files can be added to a local branch (in each submodule) to prevent the
 changes to show up
