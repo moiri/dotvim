@@ -11,7 +11,7 @@ Installation
 ------------
 In a shell type the following commands
 
-    ```bash
+    ``` bash
     git clone git@github.com:moiri/dotvim.git ~/.vim
     cd ~/.vim
     git submodule update --init --recursive
