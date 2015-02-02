@@ -21,4 +21,4 @@ In a shell type the following commands
 
 Some submodules will have untracked content due to missing .gitignore files. The
 missing files can be added to a local branch (in each submodule) to prevent the
-changes to show up
+changes from showing up
