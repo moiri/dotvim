@@ -34,6 +34,9 @@
 [submodule "bundle/youCompleteMe"]
 	path = bundle/youCompleteMe
 	url = git@github.com:Valloric/YouCompleteMe.git
-[submodule "bundle/snipmate"]
-	path = bundle/snipmate
-	url = git@github.com:msanders/snipmate.vim.git
+[submodule "bundle/ultisnips"]
+	path = bundle/ultisnips
+	url = git@github.com:SirVer/ultisnips.git
+[submodule "bundle/snippets"]
+	path = bundle/snippets
+	url = git@github.com:honza/vim-snippets.git

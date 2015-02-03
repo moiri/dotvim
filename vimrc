@@ -66,15 +66,6 @@ xnoremap < <gv
 nnoremap > >>
 nnoremap < <<
 
-"Autocompletion
-"===============================================================================
-"autocomplete function names
-inoremap <leader>, <C-x><C-o>
-"autocomplete file names
-inoremap <leader>: <C-x><C-f>
-"autocomplete complete lines of text
-inoremap <leader>= <C-x><C-l>
-
 "Search
 "===============================================================================
 set incsearch                   "highligt search matches while typing
@@ -175,6 +166,8 @@ set hidden                      "hide buffers
 set switchbuf=useopen,usetab    "buffer switching behaviour
 "list buffers and prepare to open a new one in a split window (horizontal split)
 nnoremap gb :buffers<CR>:sbuffer<Space>
+"save file on hitting <esc> twice
+map <Esc><Esc> :w<CR>
 
 "Status/Command Line
 "===============================================================================
@@ -278,9 +271,8 @@ let g:netrw_liststyle = 3
 "https://github.com/zweifisch/pipe2eval
 
 "-------------------------------------------------------------------------------
-"snipmate provides a ton of snippets ready to use for a ton of different
-"languages
-"https://github.com/msanders/snipmate.vim
+"snippets that work together with ultisnips
+"https://github.com/honza/vim-snippets
 
 "-------------------------------------------------------------------------------
 "surround helps to modify surrounding elements (tags, parentheses, etc)
@@ -303,12 +295,23 @@ let g:syntastic_mode_map            = {
             \ 'passive_filetypes' : ['css', 'python', 'html', 'php']
             \ }
 
+"-------------------------------------------------------------------------------
 "tern is an atocompletor for javascript. It works together with YCM
 "https://github.com/marijnh/tern_for_vim
 
+"-------------------------------------------------------------------------------
 "tabular helps to arrange items in tabular form (very useful for latex)
 "https://github.com/godlygeek/tabular
 
+"-------------------------------------------------------------------------------
+"ultisnips provides snippets that work together with YCM
+"https://github.com/sirver/ultisnips
+"rebind <tab> in order to not interfere with YCM
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
+"-------------------------------------------------------------------------------
 "YCM an autocompletion engine mostly for C languages. It also provides
 "autocompletion for any other kind of text but is not intelligent
 "https://github.com/Valloric/YouCompleteMe
