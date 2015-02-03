@@ -17,6 +17,7 @@ runtime macros/matchit.vim    "extends '%' usage (switch if/else, xml, etc.)
 let mapleader=','               "use ',' instead of '\'
 set backspace=indent,eol,start  "config backspace key
 
+
 "View, Layout
 "===============================================================================
 set splitbelow                  "when split put new window below
@@ -52,6 +53,7 @@ set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 
+
 "Indentation
 "===============================================================================
 set autoindent                  "copy the ident from previous line
@@ -65,6 +67,7 @@ xnoremap > >gv
 xnoremap < <gv
 nnoremap > >>
 nnoremap < <<
+
 
 "Search
 "===============================================================================
@@ -106,6 +109,7 @@ nnoremap <up>   gk
 "use end and home buttons in command mode
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
+
 
 "Content Manipulation
 "===============================================================================
@@ -155,6 +159,16 @@ nmap <leader>X #NcgN
 xmap <leader>x <leader>scgn
 xmap <leader>X <leader>scgN
 
+
+"Spell checker
+"===============================================================================
+"use ,, to open a dropdwn menu with spelling suggestions
+inoremap <leader>, <C-X>s
+nnoremap <leader>, ea<C-X><C-S>
+"on enter replace word and go back to normal mode. This also happens with
+"autocompletion, so maybe it needs to be turned off again
+"inoremap <expr> <CR> pumvisible() ? "\<C-y><Esc>" : "\<CR>"
+
 "File Manipulation
 "===============================================================================
 "encoding
@@ -168,6 +182,7 @@ set switchbuf=useopen,usetab    "buffer switching behaviour
 nnoremap gb :buffers<CR>:sbuffer<Space>
 "save file on hitting <esc> twice
 map <Esc><Esc> :w<CR>
+
 
 "Status/Command Line
 "===============================================================================
