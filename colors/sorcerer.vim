@@ -15,7 +15,7 @@ let colors_name = "sorcerer"
 hi Normal       ctermfg=LightGrey
 hi ColorColumn  ctermbg=Black
 hi Cursor       ctermfg=Black
-hi CursorLine   ctermbg=none cterm=underline ctermfg=NONE
+hi CursorLine   ctermbg=none ctermfg=none cterm=underline
 hi DiffAdd      ctermfg=Black ctermbg=Green
 hi DiffChange   ctermfg=Black ctermbg=Blue
 hi DiffDelete   ctermfg=Black ctermbg=DarkRed
@@ -40,12 +40,12 @@ hi PmenuThumb   ctermfg=DarkGreen ctermbg=DarkGreen
 hi Search       ctermfg=Black ctermbg=DarkGreen cterm=none
 "hi SignColumn   
 hi SpecialKey   ctermfg=DarkGrey ctermbg=none cterm=none
-"hi SpellBad     
-"hi SpellCap     
-"hi SpellLocal   
-"hi SpellRare    
+hi SpellBad     ctermfg=1 ctermbg=none cterm=undercurl
+hi SpellCap     ctermfg=3 ctermbg=none cterm=undercurl
+hi SpellLocal   ctermfg=2 ctermbg=none cterm=undercurl
+hi SpellRare    ctermfg=5 ctermbg=none cterm=undercurl
 hi StatusLine   ctermfg=Black ctermbg=DarkCyan cterm=none
-hi StatusLineNC ctermfg=Black ctermbg=DarkBlue cterm=NONE
+hi StatusLineNC ctermfg=Black ctermbg=DarkBlue cterm=none
 hi VertSplit    ctermfg=DarkBlue ctermbg=DarkBlue cterm=none
 hi TabLine      ctermbg=Blue ctermfg=Black cterm=none
 hi TabLineFill  ctermbg=Blue ctermfg=DarkBlue
