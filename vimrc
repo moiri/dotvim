@@ -180,8 +180,6 @@ set hidden                      "hide buffers
 set switchbuf=useopen,usetab    "buffer switching behaviour
 "list buffers and prepare to open a new one in a split window (horizontal split)
 nnoremap gb :buffers<CR>:sbuffer<Space>
-"save file on hitting <esc> twice
-map <Esc><Esc> :w<CR>
 
 
 "Status/Command Line
