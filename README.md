@@ -21,4 +21,9 @@ In a shell type the following commands
 
 Some submodules will have untracked content due to missing .gitignore files. The
 missing files can be added to a local branch (in each submodule) to prevent the
-changes from showing up
+changes from showing up.
+
+To install the **youCompleteMe** bundle you will need the *cmake* and
+*python-dev* packages.
+
+To install the **tern** bundle you will need the *npm* package.
