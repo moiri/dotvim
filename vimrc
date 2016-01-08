@@ -198,8 +198,9 @@ set statusline=%<\ %t\ %m%r%y%w%=Lin:\ \%l\/\%L\ Col:\ \%c\
 " EXPERIMENTAL! "
 """""""""""""""""
 
-nnoremap <leader>n :cnext<CR>zv
-nnoremap <leader>p :cprevious<CR>zv
+nnoremap <leader>n :lnext<CR>zv
+nnoremap <leader>p :lprevious<CR>zv
+nnoremap <leader>e :YcmDiags<CR>
 
 nnoremap <leader>vp       :execute "w !vpaste ft=" . &ft<CR>
 xnoremap <leader>vp <Esc> :execute "'<,'>w !vpaste ft=" . &ft<CR>
@@ -229,6 +230,17 @@ command! Tagit    :call functions#Tagit()
 command! Bombit   :call functions#Bombit()
 command! ToUnix   :call functions#ToUnix()
 command! SynStack :call functions#SynStack()
+
+" increment visual block
+function! Incr()
+    let a = line('.') - line("'<")
+    let c = virtcol("'<")
+    if a > 0
+        execute 'normal! '.c.'|'.a."\<C-a>"
+    endif
+    normal `<
+endfunction
+vnoremap <C-a> :call Incr()<CR>
 
 """""""""""""""""""
 " PLUGIN SETTINGS "
@@ -296,17 +308,23 @@ let g:netrw_liststyle = 3
 "the corresponding syntax checker must be installed in order to make syntastic
 "work (https://github.com/scrooloose/syntastic/wiki/Syntax-Checkers)
 "https://github.com/scrooloose/syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open       = 0
+let g:syntastic_check_on_wq         = 0
 let g:syntastic_enable_balloons     = 0
-let g:syntastic_enable_highlighting = 0
+let g:syntastic_enable_highlighting = 1
 let g:syntastic_auto_jump           = 1
 let g:syntastic_auto_loc_list       = 1
 let g:syntastic_enable_signs        = 1
-let g:syntastic_mode_map            = {
-            \ 'mode' : 'active',
-            \ 'active_filetypes' : ['javascript'],
-            \ 'passive_filetypes' : ['css', 'python', 'html', 'php']
-            \ }
+" let g:syntastic_mode_map            = {
+"             \ 'mode' : 'active',
+"             \ 'active_filetypes' : ['javascript'],
+"             \ 'passive_filetypes' : ['css', 'python', 'html', 'php']
+"             \ }
 
 "-------------------------------------------------------------------------------
 "tern is an atocompletor for javascript. It works together with YCM
@@ -328,3 +346,11 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 "YCM an autocompletion engine mostly for C languages. It also provides
 "autocompletion for any other kind of text but is not intelligent
 "https://github.com/Valloric/YouCompleteMe
+let g:ycm_global_ycm_extra_conf = '~/.vim/default/.ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_always_populate_location_list = 1
+" let g:ycm_show_diagnostics_ui           = 0 "use syntastic and not ycm
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+set completeopt-=preview
+let g:ycm_add_preview_to_completeopt = 0
