@@ -15,6 +15,7 @@ runtime macros/matchit.vim    "extends '%' usage (switch if/else, xml, etc.)
 "Keys
 "===============================================================================
 let mapleader=','               "use ',' instead of '\'
+let maplocalleader = "-"
 set backspace=indent,eol,start  "config backspace key
 
 
@@ -47,7 +48,7 @@ set visualbell
 
 "Folding
 "===============================================================================
-set foldmethod=indent
+set foldmethod=syntax
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 "folding toggle with space
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
@@ -109,6 +110,15 @@ nnoremap <up>   gk
 "use end and home buttons in command mode
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
+"easily switch between windows
+nmap <silent> <C-Up> :wincmd k<CR>
+nmap <silent> <C-Down> :wincmd j<CR>
+nmap <silent> <C-Left> :wincmd h<CR>
+nmap <silent> <C-Right> :wincmd l<CR>
+nmap <silent> <C-k> :wincmd k<CR>
+nmap <silent> <C-j> :wincmd j<CR>
+nmap <silent> <C-h> :wincmd h<CR>
+nmap <silent> <C-l> :wincmd l<CR>
 
 
 "Content Manipulation
@@ -179,7 +189,12 @@ set termencoding=utf-8
 set hidden                      "hide buffers
 set switchbuf=useopen,usetab    "buffer switching behaviour
 "list buffers and prepare to open a new one in a split window (horizontal split)
-nnoremap gb :buffers<CR>:sbuffer<Space>
+nnoremap gs :buffers<CR>:vert belowright sb<Space>
+nnoremap gb :buffers<CR>:b<Space>
+nnoremap gn :bn<CR>
+nnoremap gp :bp<CR>
+nnoremap gd :bd<CR>
+
 
 
 "Status/Command Line
@@ -192,36 +207,6 @@ set wildignorecase              "ignore case when completing file and directory
 set wildmode=list:longest       "list all matches and complete till longest
                                 "common string
 set statusline=%<\ %t\ %m%r%y%w%=Lin:\ \%l\/\%L\ Col:\ \%c\ 
-
-
-"""""""""""""""""
-" EXPERIMENTAL! "
-"""""""""""""""""
-
-nnoremap <leader>n :lnext<CR>zv
-nnoremap <leader>p :lprevious<CR>zv
-nnoremap <leader>e :YcmDiags<CR>
-
-nnoremap <leader>vp       :execute "w !vpaste ft=" . &ft<CR>
-xnoremap <leader>vp <Esc> :execute "'<,'>w !vpaste ft=" . &ft<CR>
-nnoremap <leader>v:       :let @+ = @:<CR>
-
-for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%' ]
-    execute 'xnoremap i' . char . ' :<C-u>silent!normal!T' . char . 'vt' . char . '<CR>'
-    execute 'onoremap i' . char . ' :normal vi' . char . '<CR>'
-    execute 'xnoremap a' . char . ' :<C-u>silent!normal!F' . char . 'vf' . char . '<CR>'
-    execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
-endfor
-
-augroup Default
-    autocmd!
-
-    autocmd FileType vim                nnoremap <leader>g I" <Esc>A "<Esc>yyp0lv$hhr"yykPjj
-    autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hhr-yykPjj
-
-    autocmd InsertLeave * call functions#AutoSave()
-
-augroup END
 
 """""""""""""""""""
 " CUSTOM COMMANDS "
@@ -241,6 +226,9 @@ function! Incr()
     normal `<
 endfunction
 vnoremap <C-a> :call Incr()<CR>
+
+" setup netrw
+let g:netrw_liststyle=3 " Default to tree mode
 
 """""""""""""""""""
 " PLUGIN SETTINGS "
@@ -278,17 +266,6 @@ let g:ctrlp_buftag_types        = {
 "indent-object is used to select text blocks based on identation (useful with
 "python)
 "https://github.com/michaeljsmith/vim-indent-object
-
-"-------------------------------------------------------------------------------
-"netrw provides a tree structure when opening and allows to access files over
-"the network. It is however buggy and hard to update:
-"http://www.reddit.com/r/vim/comments/22ztqp/why_does_nerdtree_exist_whats_wrong_with_netrw/
-"-> check this and install a better option
-"https://github.com/vim-scripts/netrw.vim
-let g:netrw_winsize   = '999'
-let g:netrw_banner    = 0
-let g:netrw_keepdir   = 0
-let g:netrw_liststyle = 3
 
 "-------------------------------------------------------------------------------
 "pipe2eval allwos to use script to generate content. Looks very nice but needs
@@ -354,3 +331,23 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt = 0
+
+"-------------------------------------------------------------------------------
+"Vimtex offers extensive functionnality for latex files
+"https://github.com/lervag/vimtex
+let g:vimtex_fold_enabled = 0
+let g:vimtex_quickfix_mode = 0
+" let g:vimtex_view_method = 'mupdf'
+let g:vimtex_view_method = 'zathura'
+" let g:vimtex_view_general_viewer = 'qpdfview'
+" let g:vimtex_view_general_options = '--unique @pdf\#src:@tex:@line:@col'
+" let g:vimtex_view_general_options_latexmk = '--unique'
+"setings suggested by vimtex to work together with ycm
+if !exists('g:ycm_semantic_triggers')
+    let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers.tex = [
+            \ 're!\\[A-Za-z]*(ref|cite)[A-Za-z]*([^]]*])?{([^}]*,?)*',
+            \ 're!\\includegraphics([^]]*])?{[^}]*',
+            \ 're!\\(include|input){[^}]*'
+            \ ]
