@@ -21,13 +21,13 @@ set backspace=indent,eol,start  "config backspace key
 
 "View, Layout
 "===============================================================================
-set splitbelow                  "when split put new window below
+" set splitbelow                  "when split put new window below
 set splitright                  "when split put new window right
 set cursorline                  "show a horizontal line at the cursor position
 set fileformats=unix,dos,mac
 set formatoptions+=1            "wrapping, newline and ident options
 set lazyredraw                  "don't redraw window while macros are executed
-set previewheight=4             "height of the preview window
+set previewheight=10            "height of the preview window
 "set relativenumber              "show the linenumber relative to the cursor
 "                                "position
 set number                      "use static line numbering
@@ -111,14 +111,14 @@ nnoremap <up>   gk
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 "easily switch between windows
-nmap <silent> <C-Up> :wincmd k<CR>
-nmap <silent> <C-Down> :wincmd j<CR>
-nmap <silent> <C-Left> :wincmd h<CR>
-nmap <silent> <C-Right> :wincmd l<CR>
-nmap <silent> <C-k> :wincmd k<CR>
-nmap <silent> <C-j> :wincmd j<CR>
-nmap <silent> <C-h> :wincmd h<CR>
-nmap <silent> <C-l> :wincmd l<CR>
+nnoremap <silent> <C-Up> :wincmd k<CR>
+nnoremap <silent> <C-Down> :wincmd j<CR>
+nnoremap <silent> <C-Left> :wincmd h<CR>
+nnoremap <silent> <C-Right> :wincmd l<CR>
+nnoremap <silent> <C-k> :wincmd k<CR>
+nnoremap <silent> <C-j> :wincmd j<CR>
+nnoremap <silent> <C-h> :wincmd h<CR>
+nnoremap <silent> <C-l> :wincmd l<CR>
 
 
 "Content Manipulation
@@ -280,6 +280,7 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt = 0
+nnoremap <leader><tab> :YcmCompleter GetDoc<CR>
 
 "-------------------------------------------------------------------------------
 "Vimtex offers extensive functionnality for latex files
