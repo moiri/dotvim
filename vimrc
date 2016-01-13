@@ -257,29 +257,6 @@ let g:netrw_liststyle=3 " Default to tree mode
 "https://github.com/tpope/vim-surround
 
 "-------------------------------------------------------------------------------
-"syntastic is a syntax checker for a ton of different languages
-"the corresponding syntax checker must be installed in order to make syntastic
-"work (https://github.com/scrooloose/syntastic/wiki/Syntax-Checkers)
-"https://github.com/scrooloose/syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_check_on_open       = 0
-let g:syntastic_check_on_wq         = 0
-let g:syntastic_enable_balloons     = 0
-let g:syntastic_enable_highlighting = 1
-let g:syntastic_auto_jump           = 1
-let g:syntastic_auto_loc_list       = 1
-let g:syntastic_enable_signs        = 1
-" let g:syntastic_mode_map            = {
-"             \ 'mode' : 'active',
-"             \ 'active_filetypes' : ['javascript'],
-"             \ 'passive_filetypes' : ['css', 'python', 'html', 'php']
-"             \ }
-
-"-------------------------------------------------------------------------------
 "tern is an atocompletor for javascript. It works together with YCM
 "https://github.com/marijnh/tern_for_vim
 
