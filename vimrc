@@ -257,10 +257,6 @@ let g:netrw_liststyle=3 " Default to tree mode
 "https://github.com/tpope/vim-surround
 
 "-------------------------------------------------------------------------------
-"tern is an atocompletor for javascript. It works together with YCM
-"https://github.com/marijnh/tern_for_vim
-
-"-------------------------------------------------------------------------------
 "tabular helps to arrange items in tabular form (very useful for latex)
 "https://github.com/godlygeek/tabular
 
