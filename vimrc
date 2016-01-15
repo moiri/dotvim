@@ -249,10 +249,6 @@ let g:netrw_liststyle=3 " Default to tree mode
 "https://github.com/zweifisch/pipe2eval
 
 "-------------------------------------------------------------------------------
-"snippets that work together with ultisnips
-"https://github.com/honza/vim-snippets
-
-"-------------------------------------------------------------------------------
 "surround helps to modify surrounding elements (tags, parentheses, etc)
 "https://github.com/tpope/vim-surround
 
