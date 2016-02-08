@@ -7,6 +7,23 @@ syntax on                     "use vim default syntax highlighting
 
 runtime macros/matchit.vim    "extends '%' usage (switch if/else, xml, etc.)
 
+" Characters that are assigned to the 'leader':
+" a: Tabular: align elements by entered character (is applied on a block of text
+"    using v)
+" c: in c/c++ env, jump to function definition
+" d: delete and mov ein black hole register (not 0 register)
+" h: in c/c++ env, jump to function decalaration
+" i: in c/c++ env, jump to include file
+" j or down, k or up: switch lines or move a line up/down (when switching with a
+"                     blank line)
+" l: in c/c++ env, show documentation in preview window
+" q: replace prior selected string in newly selected block
+" r: replace selection or word and all identic strings in one text block
+" R: replace selection or word and all identic strings in the file
+" s: search for the word below the cursor and leave the curser there
+" x or X: delete selection or word under corsor and enter insert mode
+" ,: open dropdown for spell checker
+" <space><space>: add an empty line above and below the lign of the cursor
 
 """"""""""""""""""""
 " GENERIC SETTINGS "
@@ -15,7 +32,7 @@ runtime macros/matchit.vim    "extends '%' usage (switch if/else, xml, etc.)
 "Keys
 "===============================================================================
 let mapleader=','               "use ',' instead of '\'
-let maplocalleader = "-"
+let maplocalleader = "\\"
 set backspace=indent,eol,start  "config backspace key
 
 
@@ -52,6 +69,7 @@ set foldmethod=syntax
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 "folding toggle with space
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+nnoremap <silent> <Space><Space> @=(foldlevel('.')?'zA':"\<Space><Space>")<CR>
 vnoremap <Space> zf
 
 
@@ -82,12 +100,9 @@ set hlsearch                    "highlight all search matches
 "nnoremap / /\v                  "set search to very magic by adding \v to every
 "                                "search
 "Press Esc to turn off highlighting and clear any message already displayed:
-nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
+nnoremap <silent> <Esc> :noh<CR>
 "Select all words identic to the one below the cursor
 nnoremap <leader>s *N
-"Select all strings identic to the selection
-xnoremap <leader>s <Esc>:let @/ = functions#GetVisualSelection()<CR>
-
 
 "Navigation
 "===============================================================================
@@ -142,11 +157,6 @@ xnoremap <leader>k      : move-2<CR>gv=gv
 xnoremap <leader>j      : move'>+<CR>gv=gv
 xnoremap <leader><Up>   : move-2<CR>gv=gv
 xnoremap <leader><Down> : move'>+<CR>gv=gv
-"switch two words next to one another
-nnoremap <leader>h        "_yiw?\v\w+\_W+%#<CR>:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o><C-l>
-nnoremap <leader>l        "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-l>
-nnoremap <leader><Left>   "_yiw?\v\w+\_W+%#<CR>:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o><C-l>
-nnoremap <leader><Right>  "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-l>
 "align elements by entered character (is applied on a block of text wo using v)
 "requires tabular plugin!
 nnoremap <leader>a :Tabularize<Space>/
@@ -169,6 +179,7 @@ nmap <leader>X #NcgN
 xmap <leader>x <leader>scgn
 xmap <leader>X <leader>scgN
 
+nnoremap <localleader>\ i\<C-[>
 
 "Spell checker
 "===============================================================================
@@ -276,7 +287,10 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt = 0
-nnoremap <leader><tab> :YcmCompleter GetDoc<CR>
+nnoremap <leader>l :YcmCompleter GetDoc<CR>
+nnoremap <leader>h :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>c :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>i :YcmCompleter GoToInclude<CR>
 
 "-------------------------------------------------------------------------------
 "Vimtex offers extensive functionnality for latex files
