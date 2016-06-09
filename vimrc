@@ -7,23 +7,43 @@ syntax on                     "use vim default syntax highlighting
 
 runtime macros/matchit.vim    "extends '%' usage (switch if/else, xml, etc.)
 
-" Characters that are assigned to the 'leader':
-" a: Tabular: align elements by entered character (is applied on a block of text
-"    using v)
-" c: in c/c++ env, jump to function definition
-" d: delete and mov ein black hole register (not 0 register)
-" h: in c/c++ env, jump to function decalaration
-" i: in c/c++ env, jump to include file
-" j or down, k or up: switch lines or move a line up/down (when switching with a
-"                     blank line)
-" l: in c/c++ env, show documentation in preview window
-" q: replace prior selected string in newly selected block
-" r: replace selection or word and all identic strings in one text block
-" R: replace selection or word and all identic strings in the file
-" s: search for the word below the cursor and leave the curser there
-" x or X: delete selection or word under corsor and enter insert mode
-" ,: open dropdown for spell checker
-" <space><space>: add an empty line above and below the lign of the cursor
+"Commands for programming involving <localleader>
+"================================================
+"\t --> tags:
+"------------
+"\tt    toggle tag list
+"\tc    tag the current folder recursively
+
+"\def   jump to definition
+"\dec   jump to declaration
+"\inc   jump to include file
+"\doc   preview window with doc
+"\typ   display type
+
+"\\     prepend \ to the word
+"\;     append ; to the line
+
+"Command for working with latex invlolving <localleader>
+"=======================================================
+"\lt    open the document structure
+"\ll    compile the project
+"\lv    perform forward serach in pdf viewer
+
+"Commands for everyday live involving <leader>
+"=============================================
+",a     Tabular: align elements by entered character
+
+",b -> work with buffers:
+"------------------------
+",bb    show a list of buffers and query to which you want to jump
+",bs    show a list of buffers and query which you want to open in a split view
+",bd    close active buffer
+
+",d     delete and move in black hole register (not 0 register)
+",r     replace selection or word and all identic strings in one text block
+",R     replace selection or word and all identic strings in the file
+",s     search for the word below the cursor and leave the curser there
+",,     open dropdown for spell checker
 
 """"""""""""""""""""
 " GENERIC SETTINGS "
@@ -44,24 +64,27 @@ set cursorline                  "show a horizontal line at the cursor position
 set fileformats=unix,dos,mac
 set formatoptions+=1            "wrapping, newline and ident options
 set lazyredraw                  "don't redraw window while macros are executed
-set previewheight=10            "height of the preview window
+" set previewheight=10            "height of the preview window
 "set relativenumber              "show the linenumber relative to the cursor
 "                                "position
 set number                      "use static line numbering
 set scrolloff=4                 "minimal number of lines to keep above/below
                                 "when scrolling
 set virtualedit=block,onemore   "config of cursor behaviour
-set winheight=999               "set winheight
+" set winheight=999               "set winheight
 "show special chars for tabs, spaces etc. see listchars
 set list
 set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 "set color scheme
 colorscheme sorcerer
-"colorscheme apprentice
+" colorscheme apprentice
 "error bells
 set noerrorbells
 set t_vb=
 set visualbell
+"change split window size with +/- keys
+nnoremap <silent>+ <c-w>+
+nnoremap <silent>- <c-w>-
 
 "Folding
 "===============================================================================
@@ -148,20 +171,6 @@ xnoremap <leader>d "_d
 "allows to overwrite a word with the same word multiple times when using yiw,
 "viw,p
 xnoremap <leader>p "_dP
-"switch lines or move a line up/down (when switching with a blank line)
-nnoremap <leader>k      : move-2<CR>==
-nnoremap <leader>j      : move+<CR>==
-nnoremap <leader><Up>   : move-2<CR>==
-nnoremap <leader><Down> : move+<CR>==
-xnoremap <leader>k      : move-2<CR>gv=gv
-xnoremap <leader>j      : move'>+<CR>gv=gv
-xnoremap <leader><Up>   : move-2<CR>gv=gv
-xnoremap <leader><Down> : move'>+<CR>gv=gv
-"align elements by entered character (is applied on a block of text wo using v)
-"requires tabular plugin!
-nnoremap <leader>a :Tabularize<Space>/
-"add an empty line above and below the lign on which the cursor is
-nnoremap <leader><Space><Space> O<C-o>j<C-o>o<C-o>k<Esc>
 "replace word below cursor and all identic words in one text block
 nnoremap <leader>r :'{,'}s/<C-r>=expand('<cword>')<CR>/
 "replace selection and all identic strings in one text block
@@ -170,25 +179,17 @@ xnoremap <leader>r :<C-u>'{,'}s/<C-r>=functions#GetVisualSelection()<CR>/
 nnoremap <leader>R :%s/<C-r>=expand('<cword>')<CR>/
 "replace selection and all identic strings in the whole file
 xnoremap <leader>R :<C-u>%s/<C-r>=functions#GetVisualSelection()<CR>/
-"replace prior selected string in newly selected block
-xmap <leader>q :s/<C-r>=@/<CR>/
-"delete word under corsor and enter insert mode
-nmap <leader>x *Ncgn
-nmap <leader>X #NcgN
-"delete selection and enter insert mode
-xmap <leader>x <leader>scgn
-xmap <leader>X <leader>scgN
 
-nnoremap <localleader>\ i\<C-[>
+" prepend \ to a word
+nnoremap <localleader>\ bi\<C-[>
+" append ; to a line
+nnoremap <localleader>; A;<C-[>
 
 "Spell checker
 "===============================================================================
 "use ,, to open a dropdwn menu with spelling suggestions
 inoremap <leader>, <C-X>s
 nnoremap <leader>, ea<C-X><C-S>
-"on enter replace word and go back to normal mode. This also happens with
-"autocompletion, so maybe it needs to be turned off again
-"inoremap <expr> <CR> pumvisible() ? "\<C-y><Esc>" : "\<CR>"
 
 "File Manipulation
 "===============================================================================
@@ -200,11 +201,9 @@ set termencoding=utf-8
 set hidden                      "hide buffers
 set switchbuf=useopen,usetab    "buffer switching behaviour
 "list buffers and prepare to open a new one in a split window (horizontal split)
-nnoremap gs :buffers<CR>:vert belowright sb<Space>
-nnoremap gb :buffers<CR>:b<Space>
-nnoremap gn :bn<CR>
-nnoremap gp :bp<CR>
-nnoremap gd :bd<CR>
+nnoremap <leader>bs :buffers<CR>:vert belowright sb<Space>
+nnoremap <leader>bb :buffers<CR>:b<Space>
+nnoremap <leader>bd :bd<CR>
 
 
 
@@ -219,13 +218,23 @@ set wildmode=list:longest       "list all matches and complete till longest
                                 "common string
 set statusline=%<\ %t\ %m%r%y%w%=Lin:\ \%l\/\%L\ Col:\ \%c\ 
 
+nnoremap <leader>p :pclose<CR>
+
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
+
+" Always show statusline
+set laststatus=2
+
+" Use 256 colours (Use this setting only if your terminal supports 256 colours)
+set t_Co=256
+
 """""""""""""""""""
 " CUSTOM COMMANDS "
 """""""""""""""""""
 command! Tagit    :call functions#Tagit()
-command! Bombit   :call functions#Bombit()
 command! ToUnix   :call functions#ToUnix()
-command! SynStack :call functions#SynStack()
 
 " increment visual block
 function! Incr()
@@ -266,6 +275,8 @@ let g:netrw_liststyle=3 " Default to tree mode
 "-------------------------------------------------------------------------------
 "tabular helps to arrange items in tabular form (very useful for latex)
 "https://github.com/godlygeek/tabular
+"align elements by entered character (is applied on a block of text wo using v)
+nnoremap <leader>a :Tabularize<Space>/
 
 "-------------------------------------------------------------------------------
 "ultisnips provides snippets that work together with YCM
@@ -283,14 +294,23 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/default/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_always_populate_location_list = 1
 " let g:ycm_show_diagnostics_ui           = 0 "use syntastic and not ycm
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
 set completeopt-=preview
-let g:ycm_add_preview_to_completeopt = 0
-nnoremap <leader>l :YcmCompleter GetDoc<CR>
-nnoremap <leader>h :YcmCompleter GoToDeclaration<CR>
-nnoremap <leader>c :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>i :YcmCompleter GoToInclude<CR>
+" let g:ycm_add_preview_to_completeopt = 1
+" let g:ycm_autoclose_preview_window_after_insertion = 1
+" let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+nnoremap <localleader>doc :YcmCompleter GetDoc<CR>
+nnoremap <localleader>typ :YcmCompleter GetType<CR>
+nnoremap <localleader>dec :YcmCompleter GoToDeclaration<CR>
+" nnoremap <localleader>gc :YcmCompleter GoToDefinition<CR> "only works if c file is includede
+nnoremap <localleader>inc :YcmCompleter GoToInclude<CR>
+
+"-------------------------------------------------------------------------------
+"Taglist provides a list of tags in a side-window
+"https://github.com/vim-scripts/taglist.vim
+nnoremap <localleader>tt :TlistToggle<CR>
+nnoremap <localleader>tc :Tagit<CR>
+nnoremap <localleader>def <c-]>
 
 "-------------------------------------------------------------------------------
 "Vimtex offers extensive functionnality for latex files
@@ -298,7 +318,8 @@ nnoremap <leader>i :YcmCompleter GoToInclude<CR>
 let g:vimtex_fold_enabled = 0
 let g:vimtex_quickfix_mode = 0
 " let g:vimtex_view_method = 'mupdf'
-let g:vimtex_view_method = 'zathura'
+" let g:vimtex_view_method = 'zathura'
+" let g:vimtex_view_method = 'evince'
 " let g:vimtex_view_general_viewer = 'qpdfview'
 " let g:vimtex_view_general_options = '--unique @pdf\#src:@tex:@line:@col'
 " let g:vimtex_view_general_options_latexmk = '--unique'
@@ -311,3 +332,15 @@ let g:ycm_semantic_triggers.tex = [
             \ 're!\\includegraphics([^]]*])?{[^}]*',
             \ 're!\\(include|input){[^}]*'
             \ ]
+
+"-------------------------------------------------------------------------------
+"Unimpaired gives nice standardised movment commands:
+"next([)/previous(])/first([Upper)/last(]Upper)
+"[b]uffer/[q]uickfix/[t]ag/[f]ile/[l]ocation
+"https://github.com/tpope/vim-unimpaired
+
+"-------------------------------------------------------------------------------
+"ListToggle allows to simply toggle the quickfix list and the location list
+"https://github.com/Valloric/ListToggle
+let g:lt_location_list_toggle_map = '<leader>l'
+let g:lt_quickfix_list_toggle_map = '<leader>q'

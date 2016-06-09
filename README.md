@@ -27,3 +27,13 @@ To install the **youCompleteMe** bundle you will need the *cmake* and
 *python-dev* packages.
 
 To install the **tern** bundle you will need the *npm* package.
+
+Install **powerline**:
+
+    sudo apt-get install powerline
+    wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+    wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+    mv PowerlineSymbols.otf ~/.fonts/
+    fc-cache -vf ~/.fonts/
+    mkdir -p ~/.config/fontconfig/fonts.conf
+    mv 10-powerline-symbols.conf ~/.config/fontconfig/fonts.conf/

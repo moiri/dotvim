@@ -28,3 +28,12 @@
 [submodule "bundle/snippets"]
 	path = bundle/snippets
 	url = https://github.com/honza/vim-snippets
+[submodule "bundle/taglist"]
+	path = bundle/taglist
+	url = git@github.com:vim-scripts/taglist.vim.git
+[submodule "bundle/unimpaired"]
+	path = bundle/unimpaired
+	url = git@github.com:tpope/vim-unimpaired.git
+[submodule "bundle/listToggle"]
+	path = bundle/listToggle
+	url = git@github.com:Valloric/ListToggle.git
