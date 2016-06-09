@@ -28,6 +28,8 @@ To install the **youCompleteMe** bundle you will need the *cmake* and
 
 To install the **tern** bundle you will need the *npm* package.
 
+To work with tags properly you will need to install the *ctags* package
+
 Install **powerline**:
 
     sudo apt-get install powerline
