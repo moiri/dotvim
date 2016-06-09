@@ -95,6 +95,10 @@ nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 nnoremap <silent> <Space><Space> @=(foldlevel('.')?'zA':"\<Space><Space>")<CR>
 vnoremap <Space> zf
 
+"save view when closing file and loading view when opening file
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview 
+
 
 "Indentation
 "===============================================================================
@@ -223,9 +227,6 @@ nnoremap <leader>p :pclose<CR>
 python from powerline.vim import setup as powerline_setup
 python powerline_setup()
 python del powerline_setup
-
-" Always show statusline
-set laststatus=2
 
 " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 set t_Co=256
