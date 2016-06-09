@@ -338,6 +338,10 @@ let g:ycm_semantic_triggers.tex = [
 "next([)/previous(])/first([Upper)/last(]Upper)
 "[b]uffer/[q]uickfix/[t]ag/[f]ile/[l]ocation
 "https://github.com/tpope/vim-unimpaired
+autocmd VimEnter * unmap <p
+autocmd VimEnter * unmap <P
+autocmd VimEnter * unmap >p
+autocmd VimEnter * unmap >P
 
 "-------------------------------------------------------------------------------
 "ListToggle allows to simply toggle the quickfix list and the location list
