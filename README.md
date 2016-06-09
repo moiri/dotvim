@@ -28,9 +28,9 @@ To install the **youCompleteMe** bundle you will need the *cmake* and
 
 To install the **tern** bundle you will need the *npm* package.
 
-To work with tags properly you will need to install the *ctags* package
+To work properly with tags you will need to install the *ctags* package.
 
-Install **powerline**:
+Install the **powerline** for vim:
 
     sudo apt-get install powerline
     wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
