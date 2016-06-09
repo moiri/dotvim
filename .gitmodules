@@ -37,3 +37,6 @@
 [submodule "bundle/listToggle"]
 	path = bundle/listToggle
 	url = git@github.com:Valloric/ListToggle.git
+[submodule "bundle/fugitive"]
+	path = bundle/fugitive
+	url = git@github.com:tpope/vim-fugitive.git
