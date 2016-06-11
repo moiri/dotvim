@@ -58,20 +58,20 @@ flags = [
 # For a C project, you would set this to 'c' instead of 'c++'.
 '-x',
 'c',
-# '-isystem',
-# '../BoostParts',
-# '-isystem',
+'-isystem',
+'../BoostParts',
+'-isystem',
 # This path will only work on OS X, but extra paths that don't exist are not
 # harmful
 # '/System/Library/Frameworks/Python.framework/Headers',
-# '-isystem',
-# '../llvm/include',
-# '-isystem',
-# '../llvm/tools/clang/include',
-# '-I',
-# '.',
-# '-I',
-# './ClangCompleter',
+'-isystem',
+'../llvm/include',
+'-isystem',
+'../llvm/tools/clang/include',
+'-I',
+'.',
+'-I',
+'./ClangCompleter',
 # '-isystem',
 # './tests/gmock/gtest',
 # '-isystem',
@@ -80,8 +80,10 @@ flags = [
 # './tests/gmock',
 # '-isystem',
 # './tests/gmock/include',
-# '-I',
-# './uthash/include',
+'-I',
+'./uthash/include',
+'-I',
+'./inlude'
 ]
 
 
