@@ -283,10 +283,24 @@ nnoremap <leader>a :Tabularize<Space>/
 "-------------------------------------------------------------------------------
 "ultisnips provides snippets that work together with YCM
 "https://github.com/sirver/ultisnips
+
 "rebind <tab> in order to not interfere with YCM
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+" let g:UltiSnipsExpandTrigger="<c-j>"
+" let g:UltiSnipsJumpForwardTrigger="<c-j>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
+"use <enter> to coose the snippet you want
+let g:UltiSnipsExpandTrigger = "<nop>"
+let g:ulti_expand_or_jump_res = 0
+function ExpandSnippetOrCarriageReturn()
+    let snippet = UltiSnips#ExpandSnippetOrJump()
+    if g:ulti_expand_or_jump_res > 0
+        return snippet
+    else
+        return "\<CR>"
+    endif
+endfunction
+inoremap <expr> <CR> pumvisible() ? "\<C-R>=ExpandSnippetOrCarriageReturn()\<CR>" : "\<CR>"
 
 "-------------------------------------------------------------------------------
 "YCM an autocompletion engine mostly for C languages. It also provides
