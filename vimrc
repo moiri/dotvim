@@ -250,6 +250,7 @@ vnoremap <C-a> :call Incr()<CR>
 
 " setup netrw
 let g:netrw_liststyle=3 " Default to tree mode
+let g:netrw_list_hide= '.*\.swp,.*\.pyc'
 
 """""""""""""""""""
 " PLUGIN SETTINGS "
