@@ -362,3 +362,26 @@ autocmd VimEnter * unmap >P
 "https://github.com/Valloric/ListToggle
 let g:lt_location_list_toggle_map = '<leader>l'
 let g:lt_quickfix_list_toggle_map = '<leader>q'
+
+"-------------------------------------------------------------------------------
+"FSwitch allows to switch between h and c files (or other combinations)
+"https://github.com/Valloric/ListToggle
+
+"Switch to the file and load it into the current window
+nmap <silent> <leader>of :FSHere<cr>
+"Switch to the file and load it into the window on the right
+nmap <silent> <leader>ol :FSRight<cr>
+"Switch to the file and load it into a new window split on the right
+nmap <silent> <leader>oL :FSSplitRight<cr>
+"Switch to the file and load it into the window on the left
+nmap <silent> <leader>oh :FSLeft<cr>
+"Switch to the file and load it into a new window split on the left
+nmap <silent> <leader>oH :FSSplitLeft<cr>
+"Switch to the file and load it into the window above
+nmap <silent> <leader>ok :FSAbove<cr>
+"Switch to the file and load it into a new window split above
+nmap <silent> <leader>oK :FSSplitAbove<cr>
+"Switch to the file and load it into the window below
+nmap <silent> <leader>oj :FSBelow<cr>
+"Switch to the file and load it into a new window split below
+nmap <silent> <leader>oJ :FSSplitBelow<cr>
