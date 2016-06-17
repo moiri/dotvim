@@ -12,7 +12,6 @@ runtime macros/matchit.vim    "extends '%' usage (switch if/else, xml, etc.)
 "\t --> tags:
 "------------
 "\tt    toggle tag list
-"\tc    tag the current folder recursively
 
 "\def   jump to definition
 "\dec   jump to declaration
@@ -216,8 +215,7 @@ nnoremap <leader>bd :bd<CR>
 set laststatus=2                "always show a status line"
 set wildmenu                    "command line completion
 set wildignore=*.swp,*.bak,*.pyc,*.class,*/.git/**/*,*/.hg/**/*,*/.svn/**/*
-set wildignorecase              "ignore case when completing file and directory
-                                "names
+" set wildignorecase              "ignore case when completing file names
 set wildmode=list:longest       "list all matches and complete till longest
                                 "common string
 set statusline=%<\ %t\ %m%r%y%w%=Lin:\ \%l\/\%L\ Col:\ \%c\ 
