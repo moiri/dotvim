@@ -39,6 +39,19 @@ runtime macros/matchit.vim    "extends '%' usage (switch if/else, xml, etc.)
 ",bd    close active buffer
 
 ",d     delete and move in black hole register (not 0 register)
+
+",o -> switch from one pairing file to another (*.c <-> *.h)
+"-----------------------------------------------------------
+",of    Switch to the file and load it into the current window
+",ol    Switch to the file and load it into the window on the right
+",oL    Switch to the file and load it into a new window split on the right
+",oh    Switch to the file and load it into the window on the left
+",oH    Switch to the file and load it into a new window split on the left
+",ok    Switch to the file and load it into the window above
+",oK    Switch to the file and load it into a new window split above
+",oj    Switch to the file and load it into the window below
+",oJ    Switch to the file and load it into a new window split below
+
 ",r     replace selection or word and all identic strings in one text block
 ",R     replace selection or word and all identic strings in the file
 ",s     search for the word below the cursor and leave the curser there
@@ -232,7 +245,6 @@ set t_Co=256
 """""""""""""""""""
 " CUSTOM COMMANDS "
 """""""""""""""""""
-command! Tagit    :call functions#Tagit()
 command! ToUnix   :call functions#ToUnix()
 
 " increment visual block
@@ -323,7 +335,6 @@ nnoremap <localleader>inc :YcmCompleter GoToInclude<CR>
 "Taglist provides a list of tags in a side-window
 "https://github.com/vim-scripts/taglist.vim
 nnoremap <localleader>tt :TlistToggle<CR>
-nnoremap <localleader>tc :Tagit<CR>
 nnoremap <localleader>def <c-]>
 
 "-------------------------------------------------------------------------------
@@ -366,22 +377,13 @@ let g:lt_quickfix_list_toggle_map = '<leader>q'
 "-------------------------------------------------------------------------------
 "FSwitch allows to switch between h and c files (or other combinations)
 "https://github.com/Valloric/ListToggle
-
-"Switch to the file and load it into the current window
+"key mappings
 nmap <silent> <leader>of :FSHere<cr>
-"Switch to the file and load it into the window on the right
 nmap <silent> <leader>ol :FSRight<cr>
-"Switch to the file and load it into a new window split on the right
 nmap <silent> <leader>oL :FSSplitRight<cr>
-"Switch to the file and load it into the window on the left
 nmap <silent> <leader>oh :FSLeft<cr>
-"Switch to the file and load it into a new window split on the left
 nmap <silent> <leader>oH :FSSplitLeft<cr>
-"Switch to the file and load it into the window above
 nmap <silent> <leader>ok :FSAbove<cr>
-"Switch to the file and load it into a new window split above
 nmap <silent> <leader>oK :FSSplitAbove<cr>
-"Switch to the file and load it into the window below
 nmap <silent> <leader>oj :FSBelow<cr>
-"Switch to the file and load it into a new window split below
 nmap <silent> <leader>oJ :FSSplitBelow<cr>
