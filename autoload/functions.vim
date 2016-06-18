@@ -1,6 +1,25 @@
 """""""""""
 " HELPERS "
 """""""""""
+" increment visual block
+function functions#Incr()
+    let a = line('.') - line("'<")
+    let c = virtcol("'<")
+    if a > 0
+        execute 'normal! '.c.'|'.a."\<C-a>"
+    endif
+    normal `<
+endfunction
+
+" find files and populate the quickfix list
+function functions#FindFiles(filename)
+    let error_file = tempname()
+    silent exe '!find . -name "'.a:filename.'" | xargs file | sed "s/:/:1:/" > '.error_file
+    set errorformat=%f:%l:%m
+    exe "cfile ". error_file
+    copen
+    call delete(error_file)
+endfunction
 
 " tries to expand (), {} and [] "correctly"
 " also <tag></tag>

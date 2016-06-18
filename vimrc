@@ -245,18 +245,14 @@ set t_Co=256
 """""""""""""""""""
 " CUSTOM COMMANDS "
 """""""""""""""""""
+"convert file to unix file
 command! ToUnix   :call functions#ToUnix()
 
-" increment visual block
-function! Incr()
-    let a = line('.') - line("'<")
-    let c = virtcol("'<")
-    if a > 0
-        execute 'normal! '.c.'|'.a."\<C-a>"
-    endif
-    normal `<
-endfunction
-vnoremap <C-a> :call Incr()<CR>
+"find a file by pattern and propagate to quickfix list
+command! -nargs=1 FindFile call functions#FindFiles(<q-args>)
+
+"increment a visual block
+vnoremap <C-a> :call functions#Incr()<CR>
 
 " setup netrw
 let g:netrw_liststyle=3 " Default to tree mode
