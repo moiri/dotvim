@@ -43,3 +43,6 @@
 [submodule "bundle/fswitch"]
 	path = bundle/fswitch
 	url = git@github.com:vim-scripts/FSwitch.git
+[submodule "bundle/bufexplorer"]
+	path = bundle/bufexplorer
+	url = git@github.com:vim-scripts/bufexplorer.zip.git

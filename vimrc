@@ -34,8 +34,9 @@ runtime macros/matchit.vim    "extends '%' usage (switch if/else, xml, etc.)
 
 ",b -> work with buffers:
 "------------------------
-",bb    show a list of buffers and query to which you want to jump
-",bs    show a list of buffers and query which you want to open in a split view
+",bb    open list of buffers
+",bs    open list of buffers in a horizontal split
+",bv    open list of buffers in a vertical split
 ",bd    close active buffer
 
 ",d     delete and move in black hole register (not 0 register)
@@ -217,8 +218,6 @@ set termencoding=utf-8
 set hidden                      "hide buffers
 set switchbuf=useopen,usetab    "buffer switching behaviour
 "list buffers and prepare to open a new one in a split window (horizontal split)
-nnoremap <leader>bs :buffers<CR>:vert belowright sb<Space>
-nnoremap <leader>bb :buffers<CR>:b<Space>
 nnoremap <leader>bd :bd<CR>
 
 
@@ -383,3 +382,13 @@ nmap <silent> <leader>ok :FSAbove<cr>
 nmap <silent> <leader>oK :FSSplitAbove<cr>
 nmap <silent> <leader>oj :FSBelow<cr>
 nmap <silent> <leader>oJ :FSSplitBelow<cr>
+
+"-------------------------------------------------------------------------------
+"Bufexplorer allows to easily select an open buffer
+"https://github.com/vim-scripts/bufexplorer.zip.git
+"remap some default keys
+nnoremap <silent><leader>bb :BufExplorer<CR>
+let g:bufExplorerDefaultHelp=0
+" let g:bufExplorerDetailedHelp=1
+let g:bufExplorerSplitBelow=1
+let g:bufExplorerSplitHorzSize=10
