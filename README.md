@@ -41,4 +41,4 @@ Install the **powerline** for vim:
     mv 10-powerline-symbols.conf ~/.config/fontconfig/fonts.conf/
 
 Make sure to have python supprt enabled in vim:
-For python `sudo apt-get install vin-nox-py2` and for python3 `sudo apt-get install vin-nox`
+For python `sudo apt-get install vim-nox-py2` and for python3 `sudo apt-get install vim-nox`
