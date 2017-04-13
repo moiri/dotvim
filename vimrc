@@ -99,6 +99,9 @@ set visualbell
 nnoremap <silent>+ <c-w>+
 nnoremap <silent>- <c-w>-
 
+" split vertically on diff
+set diffopt+=vertical
+
 "Folding
 "===============================================================================
 set foldmethod=syntax
@@ -180,7 +183,7 @@ nnoremap <silent> <C-l> :wincmd l<CR>
 "===============================================================================
 set nrformats-=octal            "config inc/dec function (C-a, C-x):
                                 "dont inc/dec octal numbers
-set clipboard^=unnamedplus      "use the X Window clipboard
+" set clipboard^=unnamedplus      "use the X Window clipboard
 "',d' can be used instead of 'd' to move whatever is deleted into the black
 "hole register (instead of the "0 register)
 nnoremap <leader>d "_d
@@ -234,9 +237,9 @@ set statusline=%<\ %t\ %m%r%y%w%=Lin:\ \%l\/\%L\ Col:\ \%c\
 
 nnoremap <leader>p :pclose<CR>
 
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
+python3 from powerline.vim import setup as powerline_setup
+python3 powerline_setup()
+python3 del powerline_setup
 
 " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 set t_Co=256
@@ -288,34 +291,40 @@ nnoremap <leader>a :Tabularize<Space>/
 "-------------------------------------------------------------------------------
 "ultisnips provides snippets that work together with YCM
 "https://github.com/sirver/ultisnips
+" let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/bundle/vim-snippets/UltiSnips']
+" let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+" let g:UltiSnipsUsePythonVersion = 3
 
 "rebind <tab> in order to not interfere with YCM
-" let g:UltiSnipsExpandTrigger="<c-j>"
-" let g:UltiSnipsJumpForwardTrigger="<c-j>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
-"use <enter> to coose the snippet you want
-let g:UltiSnipsExpandTrigger = "<nop>"
-let g:ulti_expand_or_jump_res = 0
-function ExpandSnippetOrCarriageReturn()
-    let snippet = UltiSnips#ExpandSnippetOrJump()
-    if g:ulti_expand_or_jump_res > 0
-        return snippet
-    else
-        return "\<CR>"
-    endif
-endfunction
-inoremap <expr> <CR> pumvisible() ? "\<C-R>=ExpandSnippetOrCarriageReturn()\<CR>" : "\<CR>"
+" "use <enter> to coose the snippet you want
+" let g:UltiSnipsExpandTrigger = "<nop>"
+" let g:ulti_expand_or_jump_res = 0
+" function ExpandSnippetOrCarriageReturn()
+"     let snippet = UltiSnips#ExpandSnippetOrJump()
+"     if g:ulti_expand_or_jump_res > 0
+"         return snippet
+"     else
+"         return "\<CR>"
+"     endif
+" endfunction
+" inoremap <expr> <CR> pumvisible() ? "\<C-R>=ExpandSnippetOrCarriageReturn()\<CR>" : "\<CR>"
 
 "-------------------------------------------------------------------------------
 "YCM an autocompletion engine mostly for C languages. It also provides
 "autocompletion for any other kind of text but is not intelligent
 "https://github.com/Valloric/YouCompleteMe
+let g:ycm_server_python_interpreter = '/usr/bin/python3'
+let g:ycm_use_ultisnips_completer = 1
 let g:ycm_global_ycm_extra_conf = '~/.vim/default/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_always_populate_location_list = 1
 " let g:ycm_show_diagnostics_ui           = 0 "use syntastic and not ycm
 set completeopt-=preview
+" set completeopt=menu
 " let g:ycm_add_preview_to_completeopt = 1
 " let g:ycm_autoclose_preview_window_after_insertion = 1
 " let g:ycm_autoclose_preview_window_after_completion = 1
@@ -348,9 +357,14 @@ if !exists('g:ycm_semantic_triggers')
     let g:ycm_semantic_triggers = {}
 endif
 let g:ycm_semantic_triggers.tex = [
-            \ 're!\\[A-Za-z]*(ref|cite)[A-Za-z]*([^]]*])?{([^}]*,?)*',
-            \ 're!\\includegraphics([^]]*])?{[^}]*',
-            \ 're!\\(include|input){[^}]*'
+            \ 're!\\[A-Za-z]*cite[A-Za-z]*(\[[^]]*\]){0,2}{[^}]*',
+            \ 're!\\[A-Za-z]*ref({[^}]*|range{([^,{}]*(}{)?))',
+            \ 're!\\hyperref\[[^]]*',
+            \ 're!\\includegraphics\*?(\[[^]]*\]){0,2}{[^}]*',
+            \ 're!\\(include(only)?|input){[^}]*',
+            \ 're!\\\a*(gls|Gls|GLS)(pl)?\a*(\s*\[[^]]*\]){0,2}\s*\{[^}]*',
+            \ 're!\\includepdf(\s*\[[^]]*\])?\s*\{[^}]*',
+            \ 're!\\includestandalone(\s*\[[^]]*\])?\s*\{[^}]*',
             \ ]
 
 "-------------------------------------------------------------------------------

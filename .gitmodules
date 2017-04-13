@@ -23,7 +23,7 @@
 	path = bundle/youCompleteMe
 	url = git@github.com:Valloric/YouCompleteMe.git
 [submodule "bundle/snippets"]
-	path = bundle/snippets
+	path = bundle/vim-snippets/
 	url = https://github.com/honza/vim-snippets
 [submodule "bundle/taglist"]
 	path = bundle/taglist
