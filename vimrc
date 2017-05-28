@@ -147,6 +147,8 @@ nnoremap <silent> <Esc> :noh<CR>
 "Select all words identic to the one below the cursor
 nnoremap <leader>s *N
 
+set tags=./tags,tags,./.git/tags;
+
 "Navigation
 "===============================================================================
 ""usage of mouse in different modes
