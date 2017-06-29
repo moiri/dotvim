@@ -180,6 +180,10 @@ nnoremap <silent> <C-j> :wincmd j<CR>
 nnoremap <silent> <C-h> :wincmd h<CR>
 nnoremap <silent> <C-l> :wincmd l<CR>
 
+"Open the definition in a new tab
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+map <C-[> <C-t>
+
 
 "Content Manipulation
 "===============================================================================
@@ -346,6 +350,7 @@ nnoremap <localleader>def <c-]>
 "-------------------------------------------------------------------------------
 "Vimtex offers extensive functionnality for latex files
 "https://github.com/lervag/vimtex
+let g:tex_flavor = "latex"
 let g:vimtex_fold_enabled = 0
 let g:vimtex_quickfix_mode = 0
 " let g:vimtex_view_method = 'mupdf'
