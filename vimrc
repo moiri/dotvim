@@ -180,10 +180,6 @@ nnoremap <silent> <C-j> :wincmd j<CR>
 nnoremap <silent> <C-h> :wincmd h<CR>
 nnoremap <silent> <C-l> :wincmd l<CR>
 
-"Open the definition in a new tab
-map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
-map <C-[> <C-t>
-
 
 "Content Manipulation
 "===============================================================================
