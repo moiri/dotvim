@@ -112,8 +112,8 @@ nnoremap <silent> <Space><Space> @=(foldlevel('.')?'zA':"\<Space><Space>")<CR>
 vnoremap <Space> zf
 
 "save view when closing file and loading view when opening file
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview 
+" autocmd BufWinLeave *.* mkview
+" autocmd BufWinEnter *.* silent loadview 
 
 
 "Indentation
@@ -146,6 +146,11 @@ set hlsearch                    "highlight all search matches
 nnoremap <silent> <Esc> :noh<CR>
 "Select all words identic to the one below the cursor
 nnoremap <leader>s *N
+
+nnoremap <leader>G :grep -R <C-r>=expand('<cword>')<CR> .
+xnoremap <leader>G :grep -R <C-r>=functions#GetVisualSelection()<CR> .
+nnoremap <leader>g :grep <C-r>=expand('<cword>')<CR> .
+xnoremap <leader>g :grep <C-r>=functions#GetVisualSelection()<CR> .
 
 set tags=./tags,tags,./.git/tags;
 
