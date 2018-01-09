@@ -14,13 +14,16 @@ In a shell type the following commands
     git clone git@github.com:moiri/dotvim.git ~/.vim
     cd ~/.vim
     git submodule update --init --recursive
-    cd ~/.vim/bundle/youCompleteMe
-    python3 install.py --clang-completer --js-completer --cs-completer --system-libclang
 
 To install the **youCompleteMe** bundle with the given flags you will need the
 following packages
 
     sudo apt install cmake clang python3-dev mono-complete nodejs npm
+
+and then install **YCM**
+
+    cd ~/.vim/bundle/youCompleteMe
+    python3 install.py --clang-completer --js-completer --cs-completer --system-libclang
 
 For typescript support
 
