@@ -15,23 +15,20 @@ In a shell type the following commands
     cd ~/.vim
     git submodule update --init --recursive
 
-To install the **youCompleteMe** bundle with the given flags you will need the
-following packages
+Some submodules will have untracked content due to missing .gitignore files. The
+missing files can be added to a local branch (in each submodule) to prevent the
+changes from showing up.
+
+To install the **youCompleteMe** bundle with the given flags you will need some
+packages and then run a python script
 
     sudo apt install cmake clang python3-dev mono-complete nodejs npm
-
-and then install **YCM**
-
     cd ~/.vim/bundle/youCompleteMe
     python3 install.py --clang-completer --js-completer --cs-completer --system-libclang
 
 For typescript support
 
     sudo npm install -g typescript
-
-Some submodules will have untracked content due to missing .gitignore files. The
-missing files can be added to a local branch (in each submodule) to prevent the
-changes from showing up.
 
 To work properly with tags you will need to install the package
 
