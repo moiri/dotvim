@@ -112,6 +112,6 @@ hi htmlTitle     ctermfg=Cyan
 " CSS
 hi cssDefinition  ctermfg=Blue
 
-"indicate 80 char area by marking the oevrlapping text
-hi OverLength   ctermfg=Magenta ctermbg=DarkMagenta
-match OverLength /\%81v.\+/
+""indicate 80 char area by marking the oevrlapping text
+"hi OverLength   ctermfg=Magenta ctermbg=DarkMagenta
+"match OverLength /\%81v.\+/

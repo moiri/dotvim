@@ -91,6 +91,8 @@ set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 "set color scheme
 colorscheme sorcerer
 " colorscheme apprentice
+"show a vertical line at the 81st character
+set colorcolumn=81
 "error bells
 set noerrorbells
 set t_vb=
