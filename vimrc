@@ -149,10 +149,10 @@ nnoremap <silent> <Esc> :noh<CR>
 "Select all words identic to the one below the cursor
 nnoremap <leader>s *N
 
-nnoremap <leader>G :grep -R <C-r>=expand('<cword>')<CR> .
-xnoremap <leader>G :grep -R <C-r>=functions#GetVisualSelection()<CR> .
-nnoremap <leader>g :grep <C-r>=expand('<cword>')<CR> .
-xnoremap <leader>g :grep <C-r>=functions#GetVisualSelection()<CR> .
+nnoremap <leader>G :grep -R --exclude=*.swp --exclude-dir=.git <C-r>=expand('<cword>')<CR> .
+xnoremap <leader>G :grep -R --exclude=*.swp --exclude-dir=.git <C-r>=functions#GetVisualSelection()<CR> .
+nnoremap <leader>g :grep --exclude=*.swp --exclude-dir=.git <C-r>=expand('<cword>')<CR> .
+xnoremap <leader>g :grep --exclude=*.swp --exclude-dir=.git <C-r>=functions#GetVisualSelection()<CR> .
 
 set tags=./tags,tags,./.git/tags;
 
