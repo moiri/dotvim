@@ -46,3 +46,9 @@
 [submodule "bundle/bufexplorer"]
 	path = bundle/bufexplorer
 	url = git@github.com:vim-scripts/bufexplorer.zip.git
+[submodule "bundle/mark"]
+	path = bundle/mark
+	url = https://github.com/inkarkat/vim-mark.git
+[submodule "bundle/ingo-library"]
+	path = bundle/ingo-library
+	url = https://github.com/inkarkat/vim-ingo-library.git

@@ -53,8 +53,9 @@ runtime macros/matchit.vim    "extends '%' usage (switch if/else, xml, etc.)
 ",oj    Switch to the file and load it into the window below
 ",oJ    Switch to the file and load it into a new window split below
 
-",r     replace selection or word and all identic strings in one text block
-",R     replace selection or word and all identic strings in the file
+",r     Manually input a regular expression to mark (mark plugin)
+",c     replace selection or word and all identic strings in one text block
+",C     replace selection or word and all identic strings in the file
 ",s     search for the word below the cursor and leave the curser there
 ",,     open dropdown for spell checker
 
@@ -149,10 +150,13 @@ nnoremap <silent> <Esc> :noh<CR>
 "Select all words identic to the one below the cursor
 nnoremap <leader>s *N
 
-nnoremap <leader>G :grep -R --exclude=*.swp --exclude-dir=.git <C-r>=expand('<cword>')<CR> .
-xnoremap <leader>G :grep -R --exclude=*.swp --exclude-dir=.git <C-r>=functions#GetVisualSelection()<CR> .
-nnoremap <leader>g :grep --exclude=*.swp --exclude-dir=.git <C-r>=expand('<cword>')<CR> .
-xnoremap <leader>g :grep --exclude=*.swp --exclude-dir=.git <C-r>=functions#GetVisualSelection()<CR> .
+nnoremap <leader>G :grep -R --exclude=*.swp --exclude-dir=.git --exclude-dir=doc <C-r>=expand('<cword>')<CR> .
+xnoremap <leader>G :grep -R --exclude=*.swp --exclude-dir=.git --exclude-dir=doc <C-r>=functions#GetVisualSelection()<CR> .
+nnoremap <leader>g :grep --exclude=*.swp --exclude-dir=.git --exclude-dir=doc <C-r>=expand('<cword>')<CR> .
+xnoremap <leader>g :grep --exclude=*.swp --exclude-dir=.git --exclude-dir=doc <C-r>=functions#GetVisualSelection()<CR> .
+
+"in visual mode search selected text with //
+vnoremap // y/<C-R>"<CR>
 
 set tags=./tags,tags,./.git/tags;
 
@@ -201,13 +205,13 @@ xnoremap <leader>d "_d
 "viw,p
 xnoremap <leader>p "_dP
 "replace word below cursor and all identic words in one text block
-nnoremap <leader>r :'{,'}s/<C-r>=expand('<cword>')<CR>/
+nnoremap <leader>c :'{,'}s/<C-r>=expand('<cword>')<CR>/
 "replace selection and all identic strings in one text block
-xnoremap <leader>r :<C-u>'{,'}s/<C-r>=functions#GetVisualSelection()<CR>/
+xnoremap <leader>c :<C-u>'{,'}s/<C-r>=functions#GetVisualSelection()<CR>/
 "replace word below cursor and all identic words in the whole file
-nnoremap <leader>R :%s/<C-r>=expand('<cword>')<CR>/
+nnoremap <leader>C :%s/<C-r>=expand('<cword>')<CR>/
 "replace selection and all identic strings in the whole file
-xnoremap <leader>R :<C-u>%s/<C-r>=functions#GetVisualSelection()<CR>/
+xnoremap <leader>C :<C-u>%s/<C-r>=functions#GetVisualSelection()<CR>/
 
 " prepend \ to a word
 nnoremap <localleader>\ bi\<C-[>
@@ -219,6 +223,9 @@ nnoremap <localleader>; A;<C-[>
 "use ,, to open a dropdwn menu with spelling suggestions
 inoremap <leader>, <C-X>s
 nnoremap <leader>, ea<C-X><C-S>
+
+" Enable spell checking for markdown files
+au BufRead *.md setlocal spell
 
 "File Manipulation
 "===============================================================================
