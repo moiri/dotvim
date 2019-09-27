@@ -19,9 +19,6 @@
 [submodule "bundle/lang-tex"]
 	path = bundle/lang-tex
 	url = git@github.com:lervag/vim-latex.git
-[submodule "bundle/youCompleteMe"]
-	path = bundle/youCompleteMe
-	url = git@github.com:Valloric/YouCompleteMe.git
 [submodule "bundle/snippets"]
 	path = bundle/snippets
 	url = git@github.com:honza/vim-snippets.git
@@ -52,3 +49,18 @@
 [submodule "bundle/ingo-library"]
 	path = bundle/ingo-library
 	url = https://github.com/inkarkat/vim-ingo-library.git
+[submodule "bundle/lang-jsx"]
+	path = bundle/lang-jsx
+	url = https://github.com/mxw/vim-jsx.git
+[submodule "bundle/dbext"]
+	path = bundle/dbext
+	url = https://github.com/vim-scripts/dbext.vim.git
+[submodule "bundle/youCompleteMe"]
+	path = bundle/youCompleteMe
+	url = https://github.com/ycm-core/YouCompleteMe.git
+[submodule "bundle/lang-ts"]
+	path = bundle/lang-ts
+	url = https://github.com/leafgarland/typescript-vim.git
+[submodule "bundle/lang-tsx"]
+	path = bundle/lang-tsx
+	url = https://github.com/ianks/vim-tsx.git

@@ -150,10 +150,10 @@ nnoremap <silent> <Esc> :noh<CR>
 "Select all words identic to the one below the cursor
 nnoremap <leader>s *N
 
-nnoremap <leader>G :grep -R --exclude=*.swp --exclude-dir=.git --exclude-dir=doc <C-r>=expand('<cword>')<CR> .
-xnoremap <leader>G :grep -R --exclude=*.swp --exclude-dir=.git --exclude-dir=doc <C-r>=functions#GetVisualSelection()<CR> .
-nnoremap <leader>g :grep --exclude=*.swp --exclude-dir=.git --exclude-dir=doc <C-r>=expand('<cword>')<CR> .
-xnoremap <leader>g :grep --exclude=*.swp --exclude-dir=.git --exclude-dir=doc <C-r>=functions#GetVisualSelection()<CR> .
+nnoremap <leader>G :grep -R --exclude=*.swp --exclude-dir=.git --exclude-dir=doc --exclude-dir=node_modules "<C-r>=expand('<cword>')<CR>" .
+xnoremap <leader>G :grep -R --exclude=*.swp --exclude-dir=.git --exclude-dir=doc --exclude-dir=node_modules "<C-r>=functions#GetVisualSelection()<CR>" .
+nnoremap <leader>g :grep --exclude=*.swp --exclude-dir=.git --exclude-dir=doc --exclude-dir=node_modules "<C-r>=expand('<cword>')<CR>" .
+xnoremap <leader>g :grep --exclude=*.swp --exclude-dir=.git --exclude-dir=doc --exclude-dir=node_modules "<C-r>=functions#GetVisualSelection()<CR>" .
 
 "in visual mode search selected text with //
 vnoremap // y/<C-R>"<CR>
