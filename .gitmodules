@@ -19,9 +19,6 @@
 [submodule "bundle/lang-tex"]
 	path = bundle/lang-tex
 	url = git@github.com:lervag/vim-latex.git
-[submodule "bundle/snippets"]
-	path = bundle/snippets
-	url = git@github.com:honza/vim-snippets.git
 [submodule "bundle/taglist"]
 	path = bundle/taglist
 	url = git@github.com:vim-scripts/taglist.vim.git
@@ -64,3 +61,6 @@
 [submodule "bundle/lang-tsx"]
 	path = bundle/lang-tsx
 	url = https://github.com/ianks/vim-tsx.git
+[submodule "bundle/vim-snippets"]
+	path = bundle/vim-snippets
+	url = https://github.com/honza/vim-snippets.git
