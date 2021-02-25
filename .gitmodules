@@ -64,3 +64,6 @@
 [submodule "bundle/vim-snippets"]
 	path = bundle/vim-snippets
 	url = https://github.com/honza/vim-snippets.git
+[submodule "bundle/lang-vue"]
+	path = bundle/lang-vue
+	url = https://github.com/storyn26383/vim-vue.git
