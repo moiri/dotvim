@@ -46,9 +46,6 @@
 [submodule "bundle/ingo-library"]
 	path = bundle/ingo-library
 	url = https://github.com/inkarkat/vim-ingo-library.git
-[submodule "bundle/lang-jsx"]
-	path = bundle/lang-jsx
-	url = https://github.com/mxw/vim-jsx.git
 [submodule "bundle/dbext"]
 	path = bundle/dbext
 	url = https://github.com/vim-scripts/dbext.vim.git
@@ -64,3 +61,6 @@
 [submodule "bundle/lang-vue"]
 	path = bundle/lang-vue
 	url = https://github.com/storyn26383/vim-vue.git
+[submodule "bundle/lang-tsx"]
+	path = bundle/lang-tsx
+	url = https://github.com/peitalin/vim-jsx-typescript.git
