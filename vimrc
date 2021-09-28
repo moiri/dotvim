@@ -107,8 +107,8 @@ set diffopt+=vertical
 
 "Folding
 "===============================================================================
-set foldmethod=syntax
-set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
+set foldmethod=manual
+"set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 "folding toggle with space
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 nnoremap <silent> <Space><Space> @=(foldlevel('.')?'zA':"\<Space><Space>")<CR>
@@ -338,6 +338,7 @@ let g:ycm_use_ultisnips_completer = 1
 let g:ycm_global_ycm_extra_conf = '~/.vim/default/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_always_populate_location_list = 1
+let g:ycm_filetype_specific_completion_to_disable = { 'json': 0 }
 " let g:ycm_show_diagnostics_ui           = 0 "use syntastic and not ycm
 set completeopt-=preview
 " set completeopt=menu

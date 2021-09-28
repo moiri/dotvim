@@ -64,3 +64,6 @@
 [submodule "bundle/lang-tsx"]
 	path = bundle/lang-tsx
 	url = https://github.com/peitalin/vim-jsx-typescript.git
+[submodule "bundle/jsonpath"]
+	path = bundle/jsonpath
+	url = https://github.com/mogelbrod/vim-jsonpath.git
