@@ -100,11 +100,20 @@ hi link pythonDecoratorFunction pythonDecorator
 " hi javaScriptFuncName       ctermfg=#993333 ctermfg=Red
 hi javaScriptOpAssign       ctermfg=Magenta ctermfg=Magenta
 
+" dark red
+hi tsxComponentName ctermfg=208 cterm=NONE ctermfg=208
+hi tsxCloseComponentName ctermfg=166 cterm=NONE ctermfg=166
+
+" yellow
+"hi tsxAttrib ctermfg=142 cterm=NONE ctermfg=142
+
 " HTML
 hi htmlTag       ctermfg=Cyan cterm=NONE ctermfg=DarkCyan
 hi htmlSpecialTagName ctermfg=Cyan cterm=NONE ctermfg=DarkCyan
-hi htmlTagName  ctermfg=Cyan cterm=NONE  ctermfg=DarkCyan
+hi htmlTagName   ctermfg=Cyan cterm=NONE  ctermfg=DarkCyan
+hi xmlTagName    ctermfg=Cyan cterm=NONE ctermfg=DarkCyan
 hi htmlEndTag    ctermfg=Cyan cterm=NONE ctermfg=DarkCyan
+hi xmlEndTag     ctermfg=Cyan cterm=NONE ctermfg=DarkCyan
 hi htmlArg       ctermfg=DarkCyan cterm=NONE ctermfg=Blue
 hi htmlLink      cterm=NONE
 hi htmlTitle     ctermfg=Cyan
