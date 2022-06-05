@@ -424,3 +424,13 @@ let g:bufExplorerDefaultHelp=0
 " let g:bufExplorerDetailedHelp=1
 let g:bufExplorerSplitBelow=1
 let g:bufExplorerSplitHorzSize=10
+
+
+"-------------------------------------------------------------------------------
+"vrc allows to perform rest api tests.
+"https://github.com/vim-rest-console.git
+let g:vrc_auto_format_response_patterns = {
+    \ 'json': 'jq '.''
+\}
+let g:vrc_horizontal_split=1
+" let g:vrc_trigger = '<C-k>'
